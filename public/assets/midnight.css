@@ -1126,6 +1126,13 @@ p {
   min-height: 620px;
 }
 
+.not-found-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
 .plain-body {
   max-width: 900px;
   color: #d8ccb4;
@@ -1136,6 +1143,18 @@ p {
 .plain-body .lead {
   color: var(--paper);
   font-size: 22px;
+}
+
+.plain-link {
+  color: #f1deb7;
+  text-decoration: underline;
+  text-decoration-color: rgba(217, 155, 74, 0.55);
+  text-underline-offset: 4px;
+}
+
+.plain-link:hover {
+  color: var(--paper);
+  text-decoration-color: var(--amber);
 }
 
 .source-row {

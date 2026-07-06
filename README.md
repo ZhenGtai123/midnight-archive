@@ -25,6 +25,8 @@ Use the bundled Node runtime in this Codex desktop environment:
 
 ```powershell
 & 'C:\Users\陈彦至\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' tools/build.mjs
+& 'C:\Users\陈彦至\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' tools/check.mjs
+& 'C:\Users\陈彦至\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' tools/sync-docs.mjs
 & 'C:\Users\陈彦至\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' tools/serve.mjs
 ```
 
@@ -34,7 +36,7 @@ Then open `http://127.0.0.1:4173/midnight-archive/`.
 
 See `GITHUB_SETUP.md`. The project can be pushed to GitHub after this computer has GitHub authentication configured.
 
-GitHub Pages can publish directly from the `docs/` folder on `main`. The `docs/` folder mirrors the generated `dist/midnight-archive` output for public preview.
+GitHub Pages publishes directly from the `docs/` folder on `main`. Run `tools/build.mjs`, `tools/check.mjs`, and `tools/sync-docs.mjs` before pushing public preview changes.
 
 ## Content Rules
 

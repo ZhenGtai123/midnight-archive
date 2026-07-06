@@ -15,14 +15,16 @@ This project should not ship fake ad code. Keep AdSense disabled until a real pu
 - Sitemap
 - RSS feed
 - Robots file
+- Custom 404 page
 - Safe `ads.txt` placeholder
 - Config-gated AdSense script injection
 - Per-story source metadata
 - Thin-content quality check
+- GitHub Pages preview from `docs/`
 
 ## Before Applying
 
-- Replace `https://example.com` with the real domain in `content/midnight-archive.mjs`.
+- Decide whether to keep the GitHub Pages preview URL or move to a custom domain.
 - Confirm every source URL and source-rights note.
 - Add more substantive original commentary before scaling.
 - Do not enable ads before the site has enough polished content and navigation depth.

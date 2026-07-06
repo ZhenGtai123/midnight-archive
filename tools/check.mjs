@@ -23,6 +23,7 @@ const requiredPages = [
   "rss.xml",
   "robots.txt",
   "ads.txt",
+  "404.html",
   "assets/midnight.css",
   "assets/midnight.js",
   "assets/logo-midnight-archive.svg",

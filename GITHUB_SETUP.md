@@ -86,8 +86,8 @@ git push -u origin main
 
 ## Before Publishing
 
-- Replace `https://example.com` in `content/midnight-archive.mjs` with the real domain.
-- Replace `editor@example.com` in `tools/build.mjs` generated pages with a real contact address.
+- Confirm `site.canonicalOrigin` in `content/midnight-archive.mjs` matches the current preview or production domain.
+- Run `node tools/build.mjs`, `node tools/check.mjs`, and `node tools/sync-docs.mjs` before pushing GitHub Pages updates.
 - Keep `site.adsense.enabled` as `false` until AdSense approval and a real `ca-pub-...` value exist.
 - Review every source URL and rights note before public launch.
 

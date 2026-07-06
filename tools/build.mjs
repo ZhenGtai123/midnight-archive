@@ -19,6 +19,7 @@ const publicRoot = path.join(root, "public");
 function relativeRoot(pathName = "") {
   const clean = pathName.replace(/^\/+|\/+$/g, "");
   if (!clean) return "./";
+  if (/\.[a-z0-9]+$/i.test(clean)) return "./";
   return "../".repeat(clean.split("/").length);
 }
 
@@ -68,6 +69,8 @@ function urlFor(href) {
 function pageShell({ title, description, body, pathName = "", structuredData = [] }) {
   const canonical = `${site.canonicalOrigin}${site.basePath}${pathName}`.replace(/\/+$/, "/");
   const rootRel = relativeRoot(pathName);
+  const ogType = pathName.startsWith("stories/") ? "article" : "website";
+  const ogImage = `${site.canonicalOrigin}${site.basePath}assets/hero-midnight-archive.png`;
   const adsenseScript =
     site.adsense?.enabled && site.adsense.publisherId
       ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${esc(site.adsense.publisherId)}" crossorigin="anonymous"></script>`
@@ -83,6 +86,8 @@ function pageShell({ title, description, body, pathName = "", structuredData = [
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#060706">
   <link rel="canonical" href="${esc(canonical)}">
   <link rel="alternate" type="application/rss+xml" title="${esc(site.name)} RSS" href="${rootRel}rss.xml">
   <link rel="icon" href="${rootRel}assets/logo-midnight-archive.svg" type="image/svg+xml">
@@ -90,8 +95,15 @@ function pageShell({ title, description, body, pathName = "", structuredData = [
   ${adsenseScript}
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(description)}">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="${rootRel}assets/hero-midnight-archive.png">
+  <meta property="og:type" content="${ogType}">
+  <meta property="og:url" content="${esc(canonical)}">
+  <meta property="og:site_name" content="${esc(site.name)}">
+  <meta property="og:locale" content="${esc(site.locale.replace("-", "_"))}">
+  <meta property="og:image" content="${esc(ogImage)}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${esc(title)}">
+  <meta name="twitter:description" content="${esc(description)}">
+  <meta name="twitter:image" content="${esc(ogImage)}">
   ${jsonLd}
 </head>
 <body>
@@ -484,6 +496,29 @@ function simplePage({ slug, title, description, body }) {
   });
 }
 
+function notFoundPage() {
+  const rootRel = relativeRoot("404.html");
+  return pageShell({
+    title: `页面未找到 | ${site.name}`,
+    description: "子夜故事档案馆的页面未找到提示页。",
+    pathName: "404.html",
+    body: `<section class="plain-page not-found-page">
+      <div class="section-heading">
+        <span class="eyebrow">404</span>
+        <h1>这条夜路暂时没有档案</h1>
+      </div>
+      <div class="plain-body">
+        <p class="lead">可能是链接已经调整，也可能是这个故事还没有整理上线。</p>
+        <p>你可以回到首页，从专题索引或故事列表继续阅读。</p>
+        <p class="not-found-actions">
+          <a class="primary-link" href="${rootRel}">返回首页</a>
+          <a class="secondary-link" href="${rootRel}themes/">查看专题</a>
+        </p>
+      </div>
+    </section>`
+  });
+}
+
 function sourcesPage() {
   const rows = site.sources
     .map(
@@ -565,7 +600,7 @@ const staticPages = [
     title: "联系",
     description: "联系子夜故事档案馆编辑部。",
     body:
-      "<p>如需提供授权故事、指出来源问题或申请删除内容，请联系编辑部：editor@example.com。</p><p>来信请附上页面地址、权利说明和可核验的联系方式。我们会优先处理版权和事实错误相关请求。</p>"
+      '<p>如需提供授权故事、指出来源问题或申请删除内容，可以先通过 GitHub 仓库提交 Issue：<a class="plain-link" href="https://github.com/ZhenGtai123/midnight-archive/issues" rel="nofollow noopener" target="_blank">midnight-archive issues</a>。</p><p>提交时请附上页面地址、权利说明和可核验的联系方式。正式域名和编辑邮箱确定后，本页会更新为长期联系渠道。</p>'
   },
   {
     slug: "privacy",
@@ -693,5 +728,6 @@ await writeFile(
   "utf8"
 );
 await writeFile(path.join(siteRoot, "ads.txt"), adsTxt(), "utf8");
+await writeFile(path.join(siteRoot, "404.html"), notFoundPage(), "utf8");
 
 console.log(`Built ${site.name} at ${siteRoot}`);

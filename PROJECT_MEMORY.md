@@ -37,6 +37,7 @@ This repository is the working lab for building multiple high-quality content si
 - Public preview output is copied into `docs/` for GitHub Pages.
 - Build command: `node tools/build.mjs`
 - Quality command: `node tools/check.mjs`
+- GitHub Pages sync command: `node tools/sync-docs.mjs`
 - The quality check now validates required static pages, all story pages, all theme pages, source URLs, article thickness, and broken theme-to-story references.
 - Commit and push after each meaningful milestone.
 
