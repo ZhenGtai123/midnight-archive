@@ -55,6 +55,11 @@ const requiredPages = [
   "assets/generated/archive-underworld.webp",
   "assets/generated/archive-objects.webp",
   "assets/generated/archive-relations.webp",
+  "assets/generated/story-xifangping.webp",
+  "assets/generated/story-nie-xiaoqian.webp",
+  "assets/generated/story-painted-skin.webp",
+  "assets/generated/story-laoshan-daoshi.webp",
+  "assets/generated/story-wang-liulang.webp",
   "en/index.html",
   ...archivePagePaths.map((page) => `en/${page}`),
   "en/themes/index.html",
@@ -340,6 +345,12 @@ for (const asset of ["archive-people.webp", "archive-beings.webp", "archive-unde
   }
 }
 
+for (const asset of ["story-xifangping.webp", "story-nie-xiaoqian.webp", "story-painted-skin.webp", "story-laoshan-daoshi.webp", "story-wang-liulang.webp"]) {
+  if (!homeHtml.includes(asset)) {
+    failures.push(`Home page missing story image ${asset}`);
+  }
+}
+
 const englishArchiveHtml = await readOutput("en/archive/index.html");
 for (const text of ["Eastern Strange-Tale Archive", "Character Index", "Beings Index", "Underworld Dossiers", "Object Index"]) {
   if (!englishArchiveHtml.includes(text)) failures.push(`English archive index missing ${text}`);
@@ -348,6 +359,14 @@ for (const text of ["Eastern Strange-Tale Archive", "Character Index", "Beings I
 const pilotStoryHtml = await readOutput("stories/xifangping/index.html");
 for (const text of ["data-archive-tabs", "原文", "白话", "导读", "data-relation-graph"]) {
   if (!pilotStoryHtml.includes(text)) failures.push(`Xifangping story page missing archive feature ${text}`);
+}
+if (!pilotStoryHtml.includes("story-xifangping.webp")) {
+  failures.push("Xifangping story page missing generated cover image");
+}
+
+const englishPilotStoryHtml = await readOutput("en/stories/xifangping/index.html");
+if (!englishPilotStoryHtml.includes("story-xifangping.webp")) {
+  failures.push("English Xifangping story page missing generated cover image");
 }
 
 const routeHtml = await readOutput("archive/route/index.html");

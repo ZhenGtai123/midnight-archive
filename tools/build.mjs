@@ -58,12 +58,21 @@ if (existsSync(heroSource)) {
   await copyFile(heroSource, path.join(siteRoot, "assets", "hero-midnight-archive.png"));
 }
 
+const storyVisuals = {
+  xifangping: "story-xifangping.webp",
+  "nie-xiaoqian": "story-nie-xiaoqian.webp",
+  "painted-skin": "story-painted-skin.webp",
+  "laoshan-daoshi": "story-laoshan-daoshi.webp",
+  "wang-liulang": "story-wang-liulang.webp"
+};
+
 const generatedAssetFiles = [
   "archive-people.webp",
   "archive-beings.webp",
   "archive-underworld.webp",
   "archive-objects.webp",
-  "archive-relations.webp"
+  "archive-relations.webp",
+  ...Object.values(storyVisuals)
 ];
 await mkdir(path.join(siteRoot, "assets", "generated"), { recursive: true });
 for (const file of generatedAssetFiles) {
@@ -101,6 +110,19 @@ function urlFor(href) {
 
 function relativeHref(rootRel, pathName = "") {
   return `${rootRel}${urlFor(`${site.basePath}${cleanPagePath(pathName)}`)}`;
+}
+
+function storyImageFor(story) {
+  return storyVisuals[story.slug] || null;
+}
+
+function storyImagePath(story) {
+  const image = storyImageFor(story);
+  return image ? `assets/generated/${image}` : null;
+}
+
+function storyImageAlt(story, context = zhContext) {
+  return context.locale === "en" ? `Editorial cover image for ${story.title}` : `${story.title}的编辑封面图`;
 }
 
 const zhStaticPages = [
@@ -949,12 +971,12 @@ function alternatesFor(pathName, context) {
   );
 }
 
-function pageShell({ context = zhContext, title, description, body, pathName = "", structuredData = [] }) {
+function pageShell({ context = zhContext, title, description, body, pathName = "", structuredData = [], imagePath = null }) {
   const cleanPath = cleanPagePath(pathName);
   const canonical = absoluteUrl(cleanPath);
   const rootRel = relativeRoot(cleanPath);
   const ogType = cleanPath.includes("stories/") ? "article" : "website";
-  const ogImage = `${site.canonicalOrigin}${site.basePath}assets/hero-midnight-archive.png`;
+  const ogImage = absoluteUrl(imagePath || "assets/hero-midnight-archive.png");
   const adsenseScript =
     context.site.adsense?.enabled && context.site.adsense.publisherId
       ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${esc(context.site.adsense.publisherId)}" crossorigin="anonymous"></script>`
@@ -1042,12 +1064,20 @@ ${body.trim()}
 }
 
 function storyCard(story, index, rootRel = "./", context = zhContext) {
-  return `<article class="story-card tone-${story.coverTone}" style="--card-index:${index}">
+  const storyImage = storyImageFor(story);
+  return `<article class="story-card${storyImage ? " has-visual" : ""} tone-${story.coverTone}" style="--card-index:${index}">
     <a href="${rootRel}${context.pathPrefix}stories/${story.slug}/" aria-label="${esc(context.ui.story.readLabel(story.title))}">
       <div class="card-topline">
         <span>${esc(story.category)}</span>
         <span>${esc(story.readingTime)}</span>
       </div>
+      ${
+        storyImage
+          ? `<figure class="story-card-visual">
+        <img src="${rootRel}assets/generated/${esc(storyImage)}" alt="" loading="lazy" decoding="async">
+      </figure>`
+          : ""
+      }
       <h3>${esc(story.title)}</h3>
       <p>${esc(story.deck)}</p>
       <div class="tag-row">${story.tags.map((tag) => `<span>${esc(tag)}</span>`).join("")}</div>
@@ -1405,6 +1435,8 @@ function storyPage(story, context = zhContext) {
   const deepDive = context.storyDeepDives[story.slug] || [];
   const linkedThemes = context.themeCollections.filter((theme) => theme.storySlugs.includes(story.slug));
   const nodes = archiveNodesForStory(story, context);
+  const storyImage = storyImageFor(story);
+  const articleImagePath = storyImagePath(story);
   const articleLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -1417,6 +1449,7 @@ function storyPage(story, context = zhContext) {
     about: story.tags,
     isBasedOn: story.sourceUrl
   };
+  if (articleImagePath) articleLd.image = absoluteUrl(articleImagePath);
 
   const related = relatedStoriesFor(story, context, 3);
   const body = `
@@ -1431,6 +1464,13 @@ function storyPage(story, context = zhContext) {
       </div>
       ${sourceBadge(story, context)}
     </header>
+    ${
+      storyImage
+        ? `<figure class="story-visual-banner">
+      <img src="${rootRel}assets/generated/${esc(storyImage)}" alt="${esc(storyImageAlt(story, context))}" loading="eager" decoding="async">
+    </figure>`
+        : ""
+    }
     <div class="article-layout">
       <div>
         ${storyArchiveTabs(story, context, rootRel, deepDive, linkedThemes)}
@@ -1480,7 +1520,8 @@ function storyPage(story, context = zhContext) {
     description: story.deck,
     body,
     pathName,
-    structuredData: [articleLd]
+    structuredData: [articleLd],
+    imagePath: articleImagePath
   });
 }
 
