@@ -18,8 +18,8 @@ This folder is the shared workspace for the whole multi-site project. See `PROJE
 
 - `midnight-archive`: a dark literary archive for public-domain strange tales, source-led retellings, and editorial notes.
 - Public preview: `https://zhengtai123.github.io/midnight-archive/`
-- English pilot: `https://zhengtai123.github.io/midnight-archive/en/`
-- The English edition uses independent `/en/` URLs, self-canonical pages, and hreflang alternates. It currently covers five edited pilot stories instead of bulk machine translation.
+- English edition: `https://zhengtai123.github.io/midnight-archive/en/`
+- The English edition uses independent `/en/` URLs, self-canonical pages, and hreflang alternates. It currently covers all 18 story guides in edited English form instead of bulk machine translation.
 
 ## Commands
 

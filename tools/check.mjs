@@ -302,7 +302,7 @@ for (const text of ["隐私", "联系", "来源", "专题", "编辑原则"]) {
 }
 
 const englishHomeHtml = await readOutput("en/index.html");
-for (const text of ["English pilot", "Stories", "Sources", "Editorial"]) {
+for (const text of ["English edition", "Stories", "Sources", "Editorial"]) {
   if (!englishHomeHtml.includes(text)) failures.push(`English home page missing ${text}`);
 }
 

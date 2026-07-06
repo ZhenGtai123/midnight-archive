@@ -26,7 +26,7 @@ This repository is the working lab for building multiple high-quality content si
 - Name: `子夜故事档案馆`
 - Topic: public-domain Chinese strange tales, source-led retellings, editorial reading notes.
 - Current content shape: 18 substantial story pages and 6 themed reading routes.
-- English pilot: independent `/en/` URLs with 5 edited English story guides (`xifangping`, `nie-xiaoqian`, `painted-skin`, `laoshan-daoshi`, `wang-liulang`), English theme routes, self-canonical metadata, and zh-CN/en/x-default hreflang alternates.
+- English edition: independent `/en/` URLs with all 18 current story guides in edited English form, English theme routes, self-canonical metadata, and zh-CN/en/x-default hreflang alternates.
 - Biggest content goal before AdSense review: expand toward 25-35 substantial articles, ideally 1200-1800 Chinese characters each, with visible source and editorial-mode metadata.
 - Temporary preview deployment uses GitHub Pages from the `docs/` folder on `main`. A custom domain can replace it later before serious AdSense review.
 
