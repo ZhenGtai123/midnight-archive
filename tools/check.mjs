@@ -24,6 +24,7 @@ const requiredPages = [
   "robots.txt",
   "ads.txt",
   "404.html",
+  ".nojekyll",
   "assets/midnight.css",
   "assets/midnight.js",
   "assets/logo-midnight-archive.svg",

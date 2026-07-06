@@ -729,5 +729,6 @@ await writeFile(
 );
 await writeFile(path.join(siteRoot, "ads.txt"), adsTxt(), "utf8");
 await writeFile(path.join(siteRoot, "404.html"), notFoundPage(), "utf8");
+await writeFile(path.join(siteRoot, ".nojekyll"), "", "utf8");
 
 console.log(`Built ${site.name} at ${siteRoot}`);
