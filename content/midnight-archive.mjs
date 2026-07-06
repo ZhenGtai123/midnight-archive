@@ -7,7 +7,7 @@ export const site = {
     "一个以公版古典志怪为核心的中文深夜阅读站。每篇故事都保留来源、作者、年代、授权说明与编辑札记。",
   locale: "zh-CN",
   basePath: "/midnight-archive/",
-  canonicalOrigin: "https://example.com",
+  canonicalOrigin: "https://zhengtai123.github.io",
   editor: "Midnight Archive Editorial Desk",
   heroImage: "/assets/hero-midnight-archive.png",
   logoImage: "/assets/logo-midnight-archive.svg",

@@ -6,6 +6,7 @@ This repository is the working lab for building multiple high-quality content si
 
 - GitHub user: `ZhenGtai123`
 - Repository: `https://github.com/ZhenGtai123/midnight-archive`
+- GitHub Pages preview: `https://zhengtai123.github.io/midnight-archive/`
 - Git remote currently uses HTTPS because GitHub CLI is authenticated and Windows SSH host verification had a compatibility issue.
 - Git identity on this computer:
   - `user.name`: `ZhenGtai123`
@@ -26,13 +27,14 @@ This repository is the working lab for building multiple high-quality content si
 - Topic: public-domain Chinese strange tales, source-led retellings, editorial reading notes.
 - Current content shape: 18 substantial story pages and 6 themed reading routes.
 - Biggest content goal before AdSense review: expand toward 25-35 substantial articles, ideally 1200-1800 Chinese characters each, with visible source and editorial-mode metadata.
-- Deployment will be handled later by the user.
+- Temporary preview deployment uses GitHub Pages from the `docs/` folder on `main`. A custom domain can replace it later before serious AdSense review.
 
 ## Reusable Site Pattern
 
 - Content data lives in `content/`.
 - Shared static assets live in `public/assets/`.
 - Generated output lives in `dist/<site-slug>/`.
+- Public preview output is copied into `docs/` for GitHub Pages.
 - Build command: `node tools/build.mjs`
 - Quality command: `node tools/check.mjs`
 - The quality check now validates required static pages, all story pages, all theme pages, source URLs, article thickness, and broken theme-to-story references.

@@ -1,0 +1,4 @@
+# AdSense is not enabled for this static preview.
+# After approval, set site.adsense.enabled to true and publisherId to ca-pub-xxxxxxxxxxxxxxxx.
+# The generated line will look like:
+# google.com, pub-xxxxxxxxxxxxxxxx, DIRECT, f08c47fec0942fa0

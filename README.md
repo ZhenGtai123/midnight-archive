@@ -17,6 +17,7 @@ This folder is the shared workspace for the whole multi-site project. See `PROJE
 ## Current Site
 
 - `midnight-archive`: a dark literary archive for public-domain strange tales, source-led retellings, and editorial notes.
+- Public preview: `https://zhengtai123.github.io/midnight-archive/`
 
 ## Commands
 
@@ -32,6 +33,8 @@ Then open `http://127.0.0.1:4173/midnight-archive/`.
 ## GitHub
 
 See `GITHUB_SETUP.md`. The project can be pushed to GitHub after this computer has GitHub authentication configured.
+
+GitHub Pages can publish directly from the `docs/` folder on `main`. The `docs/` folder mirrors the generated `dist/midnight-archive` output for public preview.
 
 ## Content Rules
 
