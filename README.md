@@ -18,6 +18,8 @@ This folder is the shared workspace for the whole multi-site project. See `PROJE
 
 - `midnight-archive`: a dark literary archive for public-domain strange tales, source-led retellings, and editorial notes.
 - Public preview: `https://zhengtai123.github.io/midnight-archive/`
+- English pilot: `https://zhengtai123.github.io/midnight-archive/en/`
+- The English edition uses independent `/en/` URLs, self-canonical pages, and hreflang alternates. It currently covers five edited pilot stories instead of bulk machine translation.
 
 ## Commands
 
@@ -37,6 +39,8 @@ Then open `http://127.0.0.1:4173/midnight-archive/`.
 See `GITHUB_SETUP.md`. The project can be pushed to GitHub after this computer has GitHub authentication configured.
 
 GitHub Pages publishes directly from the `docs/` folder on `main`. Run `tools/build.mjs`, `tools/check.mjs`, and `tools/sync-docs.mjs` before pushing public preview changes.
+
+`tools/check.mjs --strict-docs` can be run after `tools/sync-docs.mjs` to verify that `docs/` exactly matches the generated `dist/midnight-archive/` output.
 
 ## Content Rules
 

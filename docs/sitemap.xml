@@ -1,143 +1,389 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/themes/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/themes/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/themes/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/themes/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/content-roadmap/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/content-roadmap/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/content-roadmap/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/content-roadmap/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/sources/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/sources/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/sources/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/sources/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/authors/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/authors/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/authors/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/authors/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/about/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/about/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/about/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/about/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/contact/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/contact/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/contact/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/privacy/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/privacy/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/terms/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/terms/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/terms/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/advertising-policy/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/advertising-policy/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/advertising-policy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/advertising-policy/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/editorial-policy/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/editorial-policy/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/editorial-policy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/editorial-policy/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/themes/fox-and-female-figures/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/themes/fox-and-female-figures/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/themes/fox-and-female-figures/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/themes/fox-and-female-figures/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/themes/underworld-and-justice/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/themes/underworld-and-justice/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/themes/underworld-and-justice/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/themes/underworld-and-justice/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/themes/gentle-strange-tales/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/themes/gentle-strange-tales/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/themes/gentle-strange-tales/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/themes/gentle-strange-tales/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/themes/satire-and-worldly-pressure/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/themes/satire-and-worldly-pressure/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/themes/satire-and-worldly-pressure/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/themes/satire-and-worldly-pressure/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/themes/objects-and-legends/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/themes/objects-and-legends/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/themes/objects-and-legends/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/themes/objects-and-legends/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/themes/night-road-and-old-house/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/themes/night-road-and-old-house/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/themes/night-road-and-old-house/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/themes/night-road-and-old-house/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/stories/laoshan-daoshi/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/laoshan-daoshi/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/stories/laoshan-daoshi/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/laoshan-daoshi/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/stories/yingning/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/yingning/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/yingning/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/stories/xifangping/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/xifangping/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/stories/xifangping/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/xifangping/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/stories/mountain-market/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/mountain-market/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/mountain-market/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/stories/painted-skin/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/painted-skin/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/stories/painted-skin/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/painted-skin/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/stories/nie-xiaoqian/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/nie-xiaoqian/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/stories/nie-xiaoqian/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/nie-xiaoqian/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/stories/wang-liulang/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/wang-liulang/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/stories/wang-liulang/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/wang-liulang/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/stories/lu-pan/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/lu-pan/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/lu-pan/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/stories/song-dingbo/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/song-dingbo/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/song-dingbo/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/stories/seed-pear/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/seed-pear/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/seed-pear/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/stories/qingfeng/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/qingfeng/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/qingfeng/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/stories/xiangyu/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/xiangyu/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/xiangyu/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/stories/cuzhi/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/cuzhi/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/cuzhi/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/stories/luocha-haishi/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/luocha-haishi/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/luocha-haishi/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/stories/kao-chenghuang/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/kao-chenghuang/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/kao-chenghuang/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/stories/jiangcheng/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/jiangcheng/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/jiangcheng/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/stories/ganjiang-moye/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/ganjiang-moye/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/ganjiang-moye/" />
     <lastmod>2026-07-06</lastmod>
   </url>
   <url>
     <loc>https://zhengtai123.github.io/midnight-archive/stories/hanping-fufu/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/hanping-fufu/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/hanping-fufu/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/themes/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/themes/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/themes/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/themes/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/about/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/about/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/about/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/about/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/contact/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/contact/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/contact/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/privacy/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/privacy/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/terms/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/terms/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/terms/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/advertising-policy/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/advertising-policy/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/advertising-policy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/advertising-policy/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/editorial-policy/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/editorial-policy/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/editorial-policy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/editorial-policy/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/sources/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/sources/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/sources/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/sources/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/authors/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/authors/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/authors/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/authors/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/content-roadmap/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/content-roadmap/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/content-roadmap/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/content-roadmap/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/themes/fox-and-female-figures/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/themes/fox-and-female-figures/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/themes/fox-and-female-figures/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/themes/fox-and-female-figures/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/themes/underworld-and-justice/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/themes/underworld-and-justice/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/themes/underworld-and-justice/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/themes/underworld-and-justice/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/themes/gentle-strange-tales/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/themes/gentle-strange-tales/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/themes/gentle-strange-tales/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/themes/gentle-strange-tales/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/themes/satire-and-worldly-pressure/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/themes/satire-and-worldly-pressure/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/themes/satire-and-worldly-pressure/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/themes/satire-and-worldly-pressure/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/themes/objects-and-legends/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/themes/objects-and-legends/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/themes/objects-and-legends/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/themes/objects-and-legends/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/themes/night-road-and-old-house/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/themes/night-road-and-old-house/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/themes/night-road-and-old-house/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/themes/night-road-and-old-house/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/stories/xifangping/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/xifangping/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/stories/xifangping/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/xifangping/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/stories/nie-xiaoqian/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/nie-xiaoqian/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/stories/nie-xiaoqian/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/nie-xiaoqian/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/stories/painted-skin/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/painted-skin/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/stories/painted-skin/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/painted-skin/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/stories/laoshan-daoshi/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/laoshan-daoshi/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/stories/laoshan-daoshi/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/laoshan-daoshi/" />
+    <lastmod>2026-07-06</lastmod>
+  </url>
+  <url>
+    <loc>https://zhengtai123.github.io/midnight-archive/en/stories/wang-liulang/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://zhengtai123.github.io/midnight-archive/stories/wang-liulang/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://zhengtai123.github.io/midnight-archive/en/stories/wang-liulang/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zhengtai123.github.io/midnight-archive/stories/wang-liulang/" />
     <lastmod>2026-07-06</lastmod>
   </url>
 </urlset>

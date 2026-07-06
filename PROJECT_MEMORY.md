@@ -26,6 +26,7 @@ This repository is the working lab for building multiple high-quality content si
 - Name: `子夜故事档案馆`
 - Topic: public-domain Chinese strange tales, source-led retellings, editorial reading notes.
 - Current content shape: 18 substantial story pages and 6 themed reading routes.
+- English pilot: independent `/en/` URLs with 5 edited English story guides (`xifangping`, `nie-xiaoqian`, `painted-skin`, `laoshan-daoshi`, `wang-liulang`), English theme routes, self-canonical metadata, and zh-CN/en/x-default hreflang alternates.
 - Biggest content goal before AdSense review: expand toward 25-35 substantial articles, ideally 1200-1800 Chinese characters each, with visible source and editorial-mode metadata.
 - Temporary preview deployment uses GitHub Pages from the `docs/` folder on `main`. A custom domain can replace it later before serious AdSense review.
 
@@ -39,6 +40,7 @@ This repository is the working lab for building multiple high-quality content si
 - Quality command: `node tools/check.mjs`
 - GitHub Pages sync command: `node tools/sync-docs.mjs`
 - The quality check now validates required static pages, all story pages, all theme pages, source URLs, article thickness, and broken theme-to-story references.
+- The quality check also validates English required pages, English story metadata, html lang/canonical/hreflang basics, sitemap multilingual alternates, and `docs/` sync status.
 - Commit and push after each meaningful milestone.
 
 ## Candidate Next Sites

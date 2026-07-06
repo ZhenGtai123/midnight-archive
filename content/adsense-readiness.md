@@ -20,6 +20,8 @@ This project should not ship fake ad code. Keep AdSense disabled until a real pu
 - Config-gated AdSense script injection
 - Per-story source metadata
 - Thin-content quality check
+- Independent English `/en/` pilot URLs with self-canonical metadata and hreflang alternates
+- Five edited English story guides with source, author, era, rights, editorial mode, and translator/editor notes
 - GitHub Pages preview from `docs/`
 
 ## Before Applying
