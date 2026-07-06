@@ -2,6 +2,18 @@
 
 This is a zero-dependency static publishing lab for building small, high-quality content sites with clear sourcing, editorial notes, and review-ready policy pages.
 
+## Project Memory
+
+This folder is the shared workspace for the whole multi-site project. See `PROJECT_MEMORY.md` for the persistent project notes, GitHub setup, content rules, and candidate next sites.
+
+## Multi-Site Convention
+
+- Keep every AdSense-oriented site in this repository until deployment choices are finalized.
+- Put source data in `content/`.
+- Put shared visual assets in `public/assets/`.
+- Generate publishable static output into `dist/<site-slug>/`.
+- Add one strong site at a time, then extract the parts that repeat well.
+
 ## Current Site
 
 - `midnight-archive`: a dark literary archive for public-domain strange tales, source-led retellings, and editorial notes.

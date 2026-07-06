@@ -69,7 +69,7 @@ for (const story of stories) {
   const storyLength = `${(story.paragraphs || []).join("")}${(storyDeepDives[story.slug] || []).join("")}`.length;
   if (storyLength < 650) {
     failures.push(`Story ${story.slug} is too thin`);
-  } else if (storyLength < 1000) {
+  } else if (storyLength < 1200) {
     warnings.push(`Story ${story.slug} is still a draft-length article (${storyLength} chars)`);
   }
 
