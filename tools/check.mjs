@@ -16,6 +16,7 @@ const root = path.resolve(__dirname, "..");
 const siteRoot = path.join(root, "dist", site.slug);
 const docsRoot = path.join(root, "docs");
 const strictDocs = process.argv.includes("--strict-docs");
+const ignoredDocsPrefixes = ["seasonal-observatory/"];
 
 const requiredPages = [
   "index.html",
@@ -204,7 +205,9 @@ async function checkDocsSync() {
   }
 
   const distFiles = (await collectFiles(siteRoot)).sort();
-  const docsFiles = (await collectFiles(docsRoot)).sort();
+  const docsFiles = (await collectFiles(docsRoot))
+    .filter((file) => !ignoredDocsPrefixes.some((prefix) => file.startsWith(prefix)))
+    .sort();
   const distSet = new Set(distFiles);
   const docsSet = new Set(docsFiles);
   const missing = distFiles.filter((file) => !docsSet.has(file));

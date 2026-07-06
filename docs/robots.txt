@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
 Sitemap: https://zhengtai123.github.io/midnight-archive/sitemap.xml
+Sitemap: https://zhengtai123.github.io/midnight-archive/seasonal-observatory/sitemap.xml

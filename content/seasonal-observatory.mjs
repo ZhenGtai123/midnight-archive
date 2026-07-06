@@ -35,6 +35,7 @@ export const seasonalSite = {
     "原创节气观察笔记、城市物候导读和来源卡片。适合长期扩展为二十四节气主题内容站。",
   footerLinks: [
     { label: "关于", href: "about/" },
+    { label: "作者与编辑", href: "authors/" },
     { label: "联系", href: "contact/" },
     { label: "隐私", href: "privacy/" },
     { label: "广告说明", href: "advertising-policy/" },
@@ -363,6 +364,13 @@ export const seasonalStaticPages = [
       "<p>节气观察室是一个面向城市生活的二十四节气观察站。我们关心传统节气如何在现代房间、街道、阳台、市场和通勤路线上继续被感知。</p><p>本站不做未经核验的养生承诺，也不复制百科条目。每篇文章都以原创观察、可执行记录方法和公开来源说明为基础。</p>"
   },
   {
+    slug: "authors",
+    title: "作者与编辑",
+    description: "节气观察室的编辑责任、署名方式和投稿处理说明。",
+    body:
+      "<p>节气观察室当前由本站编辑部负责选题、写作、资料核验和页面维护。文章中的城市观察、居家记录方法和导读文字均为本站原创整理，公开机构资料仅作为事实核验和来源链接。</p><p>未来如加入读者投稿、摄影或访谈内容，页面会标注贡献者、授权方式、编辑处理范围和最近复核日期。没有授权或来源不清的素材不会进入正式页面。</p>"
+  },
+  {
     slug: "contact",
     title: "联系",
     description: "联系节气观察室编辑部。",
@@ -374,7 +382,7 @@ export const seasonalStaticPages = [
     title: "隐私政策",
     description: "节气观察室的隐私政策。",
     body:
-      "<p>本站当前不开放账户系统，不收集读者个人资料，也不使用评论区。服务器或托管平台可能保留基础访问日志，用于安全、性能和错误排查。</p><p>如果未来接入 Google AdSense、统计服务或邮件订阅，本页会在上线前列明数据类型、Cookie 使用方式、第三方服务和退出方式。</p>"
+      '<p>本站当前不开放账户系统，不收集读者个人资料，也不使用评论区。服务器或托管平台可能保留基础访问日志，用于安全、性能和错误排查。</p><p>如果未来接入 Google AdSense、统计服务或邮件订阅，本页会在上线前列明数据类型、Cookie 使用方式、第三方服务和退出方式。</p><p>若启用 Google AdSense，Google 及其合作伙伴可能使用 Cookie、广告标识符、IP 地址和类似技术投放、衡量或个性化广告。读者可查看 <a class="plain-link" href="https://policies.google.com/technologies/partner-sites?hl=zh-CN" rel="nofollow noopener" target="_blank">Google 合作伙伴网站数据使用说明</a>，并通过浏览器或 Google 广告设置管理相关偏好。</p>'
   },
   {
     slug: "terms",
@@ -388,7 +396,7 @@ export const seasonalStaticPages = [
     title: "广告与赞助说明",
     description: "节气观察室的广告、赞助和商业合作披露原则。",
     body:
-      "<p>本站样板当前未启用广告代码，也不展示伪装广告位。未来如接入 Google AdSense，广告会与正文保持清晰区分，不会伪装成观察清单、下载按钮或专题卡片。</p><p>任何赞助或商业合作都不应影响来源说明、编辑判断和内容更新。涉及健康、饮食或安全的页面不会使用夸张承诺换取点击。</p>"
+      "<p>本站当前未启用广告代码，也不展示伪装广告位。未来如接入 Google AdSense，广告会与正文保持清晰区分，不会伪装成观察清单、下载按钮或专题卡片。</p><p>任何赞助或商业合作都不应影响来源说明、编辑判断和内容更新。涉及健康、饮食或安全的页面不会使用夸张承诺换取点击。</p>"
   },
   {
     slug: "editorial-policy",
@@ -441,6 +449,7 @@ export const seasonalEnglishSite = {
     "Original seasonal field notes, source cards, and city-scale observation guides for a long-term solar-terms site.",
   footerLinks: [
     { label: "About", href: "en/about/" },
+    { label: "Editors", href: "en/authors/" },
     { label: "Contact", href: "en/contact/" },
     { label: "Privacy", href: "en/privacy/" },
     { label: "Advertising", href: "en/advertising-policy/" },
@@ -512,7 +521,7 @@ export const seasonalEnglishHome = {
     eyebrow: "Seasonal notes",
     title: "Six starting points for observing the year",
     copy:
-      "The English edition begins with six carefully edited guides rather than twenty-four thin placeholders: heat, rain, first autumn, dew, cold nights, and winter-solstice light."
+      "The English edition begins with six carefully edited guides rather than a full set of shallow entries: heat, rain, first autumn, dew, cold nights, and winter-solstice light."
   },
   topics: {
     eyebrow: "Reading routes",
@@ -796,6 +805,13 @@ export const seasonalEnglishStaticPages = [
       "<p>Seasonal Observatory is a city-facing guide to China's twenty-four solar terms. It asks how older seasonal knowledge can still be noticed in rooms, streets, balconies, markets, and commutes.</p><p>The site does not make unverified health promises and does not copy encyclopedia entries. Each article is built from original observation, practical prompts, and visible public references.</p>"
   },
   {
+    slug: "authors",
+    title: "Editors and Contributors",
+    description: "Editorial responsibility, bylines, and contribution handling for Seasonal Observatory.",
+    body:
+      "<p>Seasonal Observatory is currently written, edited, and maintained by the site editors. City observations, home-recording prompts, and reading notes are original editorial work; public institutional pages are used as linked references and fact checks.</p><p>If reader photographs, field notes, or interviews are added later, the relevant pages will identify the contributor, permission terms, editorial handling, and last-reviewed date. Unpermissioned or unclear material does not belong in the published site.</p>"
+  },
+  {
     slug: "contact",
     title: "Contact",
     description: "Contact the Seasonal Observatory editors.",
@@ -807,7 +823,7 @@ export const seasonalEnglishStaticPages = [
     title: "Privacy Policy",
     description: "Privacy policy for Seasonal Observatory.",
     body:
-      "<p>This static preview has no account system, no comment system, and no reader profile collection. The hosting platform may retain basic access logs for security, performance, and troubleshooting.</p><p>If Google AdSense, analytics, or an email subscription feature is added later, this page will be updated before launch with cookie use, third-party services, data categories, and opt-out information.</p>"
+      '<p>This static site currently has no account system, no comment system, and no reader profile collection. The hosting platform may retain basic access logs for security, performance, and troubleshooting.</p><p>If Google AdSense, analytics, or an email subscription feature is added later, this page will be updated before launch with cookie use, third-party services, data categories, and opt-out information.</p><p>If Google AdSense is enabled, Google and its partners may use cookies, advertising identifiers, IP addresses, and similar technologies to deliver, measure, or personalize ads. Readers can review <a class="plain-link" href="https://policies.google.com/technologies/partner-sites?hl=en" rel="nofollow noopener" target="_blank">Google\'s partner sites policy</a> and manage preferences through browser settings or Google ad settings.</p>'
   },
   {
     slug: "terms",
@@ -821,7 +837,7 @@ export const seasonalEnglishStaticPages = [
     title: "Advertising and Sponsorship",
     description: "Advertising, sponsorship, and disclosure principles for Seasonal Observatory.",
     body:
-      "<p>This preview does not enable advertising code and does not display fake ad placements. If Google AdSense is added later, ads must be clearly separated from articles, observation checklists, navigation, and download-style controls.</p><p>Commercial relationships must not determine source notes, editorial judgment, or content updates. Pages touching food, health, or safety should stay specific and avoid exaggerated claims.</p>"
+      "<p>This site currently does not enable advertising code and does not display fake ad placements. If Google AdSense is added later, ads must be clearly separated from articles, observation checklists, navigation, and download-style controls.</p><p>Commercial relationships must not determine source notes, editorial judgment, or content updates. Pages touching food, health, or safety should stay specific and avoid exaggerated claims.</p>"
   },
   {
     slug: "editorial-policy",

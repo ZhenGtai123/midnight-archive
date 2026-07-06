@@ -1130,7 +1130,7 @@ export const englishStaticPages = [
     title: "Privacy Policy",
     description: "Privacy policy for Midnight Archive.",
     body:
-      "<p>This static preview does not provide user accounts, comments, or submission forms. Basic server logs may exist for security, performance, and troubleshooting.</p><p>If analytics, advertising, newsletter tools, or other third-party services are added later, this page should be updated before launch to describe data types, purposes, cookies, third-party services, and opt-out choices.</p>"
+      '<p>This static site does not provide user accounts, comments, or submission forms. Basic server logs may exist for security, performance, and troubleshooting.</p><p>If analytics, advertising, newsletter tools, or other third-party services are added later, this page should be updated before launch to describe data types, purposes, cookies, third-party services, and opt-out choices.</p><p>If Google AdSense is enabled, Google and its partners may use cookies, advertising identifiers, IP addresses, and similar technologies to deliver, measure, or personalize ads. Readers can review <a class="plain-link" href="https://policies.google.com/technologies/partner-sites?hl=en" rel="nofollow noopener" target="_blank">Google\'s partner sites policy</a> and manage preferences through browser settings or Google ad settings.</p>'
   },
   {
     slug: "terms",
@@ -1144,7 +1144,7 @@ export const englishStaticPages = [
     title: "Advertising and Sponsorship",
     description: "Advertising and sponsorship disclosure for Midnight Archive.",
     body:
-      "<p>This preview does not enable advertising code and does not display fake ad placements. If Google AdSense or another advertising service is added later, advertising must remain clearly separate from story content, navigation, and source notes.</p><p>Advertising or sponsorship must not determine source labels, rights notes, or editorial judgment. Paid collaborations should be disclosed on the relevant page.</p>"
+      "<p>This site currently does not enable advertising code and does not display fake ad placements. If Google AdSense or another advertising service is added later, advertising must remain clearly separate from story content, navigation, and source notes.</p><p>Advertising or sponsorship must not determine source labels, rights notes, or editorial judgment. Paid collaborations should be disclosed on the relevant page.</p>"
   },
   {
     slug: "editorial-policy",

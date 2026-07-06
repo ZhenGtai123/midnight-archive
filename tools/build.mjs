@@ -18,6 +18,7 @@ import {
   englishStoryDeepDives,
   englishThemeCollections
 } from "../content/midnight-archive-en.mjs";
+import { seasonalSite } from "../content/seasonal-observatory.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -107,7 +108,7 @@ const zhStaticPages = [
     title: "隐私政策",
     description: "子夜故事档案馆的隐私政策。",
     body:
-      "<p>本站当前样板不收集账户信息，不开放评论，也不要求用户提交个人资料。服务器可能保留基础访问日志，用于安全、性能和错误排查。</p><p>如果未来接入 Google AdSense、统计或邮件订阅，将在上线前更新本页，列明数据类型、用途、第三方服务、Cookie 使用方式和退出方式。</p>"
+      '<p>本站当前不收集账户信息，不开放评论，也不要求用户提交个人资料。服务器可能保留基础访问日志，用于安全、性能和错误排查。</p><p>如果未来接入 Google AdSense、统计或邮件订阅，将在上线前更新本页，列明数据类型、用途、第三方服务、Cookie 使用方式和退出方式。</p><p>若启用 Google AdSense，Google 及其合作伙伴可能使用 Cookie、广告标识符、IP 地址和类似技术投放、衡量或个性化广告。读者可查看 <a class="plain-link" href="https://policies.google.com/technologies/partner-sites?hl=zh-CN" rel="nofollow noopener" target="_blank">Google 合作伙伴网站数据使用说明</a>，并通过浏览器或 Google 广告设置管理相关偏好。</p>'
   },
   {
     slug: "terms",
@@ -121,7 +122,7 @@ const zhStaticPages = [
     title: "广告与赞助说明",
     description: "子夜故事档案馆的广告、赞助和商业合作披露原则。",
     body:
-      "<p>本站样板当前未启用广告代码，也不展示伪装广告位。若未来接入 Google AdSense 或其他广告服务，广告会与正文内容保持清晰区分，不会伪装成导航、下载按钮或故事卡片。</p><p>广告或赞助内容不会影响故事来源说明、编辑判断和版权处理。任何付费合作都应在页面中明确标注。</p><p>AdSense 发布商 ID 获批后，才会在配置中启用广告脚本和 ads.txt；上线前不得使用虚假的发布商信息。</p>"
+      "<p>本站当前未启用广告代码，也不展示伪装广告位。若未来接入 Google AdSense 或其他广告服务，广告会与正文内容保持清晰区分，不会伪装成导航、下载按钮或故事卡片。</p><p>广告或赞助内容不会影响故事来源说明、编辑判断和版权处理。任何付费合作都应在页面中明确标注。</p><p>AdSense 发布商 ID 获批后，才会在配置中启用广告脚本和 ads.txt；上线前不得使用虚假的发布商信息。</p>"
   },
   {
     slug: "editorial-policy",
@@ -1015,7 +1016,7 @@ function adsTxt() {
   }
 
   return [
-    "# AdSense is not enabled for this static preview.",
+    "# AdSense is not enabled for this static site.",
     "# After approval, set site.adsense.enabled to true and publisherId to ca-pub-xxxxxxxxxxxxxxxx.",
     "# The generated line will look like:",
     "# google.com, pub-xxxxxxxxxxxxxxxx, DIRECT, f08c47fec0942fa0",
@@ -1061,7 +1062,13 @@ await writeContext(enContext);
 await writeFile(path.join(siteRoot, "sitemap.xml"), sitemapXml(), "utf8");
 await writeFile(
   path.join(siteRoot, "robots.txt"),
-  `User-agent: *\nAllow: /\nSitemap: ${site.canonicalOrigin}${site.basePath}sitemap.xml\n`,
+  [
+    "User-agent: *",
+    "Allow: /",
+    `Sitemap: ${site.canonicalOrigin}${site.basePath}sitemap.xml`,
+    `Sitemap: ${seasonalSite.canonicalOrigin}${seasonalSite.basePath}sitemap.xml`,
+    ""
+  ].join("\n"),
   "utf8"
 );
 await writeFile(path.join(siteRoot, "ads.txt"), adsTxt(), "utf8");

@@ -110,6 +110,7 @@ function checkTopicModel(topics, articles, locale) {
 function checkStaticPages(staticPages, locale) {
   const required = [
     "about",
+    "authors",
     "contact",
     "privacy",
     "terms",
