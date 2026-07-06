@@ -210,6 +210,44 @@ const zhUi = {
   languageSwitchLabel: "English",
   openSource: "来源链接",
   sourceOpen: "查看公开来源",
+  archive: {
+    navLabel: "档案库",
+    openArchive: "进入档案库",
+    nightMode: "夜读模式",
+    saveStory: "收藏本篇",
+    savedStory: "已收藏",
+    saveShort: "收藏",
+    routeLink: "我的夜读路线",
+    homeEyebrow: "Archive console",
+    homeTitle: "从故事列表，进入东方志怪资料库",
+    homeDeck:
+      "按人物、妖怪、地府、器物和故事关系重新组织旧书异闻，让读者可以沿线索穿行，而不是读完一篇就离开。",
+    indexEyebrow: "Archive index",
+    indexTitle: "东方志怪资料库",
+    indexDescription:
+      "这里把故事拆成可追踪的条目：人物、异类、阴司制度、器物意象和故事关系。每个条目都会回到具体故事页和公开来源。",
+    relationTitle: "故事关系图",
+    relationDescription: "按主题、人物、制度和意象连接当前故事，帮助读者找到下一条夜路。",
+    routeTitle: "夜读收藏路线",
+    routeDescription: "你收藏的故事会保存在本机浏览器中，方便下次继续从同一条路线读下去。",
+    emptyRoute: "还没有收藏故事。",
+    sourceTab: "原文",
+    retellingTab: "白话",
+    guideTab: "导读",
+    tabsLabel: "故事阅读方式",
+    sourcePaneTitle: "原典入口与来源核验",
+    sourcePaneLead: (story) =>
+      `本栏先定位原典：原题《${story.sourceTitle}》，见${story.sourceBook}。本站不在未逐篇校勘前整篇搬运原文；需要核对原典时，请以公开来源链接和后续版本说明为准。`,
+    retellingPaneTitle: "现代白话重述",
+    guidePaneTitle: "档案导读",
+    facetCount: (count) => `${count} 个条目`,
+    storyCount: (count) => `${count} 篇相关故事`,
+    nodeStories: "相关故事",
+    relationLabel: "关系线索",
+    backToArchive: "返回档案库",
+    openFacet: (title) => `进入${title}`,
+    openNode: (title) => `查看${title}相关故事`
+  },
   sourcePanel: {
     eyebrow: "Source",
     heading: "来源与编辑说明",
@@ -256,6 +294,44 @@ const enUi = {
   languageSwitchLabel: "中文",
   openSource: "Open source",
   sourceOpen: "View public source",
+  archive: {
+    navLabel: "Archive",
+    openArchive: "Open the archive",
+    nightMode: "Night reading mode",
+    saveStory: "Save this story",
+    savedStory: "Saved",
+    saveShort: "Save",
+    routeLink: "My night route",
+    homeEyebrow: "Archive console",
+    homeTitle: "Browse the strange-tale archive as a living dossier",
+    homeDeck:
+      "Characters, beings, underworld offices, objects, and story relations turn the collection into a map instead of a list.",
+    indexEyebrow: "Archive index",
+    indexTitle: "Eastern Strange-Tale Archive",
+    indexDescription:
+      "A structured index for the current story set: characters, supernatural beings, underworld systems, objects, and relations, always linked back to source-aware story pages.",
+    relationTitle: "Story Relationship Map",
+    relationDescription: "Theme, character, institution, and image links that help readers choose the next tale.",
+    routeTitle: "Saved Night Route",
+    routeDescription: "Saved stories live in this browser only, so readers can return to the same route later.",
+    emptyRoute: "No saved stories yet.",
+    sourceTab: "Source",
+    retellingTab: "Retelling",
+    guideTab: "Guide",
+    tabsLabel: "Story reading modes",
+    sourcePaneTitle: "Source trail and original-text access",
+    sourcePaneLead: (story) =>
+      `This lane identifies the Chinese source: ${story.sourceTitle}, in ${story.sourceBook}. The archive does not invent or paste an uncollated full original text; readers should verify the source through the linked public-domain page and later version notes.`,
+    retellingPaneTitle: "Readable editorial retelling",
+    guidePaneTitle: "Archive reading guide",
+    facetCount: (count) => `${count} ${count === 1 ? "entry" : "entries"}`,
+    storyCount: (count) => `${count} ${count === 1 ? "related story" : "related stories"}`,
+    nodeStories: "Related stories",
+    relationLabel: "Relation thread",
+    backToArchive: "Back to archive",
+    openFacet: (title) => `Open ${title}`,
+    openNode: (title) => `View stories linked to ${title}`
+  },
   sourcePanel: {
     eyebrow: "Source",
     heading: "Source and editorial note",
@@ -295,14 +371,388 @@ const enUi = {
   }
 };
 
+const liaozhaiStorySlugs = [
+  "laoshan-daoshi",
+  "yingning",
+  "xifangping",
+  "mountain-market",
+  "painted-skin",
+  "nie-xiaoqian",
+  "wang-liulang",
+  "lu-pan",
+  "seed-pear",
+  "qingfeng",
+  "xiangyu",
+  "cuzhi",
+  "luocha-haishi",
+  "kao-chenghuang",
+  "jiangcheng"
+];
+
+const souShenStorySlugs = ["song-dingbo", "ganjiang-moye", "hanping-fufu"];
+
+const archiveFacetDefinitions = [
+  {
+    slug: "people",
+    tone: "jade",
+    zhTitle: "人物索引",
+    enTitle: "Character Index",
+    zhDeck: "作者、主角、判官、书生、受困者和见证人，按故事关系重新归档。",
+    enDeck: "Authors, protagonists, judges, scholars, trapped figures, and witnesses reorganized as archive entries."
+  },
+  {
+    slug: "beings",
+    tone: "ivory",
+    zhTitle: "妖怪索引",
+    enTitle: "Beings Index",
+    zhDeck: "狐女、女鬼、水鬼、花魂、画皮妖和山中幻象，保留各自的文本位置。",
+    enDeck: "Fox women, ghost women, water ghosts, flower spirits, painted-skin beings, and visionary presences."
+  },
+  {
+    slug: "underworld",
+    tone: "violet",
+    zhTitle: "地府案卷",
+    enTitle: "Underworld Dossiers",
+    zhDeck: "阴司、城隍、判官、死后考试、申诉阶梯，以及人间制度在异界的回声。",
+    enDeck: "Underworld courts, city gods, judges, posthumous exams, appeal ladders, and echoes of human institutions."
+  },
+  {
+    slug: "objects",
+    tone: "amber",
+    zhTitle: "器物谱",
+    enTitle: "Object Index",
+    zhDeck: "画皮、名剑、梨核、蟋蟀、花木和相思树，把故事里的物变成可追踪线索。",
+    enDeck: "Skins, swords, pear seeds, crickets, flowers, and longing trees as trackable story objects."
+  }
+];
+
+const archiveNodes = [
+  {
+    slug: "pu-songling",
+    facet: "people",
+    storySlugs: liaozhaiStorySlugs,
+    zhTitle: "蒲松龄",
+    enTitle: "Pu Songling (蒲松龄)",
+    zhDeck: "《聊斋志异》的作者，也是本站第一批故事的主要来源人物。",
+    enDeck: "Author of Liaozhai zhiyi and the central source figure for the archive's first wave."
+  },
+  {
+    slug: "gan-bao",
+    facet: "people",
+    storySlugs: souShenStorySlugs,
+    zhTitle: "干宝与魏晋志怪传统",
+    enTitle: "Gan Bao and early zhiguai tradition",
+    zhDeck: "《搜神记》相关故事的传统来源，用来把站点从清代聊斋扩展到更早志怪。",
+    enDeck: "The traditional source frame that lets the site reach beyond Liaozhai into earlier strange-tale material."
+  },
+  {
+    slug: "xi-fangping",
+    facet: "people",
+    storySlugs: ["xifangping"],
+    zhTitle: "席方平",
+    enTitle: "Xi Fangping",
+    zhDeck: "为父申冤、一路上诉到阴司深处的人物，是阴司制度线的核心。",
+    enDeck: "The son who pursues justice for his father through the underworld's broken offices."
+  },
+  {
+    slug: "nie-xiaoqian-character",
+    facet: "people",
+    storySlugs: ["nie-xiaoqian"],
+    zhTitle: "聂小倩",
+    enTitle: "Nie Xiaoqian",
+    zhDeck: "受制于妖物却主动求脱身的女鬼，是人物索引里的关键受困者。",
+    enDeck: "A trapped ghost woman whose agency makes her more than a figure of danger."
+  },
+  {
+    slug: "ning-caichen",
+    facet: "people",
+    storySlugs: ["nie-xiaoqian"],
+    zhTitle: "宁采臣",
+    enTitle: "Ning Caichen",
+    zhDeck: "荒寺夜宿者，以克制和守信改变故事方向。",
+    enDeck: "The traveler whose restraint and trust redirect the ruined-temple encounter."
+  },
+  {
+    slug: "wang-liulang-character",
+    facet: "people",
+    storySlugs: ["wang-liulang"],
+    zhTitle: "王六郎",
+    enTitle: "Wang Liulang",
+    zhDeck: "水边故鬼，不把自己的苦处转嫁给他人。",
+    enDeck: "A river ghost whose kindness resists the expected replacement-death pattern."
+  },
+  {
+    slug: "wang-sheng-seeker",
+    facet: "people",
+    storySlugs: ["laoshan-daoshi", "painted-skin"],
+    zhTitle: "王生式人物",
+    enTitle: "The Wang Sheng pattern",
+    zhDeck: "求捷径、信表象、迟疑判断的人物类型，可连接《崂山道士》和《画皮》。",
+    enDeck: "A figure type drawn toward shortcuts, surfaces, and delayed judgment."
+  },
+  {
+    slug: "fox-women",
+    facet: "beings",
+    storySlugs: ["yingning", "qingfeng"],
+    zhTitle: "狐女",
+    enTitle: "Fox women",
+    zhDeck: "狐女不是单一诱惑符号，而是家庭、礼法、选择和身份之间的复杂角色。",
+    enDeck: "Fox women as complex figures of household order, desire, choice, and social recognition."
+  },
+  {
+    slug: "ghost-women",
+    facet: "beings",
+    storySlugs: ["nie-xiaoqian"],
+    zhTitle: "女鬼",
+    enTitle: "Ghost women",
+    zhDeck: "从危险入口转向求助者处境，帮助读者区分诱惑叙事和困境叙事。",
+    enDeck: "A thread that separates danger imagery from the trapped person's actual choices."
+  },
+  {
+    slug: "water-ghosts",
+    facet: "beings",
+    storySlugs: ["wang-liulang"],
+    zhTitle: "水鬼",
+    enTitle: "Water ghosts",
+    zhDeck: "围绕替身、河岸、生死边界和义气展开的民间想象。",
+    enDeck: "Replacement-death lore, riverbanks, boundary crossings, and unexpected loyalty."
+  },
+  {
+    slug: "painted-skin-being",
+    facet: "beings",
+    storySlugs: ["painted-skin"],
+    zhTitle: "画皮妖",
+    enTitle: "Painted-skin being",
+    zhDeck: "把欲望、伪装和识人迟疑变成可见怪物的经典形象。",
+    enDeck: "A visible monster made from desire, disguise, and the delay before recognition."
+  },
+  {
+    slug: "flower-spirits",
+    facet: "beings",
+    storySlugs: ["xiangyu", "hanping-fufu"],
+    zhTitle: "花魂与草木有情",
+    enTitle: "Flower spirits and feeling plants",
+    zhDeck: "花魂、相思树和草木记忆，串联温柔志怪与悲剧传说。",
+    enDeck: "Flower spirits, longing trees, and plant memory across gentle tales and tragic legend."
+  },
+  {
+    slug: "underworld-courts",
+    facet: "underworld",
+    storySlugs: ["xifangping", "lu-pan", "kao-chenghuang"],
+    zhTitle: "阴司官署",
+    enTitle: "Underworld offices",
+    zhDeck: "阴间不是抽象彼岸，而是有官署、判官、文书和失灵制度的空间。",
+    enDeck: "The afterlife as offices, judges, documents, tests, and institutional failure."
+  },
+  {
+    slug: "appeal-ladder",
+    facet: "underworld",
+    storySlugs: ["xifangping"],
+    zhTitle: "申诉阶梯",
+    enTitle: "Appeal ladder",
+    zhDeck: "从人间冤屈到阴司上诉，把苦痛写成不断推进的程序。",
+    enDeck: "A procedural path from earthly injustice into repeated underworld appeals."
+  },
+  {
+    slug: "city-god-exam",
+    facet: "underworld",
+    storySlugs: ["kao-chenghuang"],
+    zhTitle: "城隍考试",
+    enTitle: "City-god examination",
+    zhDeck: "死后仍需应试，显示科举压力如何被想象到另一个世界。",
+    enDeck: "The civil-exam imagination carried into death and official selection beyond life."
+  },
+  {
+    slug: "judge-lu-pan",
+    facet: "underworld",
+    storySlugs: ["lu-pan"],
+    zhTitle: "陆判",
+    enTitle: "Judge Lu Pan",
+    zhDeck: "判官不仅审案，也能改写身体、资质和命运，令人不安。",
+    enDeck: "A judge whose power reaches beyond verdicts into body, talent, and fate."
+  },
+  {
+    slug: "painted-skin-object",
+    facet: "objects",
+    storySlugs: ["painted-skin"],
+    zhTitle: "画皮",
+    enTitle: "Painted skin",
+    zhDeck: "被制作、披挂、修补的表面，是伪装专题的核心器物。",
+    enDeck: "A made, worn, and repaired surface at the center of the disguise route."
+  },
+  {
+    slug: "famous-swords",
+    facet: "objects",
+    storySlugs: ["ganjiang-moye"],
+    zhTitle: "名剑",
+    enTitle: "Named swords",
+    zhDeck: "剑不仅是兵器，也是冤屈、承诺和复仇记忆的容器。",
+    enDeck: "Swords as vessels of grievance, oath, memory, and delayed revenge."
+  },
+  {
+    slug: "pear-seed-tree",
+    facet: "objects",
+    storySlugs: ["seed-pear"],
+    zhTitle: "梨核与梨树",
+    enTitle: "Pear seed and tree",
+    zhDeck: "街市幻术把袖中小物变成当众生长的奇观。",
+    enDeck: "A street-performance object that grows from tiny seed into public marvel."
+  },
+  {
+    slug: "cricket",
+    facet: "objects",
+    storySlugs: ["cuzhi"],
+    zhTitle: "促织",
+    enTitle: "Cricket",
+    zhDeck: "小虫承受制度压力，是世情讽刺线的重要器物。",
+    enDeck: "A small creature burdened with institutional pressure and household terror."
+  },
+  {
+    slug: "trees-and-flowers",
+    facet: "objects",
+    storySlugs: ["yingning", "xiangyu", "hanping-fufu"],
+    zhTitle: "花木与相思树",
+    enTitle: "Flowers and longing trees",
+    zhDeck: "花、树、枝叶让情感和记忆获得可见形态。",
+    enDeck: "Flowers, branches, and trees giving visible form to feeling and memory."
+  }
+];
+
+const archiveRelations = [
+  {
+    from: "xifangping",
+    to: "lu-pan",
+    tone: "violet",
+    zhLabel: "阴司权力",
+    enLabel: "Underworld power",
+    zhNote: "一篇写申诉如何受阻，一篇写判官如何改写命运。",
+    enNote: "One follows blocked appeals; the other shows a judge altering fate."
+  },
+  {
+    from: "xifangping",
+    to: "kao-chenghuang",
+    tone: "violet",
+    zhLabel: "阴司制度",
+    enLabel: "Underworld institutions",
+    zhNote: "冤案、考核和官署共同说明阴间常复制人间规则。",
+    enNote: "Injustice, exams, and offices show the afterlife copying human systems."
+  },
+  {
+    from: "painted-skin",
+    to: "nie-xiaoqian",
+    tone: "crimson",
+    zhLabel: "夜遇女子的两种读法",
+    enLabel: "Two night-encounter readings",
+    zhNote: "同是夜色相逢，一篇写伪装，一篇写被困者的求脱身。",
+    enNote: "Both begin with nocturnal encounter; one is disguise, the other captivity and escape."
+  },
+  {
+    from: "laoshan-daoshi",
+    to: "seed-pear",
+    tone: "jade",
+    zhLabel: "幻术与速成",
+    enLabel: "Magic and shortcuts",
+    zhNote: "一篇讽刺求术者，一篇让街市日常突然失灵。",
+    enNote: "One satirizes the shortcut-seeker; the other makes a marketplace briefly impossible."
+  },
+  {
+    from: "wang-liulang",
+    to: "nie-xiaoqian",
+    tone: "amber",
+    zhLabel: "异类的道德选择",
+    enLabel: "Moral choice among the uncanny",
+    zhNote: "水鬼与女鬼都不只负责吓人，而是在规则中做选择。",
+    enNote: "Both figures are more than threats; each chooses within a binding rule."
+  },
+  {
+    from: "yingning",
+    to: "qingfeng",
+    tone: "jade",
+    zhLabel: "狐女与家宅秩序",
+    enLabel: "Fox women and household order",
+    zhNote: "两篇都关心异类女性如何进入、抵抗或重组家庭规则。",
+    enNote: "Both ask how nonhuman women enter, resist, or reshape household rules."
+  },
+  {
+    from: "yingning",
+    to: "jiangcheng",
+    tone: "amber",
+    zhLabel: "家宅中的女性力量",
+    enLabel: "Female force inside household order",
+    zhNote: "婴宁的笑与江城的强悍都让家庭秩序暴露出需要被重新阅读的边界。",
+    enNote: "Yingning's laughter and Jiangcheng's force both expose boundaries inside household order."
+  },
+  {
+    from: "xiangyu",
+    to: "hanping-fufu",
+    tone: "ivory",
+    zhLabel: "草木记忆",
+    enLabel: "Plant memory",
+    zhNote: "花魂和相思树都让情感变成可见、可保存的形态。",
+    enNote: "Flower spirit and longing tree both preserve feeling as visible form."
+  },
+  {
+    from: "cuzhi",
+    to: "xifangping",
+    tone: "crimson",
+    zhLabel: "制度失灵",
+    enLabel: "Institutional failure",
+    zhNote: "一篇写压力向下传导，一篇写冤屈向上申诉。",
+    enNote: "One tracks pressure downward; the other pushes grievance upward."
+  },
+  {
+    from: "ganjiang-moye",
+    to: "hanping-fufu",
+    tone: "crimson",
+    zhLabel: "暴力之后的记忆",
+    enLabel: "Memory after violence",
+    zhNote: "剑与树都是传说保存冤屈和姓名的方式。",
+    enNote: "Sword and tree both preserve wronged names inside legend."
+  },
+  {
+    from: "mountain-market",
+    to: "luocha-haishi",
+    tone: "teal",
+    zhLabel: "海市与幻景",
+    enLabel: "Mirage and visionary city",
+    zhNote: "一篇写幻城出现又消散，一篇写人进入颠倒世界。",
+    enNote: "One watches a phantom city appear; the other enters a reversed world."
+  },
+  {
+    from: "lu-pan",
+    to: "luocha-haishi",
+    tone: "violet",
+    zhLabel: "身份如何被改写",
+    enLabel: "How identity is rewritten",
+    zhNote: "一个通过身体与资质，一个通过评价标准改变人。",
+    enNote: "One changes body and talent; the other changes the system of judgment."
+  },
+  {
+    from: "song-dingbo",
+    to: "wang-liulang",
+    tone: "teal",
+    zhLabel: "人与鬼的谈判",
+    enLabel: "Negotiating with ghosts",
+    zhNote: "一个靠机智反制，一个靠交往建立信义。",
+    enNote: "One resists through wit; the other builds trust through repeated meeting."
+  }
+];
+
+const archivePageSlugs = new Set(["", ...archiveFacetDefinitions.map((facet) => facet.slug), "relations", "route"]);
+
 const zhContext = {
   locale: site.locale,
   hreflang: "zh-CN",
   pathPrefix: "",
   site: {
     ...site,
+    nav: [
+      { label: "档案库", href: "/midnight-archive/archive/" },
+      ...site.nav
+    ],
     footerDescription: "公版故事导读、来源核验和现代阅读札记。每篇文章都应有来源和编辑说明。",
     footerLinks: [
+      { label: "档案库", href: "/midnight-archive/archive/" },
       { label: "关于", href: "/midnight-archive/about/" },
       { label: "联系", href: "/midnight-archive/contact/" },
       { label: "隐私", href: "/midnight-archive/privacy/" },
@@ -324,7 +774,17 @@ const enContext = {
   locale: englishSite.locale,
   hreflang: "en",
   pathPrefix: englishSite.pathPrefix,
-  site: englishSite,
+  site: {
+    ...englishSite,
+    nav: [
+      { label: "Archive", href: "/midnight-archive/en/archive/" },
+      ...englishSite.nav
+    ],
+    footerLinks: [
+      { label: "Archive", href: "/midnight-archive/en/archive/" },
+      ...englishSite.footerLinks
+    ]
+  },
   home: englishHomeContent,
   staticPages: englishStaticPages,
   stories: englishStories,
@@ -339,6 +799,81 @@ for (const context of [zhContext, enContext]) {
   context.staticPageBySlug = new Map(context.staticPages.map((page) => [page.slug, page]));
 }
 
+function localizeField(item, context, field) {
+  const prefix = context.locale === "en" ? "en" : "zh";
+  const key = `${prefix}${field[0].toUpperCase()}${field.slice(1)}`;
+  return item[key] ?? item[field] ?? "";
+}
+
+function localizedFacet(facet, context) {
+  return {
+    ...facet,
+    title: localizeField(facet, context, "title"),
+    deck: localizeField(facet, context, "deck")
+  };
+}
+
+function localizedNode(node, context) {
+  const storyObjects = node.storySlugs.map((slug) => context.storyBySlug.get(slug)).filter(Boolean);
+  return {
+    ...node,
+    title: localizeField(node, context, "title"),
+    deck: localizeField(node, context, "deck"),
+    stories: storyObjects
+  };
+}
+
+function localizedRelation(relation, context) {
+  return {
+    ...relation,
+    label: localizeField(relation, context, "label"),
+    note: localizeField(relation, context, "note"),
+    fromStory: context.storyBySlug.get(relation.from),
+    toStory: context.storyBySlug.get(relation.to)
+  };
+}
+
+function archiveNodesForFacet(facetSlug, context) {
+  return archiveNodes
+    .filter((node) => node.facet === facetSlug)
+    .map((node) => localizedNode(node, context))
+    .filter((node) => node.stories.length);
+}
+
+function archiveNodesForStory(story, context) {
+  return archiveNodes
+    .filter((node) => node.storySlugs.includes(story.slug))
+    .map((node) => localizedNode(node, context))
+    .filter((node) => node.stories.length);
+}
+
+function archiveRelationsForStory(story, context) {
+  return archiveRelations
+    .filter((relation) => relation.from === story.slug || relation.to === story.slug)
+    .map((relation) => localizedRelation(relation, context))
+    .filter((relation) => relation.fromStory && relation.toStory);
+}
+
+function relatedStoriesFor(story, context, limit = 3) {
+  const relationStories = archiveRelationsForStory(story, context)
+    .map((relation) => (relation.from === story.slug ? relation.toStory : relation.fromStory))
+    .filter(Boolean);
+  const themeStories = context.themeCollections
+    .filter((theme) => theme.storySlugs.includes(story.slug))
+    .flatMap((theme) => theme.storySlugs)
+    .filter((slug) => slug !== story.slug)
+    .map((slug) => context.storyBySlug.get(slug))
+    .filter(Boolean);
+  const fallback = context.stories.filter((item) => item.slug !== story.slug);
+  const seen = new Set();
+
+  return [...relationStories, ...themeStories, ...fallback].filter((item) => {
+    if (seen.has(item.slug)) return false;
+    seen.add(item.slug);
+    return true;
+  }).slice(0, limit);
+}
+
 const englishStorySlugs = new Set(englishStories.map((story) => story.slug));
 const englishThemeSlugs = new Set(englishThemeCollections.map((theme) => theme.slug));
 const englishStaticSlugs = new Set(englishStaticPages.map((page) => page.slug));
@@ -350,6 +885,11 @@ function storiesForTheme(theme, context) {
 function englishPathForZh(pathName = "") {
   const clean = cleanPagePath(pathName);
   if (!clean) return "en/";
+  if (clean === "archive/") return "en/archive/";
+  if (clean.startsWith("archive/")) {
+    const slug = clean.slice("archive/".length).replace(/\/$/, "");
+    return archivePageSlugs.has(slug) ? `en/${clean}` : null;
+  }
   if (clean === "themes/") return "en/themes/";
   if (clean.startsWith("themes/")) {
     const slug = clean.split("/")[1];
@@ -458,9 +998,12 @@ ${jsonLdLines}</head>
         <small>${esc(context.site.tagline)}</small>
       </span>
     </a>
-    <nav class="nav" aria-label="${esc(context.ui.navLabel)}">
-      ${navLinks.join("")}
-    </nav>
+    <div class="header-actions">
+      <nav class="nav" aria-label="${esc(context.ui.navLabel)}">
+        ${navLinks.join("")}
+      </nav>
+      <button class="reading-mode-toggle" type="button" aria-pressed="false" aria-label="${esc(context.ui.archive.nightMode)}" title="${esc(context.ui.archive.nightMode)}">◐</button>
+    </div>
   </header>
   <main id="main">
 ${body.trim()}
@@ -490,6 +1033,7 @@ function storyCard(story, index, rootRel = "./", context = zhContext) {
       <p>${esc(story.deck)}</p>
       <div class="tag-row">${story.tags.map((tag) => `<span>${esc(tag)}</span>`).join("")}</div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="${esc(story.slug)}" data-story-title="${esc(story.title)}" data-story-url="${esc(`${site.basePath}${context.pathPrefix}stories/${story.slug}/`)}" data-save-label="${esc(context.ui.archive.saveShort)}" data-saved-label="${esc(context.ui.archive.savedStory)}">${esc(context.ui.archive.saveShort)}</button>
   </article>`;
 }
 
@@ -505,6 +1049,24 @@ function themeCard(theme, index, rootRel = "./", context = zhContext) {
       <p>${esc(theme.deck)}</p>
       <div class="theme-mini-list">
         ${themeStories.slice(0, 5).map((story) => `<span>${esc(story.sourceTitle)}</span>`).join("")}
+      </div>
+    </a>
+  </article>`;
+}
+
+function archiveFacetCard(facet, index, rootRel = "./", context = zhContext) {
+  const item = localizedFacet(facet, context);
+  const nodes = archiveNodesForFacet(facet.slug, context);
+  return `<article class="archive-facet-card tone-${facet.tone}" style="--card-index:${index}">
+    <a href="${rootRel}${context.pathPrefix}archive/${facet.slug}/" aria-label="${esc(context.ui.archive.openFacet(item.title))}">
+      <div class="card-topline">
+        <span>${esc(context.ui.archive.facetCount(nodes.length))}</span>
+        <span>${esc(context.ui.archive.storyCount(new Set(nodes.flatMap((node) => node.storySlugs)).size))}</span>
+      </div>
+      <h3>${esc(item.title)}</h3>
+      <p>${esc(item.deck)}</p>
+      <div class="theme-mini-list">
+        ${nodes.slice(0, 5).map((node) => `<span>${esc(node.title)}</span>`).join("")}
       </div>
     </a>
   </article>`;
@@ -534,6 +1096,152 @@ ${translatorRow}    </dl>
   </aside>`;
 }
 
+function sourceLedger(story, context = zhContext) {
+  const labels = context.ui.sourcePanel;
+  const translatorRow = story.translatorNote
+    ? `<div><dt>${esc(labels.translatorNote)}</dt><dd>${esc(story.translatorNote)}</dd></div>`
+    : "";
+  return `<dl class="source-ledger">
+    <div><dt>${esc(labels.originalTitle)}</dt><dd>${esc(story.sourceTitle)}</dd></div>
+    <div><dt>${esc(labels.source)}</dt><dd>${esc(story.sourceBook)}</dd></div>
+    <div><dt>${esc(labels.author)}</dt><dd>${esc(story.originalAuthor)}</dd></div>
+    <div><dt>${esc(labels.era)}</dt><dd>${esc(story.era)}</dd></div>
+    <div><dt>${esc(labels.editorialMode)}</dt><dd>${esc(story.editorialMode)}</dd></div>
+    <div><dt>${esc(labels.reviewed)}</dt><dd>${esc(story.lastReviewed)}</dd></div>
+    ${translatorRow}
+  </dl>`;
+}
+
+function storySaveButton(story, context = zhContext, className = "") {
+  return `<button class="save-story-button ${className}" type="button" data-story-slug="${esc(story.slug)}" data-story-title="${esc(story.title)}" data-story-url="${esc(`${site.basePath}${context.pathPrefix}stories/${story.slug}/`)}" data-save-label="${esc(context.ui.archive.saveStory)}" data-saved-label="${esc(context.ui.archive.savedStory)}">${esc(context.ui.archive.saveStory)}</button>`;
+}
+
+function storyRelationGraph(story, context = zhContext, rootRel = "./") {
+  const relations = archiveRelationsForStory(story, context);
+  if (!relations.length) return "";
+
+  return `<section class="relation-graph tone-${story.coverTone}" data-relation-graph>
+    <div class="section-heading tight">
+      <span class="eyebrow">${esc(context.ui.archive.relationLabel)}</span>
+      <h3>${esc(context.ui.archive.relationTitle)}</h3>
+    </div>
+    <div class="relation-map">
+      <a class="relation-node is-center" href="${rootRel}${context.pathPrefix}stories/${story.slug}/">${esc(story.sourceTitle)}</a>
+      ${relations
+        .map((relation) => {
+          const other = relation.from === story.slug ? relation.toStory : relation.fromStory;
+          return `<a class="relation-node tone-${relation.tone}" href="${rootRel}${context.pathPrefix}stories/${other.slug}/">
+            <span>${esc(relation.label)}</span>
+            <strong>${esc(other.sourceTitle)}</strong>
+          </a>`;
+        })
+        .join("")}
+    </div>
+    <div class="relation-thread-list">
+      ${relations
+        .map((relation) => {
+          const other = relation.from === story.slug ? relation.toStory : relation.fromStory;
+          return `<article class="relation-thread tone-${relation.tone}">
+            <span>${esc(relation.label)}</span>
+            <h4><a href="${rootRel}${context.pathPrefix}stories/${other.slug}/">${esc(other.title)}</a></h4>
+            <p>${esc(relation.note)}</p>
+          </article>`;
+        })
+        .join("")}
+    </div>
+  </section>`;
+}
+
+function storyArchiveTabs(story, context, rootRel, deepDive, linkedThemes) {
+  const tabPrefix = `story-${story.slug}`;
+  const tabLabels = [
+    { key: "source", label: context.ui.archive.sourceTab },
+    { key: "retelling", label: context.ui.archive.retellingTab },
+    { key: "guide", label: context.ui.archive.guideTab }
+  ];
+  const nodes = archiveNodesForStory(story, context);
+  const nodeLinks = nodes.length
+    ? `<div class="archive-node-chip-row">
+        ${nodes
+          .map(
+            (node) =>
+              `<a href="${rootRel}${context.pathPrefix}archive/${node.facet}/#${node.slug}" aria-label="${esc(context.ui.archive.openNode(node.title))}">${esc(node.title)}</a>`
+          )
+          .join("")}
+      </div>`
+    : "";
+  const themeLinks = linkedThemes.length
+    ? `<div class="archive-node-chip-row">
+        ${linkedThemes
+          .map((theme) => `<a href="${rootRel}${context.pathPrefix}themes/${theme.slug}/">${esc(theme.title)}</a>`)
+          .join("")}
+      </div>`
+    : "";
+
+  return `<section class="archive-tabs" data-archive-tabs>
+    <div class="tab-list" role="tablist" aria-label="${esc(context.ui.archive.tabsLabel)}">
+      ${tabLabels
+        .map(
+          (tab) =>
+            `<button type="button" role="tab" id="${tabPrefix}-${tab.key}-tab" aria-controls="${tabPrefix}-${tab.key}-panel" aria-selected="${tab.key === "retelling" ? "true" : "false"}" data-tab-target="${tabPrefix}-${tab.key}-panel">${esc(tab.label)}</button>`
+        )
+        .join("")}
+    </div>
+
+    <section class="archive-tab-panel source-pane" id="${tabPrefix}-source-panel" role="tabpanel" aria-labelledby="${tabPrefix}-source-tab">
+      <div class="article-body">
+        <span class="eyebrow">${esc(context.ui.archive.sourceTab)}</span>
+        <h2>${esc(context.ui.archive.sourcePaneTitle)}</h2>
+        <p class="lead">${esc(context.ui.archive.sourcePaneLead(story))}</p>
+        ${sourceLedger(story, context)}
+        <p>${esc(story.sourceRights)}</p>
+        <p><a class="text-link" href="${esc(story.sourceUrl)}" rel="nofollow noopener" target="_blank">${esc(context.ui.sourceOpen)}</a></p>
+      </div>
+    </section>
+
+    <section class="archive-tab-panel is-active" id="${tabPrefix}-retelling-panel" role="tabpanel" aria-labelledby="${tabPrefix}-retelling-tab">
+      <div class="article-body">
+        <span class="eyebrow">${esc(context.ui.archive.retellingTab)}</span>
+        <h2>${esc(context.ui.archive.retellingPaneTitle)}</h2>
+        <p class="lead">${esc(story.summary)}</p>
+        ${story.paragraphs.map((paragraph) => `<p>${esc(paragraph)}</p>`).join("")}
+      </div>
+    </section>
+
+    <section class="archive-tab-panel guide-pane" id="${tabPrefix}-guide-panel" role="tabpanel" aria-labelledby="${tabPrefix}-guide-tab">
+      <div class="article-body">
+        <span class="eyebrow">${esc(context.ui.archive.guideTab)}</span>
+        <h2>${esc(context.ui.archive.guidePaneTitle)}</h2>
+        ${
+          deepDive.length
+            ? `<section class="deep-dive compact-dive">
+              <span class="eyebrow">${esc(context.ui.story.deepEyebrow)}</span>
+              <h3>${esc(context.ui.story.deepHeading)}</h3>
+              ${deepDive.map((paragraph) => `<p>${esc(paragraph)}</p>`).join("")}
+            </section>`
+            : ""
+        }
+        <section class="deep-dive compact-dive">
+          <span class="eyebrow">${esc(context.ui.story.notesEyebrow)}</span>
+          <h3>${esc(context.ui.story.notesHeading)}</h3>
+          <ul class="guide-note-list">${story.notes.map((note) => `<li>${esc(note)}</li>`).join("")}</ul>
+        </section>
+        ${
+          nodeLinks || themeLinks
+            ? `<section class="deep-dive compact-dive">
+              <span class="eyebrow">${esc(context.ui.archive.indexEyebrow)}</span>
+              <h3>${esc(context.ui.archive.nodeStories)}</h3>
+              ${nodeLinks}
+              ${themeLinks}
+            </section>`
+            : ""
+        }
+        ${storyRelationGraph(story, context, rootRel)}
+      </div>
+    </section>
+  </section>`;
+}
+
 function homePage(context = zhContext) {
   const featured = context.stories[0];
   const rootRel = relativeRoot(context.pathPrefix);
@@ -558,10 +1266,28 @@ function homePage(context = zhContext) {
       <div class="hero-actions">
         <a class="primary-link" href="${rootRel}${context.pathPrefix}stories/${featured.slug}/">${esc(home.primaryCta)}</a>
         <a class="secondary-link" href="${rootRel}${context.pathPrefix}themes/">${esc(home.secondaryCta)}</a>
+        <a class="secondary-link" href="${rootRel}${context.pathPrefix}archive/">${esc(context.ui.archive.openArchive)}</a>
       </div>
     </div>
     <div class="hero-strip" aria-label="${context.locale === "en" ? "Site data" : "站点数据"}">
       ${home.stats.map((item) => `<span><strong>${esc(item.value)}</strong> ${esc(item.label)}</span>`).join("")}
+    </div>
+  </section>
+
+  <section class="archive-console reveal" id="archive">
+    <div class="archive-console-head">
+      <div class="section-heading">
+        <span class="eyebrow">${esc(context.ui.archive.homeEyebrow)}</span>
+        <h2>${esc(context.ui.archive.homeTitle)}</h2>
+        <p>${esc(context.ui.archive.homeDeck)}</p>
+      </div>
+      <div class="archive-quick-actions">
+        <a class="secondary-link" href="${rootRel}${context.pathPrefix}archive/relations/">${esc(context.ui.archive.relationTitle)}</a>
+        <a class="secondary-link" href="${rootRel}${context.pathPrefix}archive/route/">${esc(context.ui.archive.routeLink)}</a>
+      </div>
+    </div>
+    <div class="archive-facet-grid">
+      ${archiveFacetDefinitions.map((facet, index) => archiveFacetCard(facet, index, rootRel, context)).join("")}
     </div>
   </section>
 
@@ -656,6 +1382,7 @@ function storyPage(story, context = zhContext) {
   const rootRel = relativeRoot(pathName);
   const deepDive = context.storyDeepDives[story.slug] || [];
   const linkedThemes = context.themeCollections.filter((theme) => theme.storySlugs.includes(story.slug));
+  const nodes = archiveNodesForStory(story, context);
   const articleLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -669,7 +1396,7 @@ function storyPage(story, context = zhContext) {
     isBasedOn: story.sourceUrl
   };
 
-  const related = context.stories.filter((item) => item.slug !== story.slug).slice(0, 3);
+  const related = relatedStoriesFor(story, context, 3);
   const body = `
   <article class="article-page tone-${story.coverTone}">
     <header class="article-hero">
@@ -683,20 +1410,12 @@ function storyPage(story, context = zhContext) {
       ${sourceBadge(story, context)}
     </header>
     <div class="article-layout">
-      <div class="article-body">
-        <p class="lead">${esc(story.summary)}</p>
-        ${story.paragraphs.map((paragraph) => `<p>${esc(paragraph)}</p>`).join("")}
-        ${
-          deepDive.length
-            ? `<section class="deep-dive">
-              <span class="eyebrow">${esc(context.ui.story.deepEyebrow)}</span>
-              <h2>${esc(context.ui.story.deepHeading)}</h2>
-              ${deepDive.map((paragraph) => `<p>${esc(paragraph)}</p>`).join("")}
-            </section>`
-            : ""
-        }
+      <div>
+        ${storyArchiveTabs(story, context, rootRel, deepDive, linkedThemes)}
       </div>
-      <aside class="note-panel">
+      <aside class="note-panel archive-sidecar">
+        ${storySaveButton(story, context, "panel-save")}
+        <a class="secondary-link route-link" href="${rootRel}${context.pathPrefix}archive/route/">${esc(context.ui.archive.routeLink)}</a>
         <span class="eyebrow">${esc(context.ui.story.notesEyebrow)}</span>
         <h2>${esc(context.ui.story.notesHeading)}</h2>
         <ul>${story.notes.map((note) => `<li>${esc(note)}</li>`).join("")}</ul>
@@ -706,6 +1425,16 @@ function storyPage(story, context = zhContext) {
               <span>${esc(context.ui.story.themeLinks)}</span>
               ${linkedThemes
                 .map((theme) => `<a href="${rootRel}${context.pathPrefix}themes/${theme.slug}/">${esc(theme.title)}</a>`)
+                .join("")}
+            </div>`
+            : ""
+        }
+        ${
+          nodes.length
+            ? `<div class="theme-links">
+              <span>${esc(context.ui.archive.indexTitle)}</span>
+              ${nodes
+                .map((node) => `<a href="${rootRel}${context.pathPrefix}archive/${node.facet}/#${node.slug}">${esc(node.title)}</a>`)
                 .join("")}
             </div>`
             : ""
@@ -824,6 +1553,201 @@ function themePage(theme, context = zhContext) {
     pathName,
     body,
     structuredData: [collectionLd]
+  });
+}
+
+function archiveIndexPage(context = zhContext) {
+  const pathName = `${context.pathPrefix}archive/`;
+  const rootRel = relativeRoot(pathName);
+  const itemList = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: context.ui.archive.indexTitle,
+    description: context.ui.archive.indexDescription,
+    url: absoluteUrl(pathName),
+    inLanguage: context.locale,
+    hasPart: archiveFacetDefinitions.map((facet) => ({
+      "@type": "CollectionPage",
+      name: localizeField(facet, context, "title"),
+      url: absoluteUrl(`${context.pathPrefix}archive/${facet.slug}/`)
+    }))
+  };
+  const body = `<section class="plain-page archive-index-page">
+    <div class="section-heading">
+      <span class="eyebrow">${esc(context.ui.archive.indexEyebrow)}</span>
+      <h1>${esc(context.ui.archive.indexTitle)}</h1>
+      <p>${esc(context.ui.archive.indexDescription)}</p>
+    </div>
+    <div class="archive-facet-grid">
+      ${archiveFacetDefinitions.map((facet, index) => archiveFacetCard(facet, index, rootRel, context)).join("")}
+    </div>
+    <div class="archive-hub-grid">
+      <article class="archive-hub-card tone-violet">
+        <a href="${rootRel}${context.pathPrefix}archive/relations/">
+          <span class="eyebrow">${esc(context.ui.archive.relationLabel)}</span>
+          <h2>${esc(context.ui.archive.relationTitle)}</h2>
+          <p>${esc(context.ui.archive.relationDescription)}</p>
+        </a>
+      </article>
+      <article class="archive-hub-card tone-amber">
+        <a href="${rootRel}${context.pathPrefix}archive/route/">
+          <span class="eyebrow">${esc(context.ui.archive.routeLink)}</span>
+          <h2>${esc(context.ui.archive.routeTitle)}</h2>
+          <p>${esc(context.ui.archive.routeDescription)}</p>
+        </a>
+      </article>
+    </div>
+  </section>`;
+
+  return pageShell({
+    context,
+    title: `${context.ui.archive.indexTitle} | ${context.site.name}`,
+    description: context.ui.archive.indexDescription,
+    pathName,
+    body,
+    structuredData: [itemList]
+  });
+}
+
+function archiveFacetPage(facet, context = zhContext) {
+  const item = localizedFacet(facet, context);
+  const pathName = `${context.pathPrefix}archive/${facet.slug}/`;
+  const rootRel = relativeRoot(pathName);
+  const nodes = archiveNodesForFacet(facet.slug, context);
+  const body = `<section class="theme-hero archive-facet-hero tone-${facet.tone}">
+    <a class="back-link" href="${rootRel}${context.pathPrefix}archive/">${esc(context.ui.archive.backToArchive)}</a>
+    <span class="eyebrow">${esc(context.ui.archive.indexEyebrow)}</span>
+    <h1>${esc(item.title)}</h1>
+    <p>${esc(item.deck)}</p>
+    <div class="theme-stats">
+      <span>${esc(context.ui.archive.facetCount(nodes.length))}</span>
+      <span>${esc(context.ui.archive.storyCount(new Set(nodes.flatMap((node) => node.storySlugs)).size))}</span>
+    </div>
+  </section>
+
+  <section class="archive-node-section">
+    <div class="archive-node-grid">
+      ${nodes
+        .map(
+          (node) => `<article class="archive-node-card tone-${facet.tone}" id="${esc(node.slug)}">
+            <span class="eyebrow">${esc(item.title)}</span>
+            <h2>${esc(node.title)}</h2>
+            <p>${esc(node.deck)}</p>
+            <div class="archive-node-stories">
+              <span>${esc(context.ui.archive.nodeStories)}</span>
+              ${node.stories
+                .map((story) => `<a href="${rootRel}${context.pathPrefix}stories/${story.slug}/">${esc(story.title)}</a>`)
+                .join("")}
+            </div>
+          </article>`
+        )
+        .join("")}
+    </div>
+  </section>`;
+
+  return pageShell({
+    context,
+    title: `${item.title} | ${context.site.name}`,
+    description: item.deck,
+    pathName,
+    body,
+    structuredData: [
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: item.title,
+        description: item.deck,
+        url: absoluteUrl(pathName),
+        inLanguage: context.locale
+      }
+    ]
+  });
+}
+
+function archiveRelationsPage(context = zhContext) {
+  const pathName = `${context.pathPrefix}archive/relations/`;
+  const rootRel = relativeRoot(pathName);
+  const relations = archiveRelations
+    .map((relation) => localizedRelation(relation, context))
+    .filter((relation) => relation.fromStory && relation.toStory);
+  const storyNodes = [...new Set(relations.flatMap((relation) => [relation.from, relation.to]))]
+    .map((slug) => context.storyBySlug.get(slug))
+    .filter(Boolean);
+  const body = `<section class="plain-page archive-relations-page">
+    <div class="section-heading">
+      <a class="back-link" href="${rootRel}${context.pathPrefix}archive/">${esc(context.ui.archive.backToArchive)}</a>
+      <span class="eyebrow">${esc(context.ui.archive.relationLabel)}</span>
+      <h1>${esc(context.ui.archive.relationTitle)}</h1>
+      <p>${esc(context.ui.archive.relationDescription)}</p>
+    </div>
+    <div class="relation-constellation" aria-label="${esc(context.ui.archive.relationTitle)}">
+      ${storyNodes
+        .map(
+          (story, index) =>
+            `<a class="relation-node tone-${story.coverTone}" style="--node-index:${index}" href="${rootRel}${context.pathPrefix}stories/${story.slug}/"><span>${esc(story.category)}</span><strong>${esc(story.sourceTitle)}</strong></a>`
+        )
+        .join("")}
+    </div>
+    <div class="relation-thread-list large">
+      ${relations
+        .map(
+          (relation) => `<article class="relation-thread tone-${relation.tone}">
+            <span>${esc(relation.label)}</span>
+            <h2><a href="${rootRel}${context.pathPrefix}stories/${relation.fromStory.slug}/">${esc(relation.fromStory.sourceTitle)}</a> / <a href="${rootRel}${context.pathPrefix}stories/${relation.toStory.slug}/">${esc(relation.toStory.sourceTitle)}</a></h2>
+            <p>${esc(relation.note)}</p>
+          </article>`
+        )
+        .join("")}
+    </div>
+  </section>`;
+
+  return pageShell({
+    context,
+    title: `${context.ui.archive.relationTitle} | ${context.site.name}`,
+    description: context.ui.archive.relationDescription,
+    pathName,
+    body
+  });
+}
+
+function archiveRoutePage(context = zhContext) {
+  const pathName = `${context.pathPrefix}archive/route/`;
+  const rootRel = relativeRoot(pathName);
+  const body = `<section class="plain-page route-page">
+    <div class="section-heading">
+      <a class="back-link" href="${rootRel}${context.pathPrefix}archive/">${esc(context.ui.archive.backToArchive)}</a>
+      <span class="eyebrow">${esc(context.ui.archive.routeLink)}</span>
+      <h1>${esc(context.ui.archive.routeTitle)}</h1>
+      <p>${esc(context.ui.archive.routeDescription)}</p>
+    </div>
+    <div class="saved-route-shell" data-route-shell data-empty-text="${esc(context.ui.archive.emptyRoute)}">
+      <div class="route-empty" data-route-empty>${esc(context.ui.archive.emptyRoute)}</div>
+      <div class="route-list" data-route-list></div>
+    </div>
+    <div class="archive-hub-grid">
+      <article class="archive-hub-card tone-jade">
+        <a href="${rootRel}${context.pathPrefix}archive/people/">
+          <span class="eyebrow">${esc(localizeField(archiveFacetDefinitions[0], context, "title"))}</span>
+          <h2>${esc(context.ui.archive.openFacet(localizeField(archiveFacetDefinitions[0], context, "title")))}</h2>
+          <p>${esc(localizeField(archiveFacetDefinitions[0], context, "deck"))}</p>
+        </a>
+      </article>
+      <article class="archive-hub-card tone-violet">
+        <a href="${rootRel}${context.pathPrefix}archive/relations/">
+          <span class="eyebrow">${esc(context.ui.archive.relationLabel)}</span>
+          <h2>${esc(context.ui.archive.relationTitle)}</h2>
+          <p>${esc(context.ui.archive.relationDescription)}</p>
+        </a>
+      </article>
+    </div>
+  </section>`;
+
+  return pageShell({
+    context,
+    title: `${context.ui.archive.routeTitle} | ${context.site.name}`,
+    description: context.ui.archive.routeDescription,
+    pathName,
+    body
   });
 }
 
@@ -965,8 +1889,15 @@ ${items}
 }
 
 function sitemapXml() {
+  const archiveUrls = [
+    "archive/",
+    ...archiveFacetDefinitions.map((facet) => `archive/${facet.slug}/`),
+    "archive/relations/",
+    "archive/route/"
+  ];
   const zhUrls = [
     "",
+    ...archiveUrls,
     "themes/",
     "content-roadmap/",
     "sources/",
@@ -979,6 +1910,7 @@ function sitemapXml() {
   ];
   const enUrls = [
     "en/",
+    ...archiveUrls.map((url) => `en/${url}`),
     "en/themes/",
     ...englishStaticPages.map((page) => `en/${page.slug}/`),
     ...englishThemeCollections.map((theme) => `en/themes/${theme.slug}/`),
@@ -1032,6 +1964,12 @@ async function writePage(relativePath, html) {
 
 async function writeContext(context) {
   await writePage(context.pathPrefix.replace(/\/$/, ""), homePage(context));
+  await writePage(path.join(context.pathPrefix, "archive"), archiveIndexPage(context));
+  for (const facet of archiveFacetDefinitions) {
+    await writePage(path.join(context.pathPrefix, "archive", facet.slug), archiveFacetPage(facet, context));
+  }
+  await writePage(path.join(context.pathPrefix, "archive", "relations"), archiveRelationsPage(context));
+  await writePage(path.join(context.pathPrefix, "archive", "route"), archiveRoutePage(context));
   await writePage(path.join(context.pathPrefix, "themes"), themesPage(context));
   await writePage(path.join(context.pathPrefix, "content-roadmap"), contentRoadmapPage(context));
   await writePage(path.join(context.pathPrefix, "sources"), sourcesPage(context));

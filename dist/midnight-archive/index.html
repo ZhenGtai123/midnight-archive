@@ -39,9 +39,12 @@
         <small>公版志怪、旧书异闻与深夜导读</small>
       </span>
     </a>
-    <nav class="nav" aria-label="主导航">
-      <a href="./#stories">故事</a><a href="./themes/">专题</a><a href="./content-roadmap/">路线</a><a href="./sources/">来源</a><a href="./authors/">作者</a><a href="./editorial-policy/">编辑原则</a><a class="language-link" href="./en/" hreflang="en">English</a>
-    </nav>
+    <div class="header-actions">
+      <nav class="nav" aria-label="主导航">
+        <a href="./archive/">档案库</a><a href="./#stories">故事</a><a href="./themes/">专题</a><a href="./content-roadmap/">路线</a><a href="./sources/">来源</a><a href="./authors/">作者</a><a href="./editorial-policy/">编辑原则</a><a class="language-link" href="./en/" hreflang="en">English</a>
+      </nav>
+      <button class="reading-mode-toggle" type="button" aria-pressed="false" aria-label="夜读模式" title="夜读模式">◐</button>
+    </div>
   </header>
   <main id="main">
 <section class="hero">
@@ -56,10 +59,76 @@
       <div class="hero-actions">
         <a class="primary-link" href="./stories/laoshan-daoshi/">读今日夜谈</a>
         <a class="secondary-link" href="./themes/">进入专题地图</a>
+        <a class="secondary-link" href="./archive/">进入档案库</a>
       </div>
     </div>
     <div class="hero-strip" aria-label="站点数据">
       <span><strong>18</strong> 篇样稿</span><span><strong>6</strong> 条专题</span><span><strong>0</strong> 未署名转载</span>
+    </div>
+  </section>
+
+  <section class="archive-console reveal" id="archive">
+    <div class="archive-console-head">
+      <div class="section-heading">
+        <span class="eyebrow">Archive console</span>
+        <h2>从故事列表，进入东方志怪资料库</h2>
+        <p>按人物、妖怪、地府、器物和故事关系重新组织旧书异闻，让读者可以沿线索穿行，而不是读完一篇就离开。</p>
+      </div>
+      <div class="archive-quick-actions">
+        <a class="secondary-link" href="./archive/relations/">故事关系图</a>
+        <a class="secondary-link" href="./archive/route/">我的夜读路线</a>
+      </div>
+    </div>
+    <div class="archive-facet-grid">
+      <article class="archive-facet-card tone-jade" style="--card-index:0">
+    <a href="./archive/people/" aria-label="进入人物索引">
+      <div class="card-topline">
+        <span>7 个条目</span>
+        <span>18 篇相关故事</span>
+      </div>
+      <h3>人物索引</h3>
+      <p>作者、主角、判官、书生、受困者和见证人，按故事关系重新归档。</p>
+      <div class="theme-mini-list">
+        <span>蒲松龄</span><span>干宝与魏晋志怪传统</span><span>席方平</span><span>聂小倩</span><span>宁采臣</span>
+      </div>
+    </a>
+  </article><article class="archive-facet-card tone-ivory" style="--card-index:1">
+    <a href="./archive/beings/" aria-label="进入妖怪索引">
+      <div class="card-topline">
+        <span>5 个条目</span>
+        <span>7 篇相关故事</span>
+      </div>
+      <h3>妖怪索引</h3>
+      <p>狐女、女鬼、水鬼、花魂、画皮妖和山中幻象，保留各自的文本位置。</p>
+      <div class="theme-mini-list">
+        <span>狐女</span><span>女鬼</span><span>水鬼</span><span>画皮妖</span><span>花魂与草木有情</span>
+      </div>
+    </a>
+  </article><article class="archive-facet-card tone-violet" style="--card-index:2">
+    <a href="./archive/underworld/" aria-label="进入地府案卷">
+      <div class="card-topline">
+        <span>4 个条目</span>
+        <span>3 篇相关故事</span>
+      </div>
+      <h3>地府案卷</h3>
+      <p>阴司、城隍、判官、死后考试、申诉阶梯，以及人间制度在异界的回声。</p>
+      <div class="theme-mini-list">
+        <span>阴司官署</span><span>申诉阶梯</span><span>城隍考试</span><span>陆判</span>
+      </div>
+    </a>
+  </article><article class="archive-facet-card tone-amber" style="--card-index:3">
+    <a href="./archive/objects/" aria-label="进入器物谱">
+      <div class="card-topline">
+        <span>5 个条目</span>
+        <span>7 篇相关故事</span>
+      </div>
+      <h3>器物谱</h3>
+      <p>画皮、名剑、梨核、蟋蟀、花木和相思树，把故事里的物变成可追踪线索。</p>
+      <div class="theme-mini-list">
+        <span>画皮</span><span>名剑</span><span>梨核与梨树</span><span>促织</span><span>花木与相思树</span>
+      </div>
+    </a>
+  </article>
     </div>
   </section>
 
@@ -183,6 +252,7 @@
       <p>一个看似轻巧的求仙故事，真正讽刺的是只想要奇迹、不愿意修行的人。</p>
       <div class="tag-row"><span>聊斋</span><span>修行</span><span>讽刺</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="laoshan-daoshi" data-story-title="崂山道士：想学法术的人，先学不会吃苦" data-story-url="/midnight-archive/stories/laoshan-daoshi/" data-save-label="收藏" data-saved-label="已收藏">收藏</button>
   </article><article class="story-card tone-ivory" style="--card-index:1">
     <a href="./stories/yingning/" aria-label="阅读婴宁：笑声、花枝和狐女的另一种清醒">
       <div class="card-topline">
@@ -193,6 +263,7 @@
       <p>《婴宁》的明亮并不浅。笑声背后，是一个女性角色如何在礼法和天真之间保持自我。</p>
       <div class="tag-row"><span>聊斋</span><span>狐女</span><span>人物解读</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="yingning" data-story-title="婴宁：笑声、花枝和狐女的另一种清醒" data-story-url="/midnight-archive/stories/yingning/" data-save-label="收藏" data-saved-label="已收藏">收藏</button>
   </article><article class="story-card tone-crimson" style="--card-index:2">
     <a href="./stories/xifangping/" aria-label="阅读席方平：到阴司告状的人，为什么一路不肯退">
       <div class="card-topline">
@@ -203,6 +274,7 @@
       <p>这是一篇比鬼故事更锋利的冤案故事。阴间并不天然公正，人只能带着痛苦继续上诉。</p>
       <div class="tag-row"><span>聊斋</span><span>阴司</span><span>冤案</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="xifangping" data-story-title="席方平：到阴司告状的人，为什么一路不肯退" data-story-url="/midnight-archive/stories/xifangping/" data-save-label="收藏" data-saved-label="已收藏">收藏</button>
   </article><article class="story-card tone-teal" style="--card-index:3">
     <a href="./stories/mountain-market/" aria-label="阅读山市：海市蜃楼里的城市，为什么像一场梦">
       <div class="card-topline">
@@ -213,6 +285,7 @@
       <p>《山市》把奇观写得清爽又空灵。它不是鬼魅故事，而是一篇关于观看、幻象和消失的短札。</p>
       <div class="tag-row"><span>聊斋</span><span>幻景</span><span>短札</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="mountain-market" data-story-title="山市：海市蜃楼里的城市，为什么像一场梦" data-story-url="/midnight-archive/stories/mountain-market/" data-save-label="收藏" data-saved-label="已收藏">收藏</button>
   </article><article class="story-card tone-crimson" style="--card-index:4">
     <a href="./stories/painted-skin/" aria-label="阅读画皮：一张好看的脸，怎样遮住危险">
       <div class="card-topline">
@@ -223,6 +296,7 @@
       <p>从《聊斋志异》的经典篇目出发，读一个关于欲望、伪装和识人迟疑的夜谈。</p>
       <div class="tag-row"><span>聊斋</span><span>伪装</span><span>经典志怪</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="painted-skin" data-story-title="画皮：一张好看的脸，怎样遮住危险" data-story-url="/midnight-archive/stories/painted-skin/" data-save-label="收藏" data-saved-label="已收藏">收藏</button>
   </article><article class="story-card tone-jade" style="--card-index:5">
     <a href="./stories/nie-xiaoqian/" aria-label="阅读聂小倩：荒寺、夜灯与被救回的人">
       <div class="card-topline">
@@ -233,6 +307,7 @@
       <p>这不是简单的女鬼故事，而是一篇关于克制、信任和重新成为人的故事。</p>
       <div class="tag-row"><span>聊斋</span><span>女鬼</span><span>人物解读</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="nie-xiaoqian" data-story-title="聂小倩：荒寺、夜灯与被救回的人" data-story-url="/midnight-archive/stories/nie-xiaoqian/" data-save-label="收藏" data-saved-label="已收藏">收藏</button>
   </article><article class="story-card tone-amber" style="--card-index:6">
     <a href="./stories/wang-liulang/" aria-label="阅读王六郎：水边故人和一场没有索命的相逢">
       <div class="card-topline">
@@ -243,6 +318,7 @@
       <p>《聊斋志异》里温柔的一类异闻：鬼魂不一定只代表恐惧，也可能代表旧情与未完的义气。</p>
       <div class="tag-row"><span>聊斋</span><span>友情</span><span>水鬼</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="wang-liulang" data-story-title="王六郎：水边故人和一场没有索命的相逢" data-story-url="/midnight-archive/stories/wang-liulang/" data-save-label="收藏" data-saved-label="已收藏">收藏</button>
   </article><article class="story-card tone-violet" style="--card-index:7">
     <a href="./stories/lu-pan/" aria-label="阅读陆判：换心换头之后，人还算原来的人吗">
       <div class="card-topline">
@@ -253,6 +329,7 @@
       <p>一个怪诞故事背后的问题很现代：外貌、才情和命运，究竟哪一个构成自我？</p>
       <div class="tag-row"><span>聊斋</span><span>身份</span><span>阴司</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="lu-pan" data-story-title="陆判：换心换头之后，人还算原来的人吗" data-story-url="/midnight-archive/stories/lu-pan/" data-save-label="收藏" data-saved-label="已收藏">收藏</button>
   </article><article class="story-card tone-teal" style="--card-index:8">
     <a href="./stories/song-dingbo/" aria-label="阅读宋定伯捉鬼：怕鬼的人，和不怕鬼的人">
       <div class="card-topline">
@@ -263,6 +340,7 @@
       <p>一则魏晋志怪传统中的机智故事：恐惧被拆开以后，鬼也会露出笨拙的一面。</p>
       <div class="tag-row"><span>志怪</span><span>机智故事</span><span>版本核验</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="song-dingbo" data-story-title="宋定伯捉鬼：怕鬼的人，和不怕鬼的人" data-story-url="/midnight-archive/stories/song-dingbo/" data-save-label="收藏" data-saved-label="已收藏">收藏</button>
   </article><article class="story-card tone-ivory" style="--card-index:9">
     <a href="./stories/seed-pear/" aria-label="阅读种梨：一棵树怎样从袖子里长出来">
       <div class="card-topline">
@@ -273,6 +351,7 @@
       <p>不是所有夜谈都要吓人。这个故事更像一场街头幻术，也像一则关于吝惜与惊奇的寓言。</p>
       <div class="tag-row"><span>聊斋</span><span>幻术</span><span>寓言</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="seed-pear" data-story-title="种梨：一棵树怎样从袖子里长出来" data-story-url="/midnight-archive/stories/seed-pear/" data-save-label="收藏" data-saved-label="已收藏">收藏</button>
   </article><article class="story-card tone-jade" style="--card-index:10">
     <a href="./stories/qingfeng/" aria-label="阅读青凤：狐宅灯影里，一次相认为何并不轻松">
       <div class="card-topline">
@@ -283,6 +362,7 @@
       <p>《青凤》有狐女、旧宅和幽会，却不只是艳遇。它真正写的是身份暴露以后，情意如何经受家族和恐惧的拉扯。</p>
       <div class="tag-row"><span>聊斋</span><span>狐女</span><span>旧宅</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="qingfeng" data-story-title="青凤：狐宅灯影里，一次相认为何并不轻松" data-story-url="/midnight-archive/stories/qingfeng/" data-save-label="收藏" data-saved-label="已收藏">收藏</button>
   </article><article class="story-card tone-ivory" style="--card-index:11">
     <a href="./stories/xiangyu/" aria-label="阅读香玉：花魂有情，为什么比人更记得承诺">
       <div class="card-topline">
@@ -293,6 +373,7 @@
       <p>《香玉》把花写成有情之物。它的奇异不是惊吓，而是草木、记忆和承诺之间的温柔牵连。</p>
       <div class="tag-row"><span>聊斋</span><span>花魂</span><span>温柔志怪</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="xiangyu" data-story-title="香玉：花魂有情，为什么比人更记得承诺" data-story-url="/midnight-archive/stories/xiangyu/" data-save-label="收藏" data-saved-label="已收藏">收藏</button>
   </article><article class="story-card tone-crimson" style="--card-index:12">
     <a href="./stories/cuzhi/" aria-label="阅读促织：一只小虫，如何压住一家人的命运">
       <div class="card-topline">
@@ -303,6 +384,7 @@
       <p>《促织》不是昆虫奇谈，而是一篇层层下压的世情故事。小小蟋蟀背后，是役使、恐惧和家庭命运。</p>
       <div class="tag-row"><span>聊斋</span><span>讽刺</span><span>世情</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="cuzhi" data-story-title="促织：一只小虫，如何压住一家人的命运" data-story-url="/midnight-archive/stories/cuzhi/" data-save-label="收藏" data-saved-label="已收藏">收藏</button>
   </article><article class="story-card tone-teal" style="--card-index:13">
     <a href="./stories/luocha-haishi/" aria-label="阅读罗刹海市：丑美颠倒后，谁还认得自己">
       <div class="card-topline">
@@ -313,6 +395,7 @@
       <p>一个关于审美秩序反转的故事。到了罗刹国，美丑不再可靠，读书人也必须重新面对自我。</p>
       <div class="tag-row"><span>聊斋</span><span>海市</span><span>审美</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="luocha-haishi" data-story-title="罗刹海市：丑美颠倒后，谁还认得自己" data-story-url="/midnight-archive/stories/luocha-haishi/" data-save-label="收藏" data-saved-label="已收藏">收藏</button>
   </article><article class="story-card tone-violet" style="--card-index:14">
     <a href="./stories/kao-chenghuang/" aria-label="阅读考城隍：死后赴考，读书人的另一张试卷">
       <div class="card-topline">
@@ -323,6 +406,7 @@
       <p>《考城隍》把科举焦虑推到阴间。死后仍要应试，这个设定荒诞，却很懂读书人的命运感。</p>
       <div class="tag-row"><span>聊斋</span><span>科举</span><span>阴司</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="kao-chenghuang" data-story-title="考城隍：死后赴考，读书人的另一张试卷" data-story-url="/midnight-archive/stories/kao-chenghuang/" data-save-label="收藏" data-saved-label="已收藏">收藏</button>
   </article><article class="story-card tone-amber" style="--card-index:15">
     <a href="./stories/jiangcheng/" aria-label="阅读江城：强悍妻子背后，是怎样的婚姻寓言">
       <div class="card-topline">
@@ -333,6 +417,7 @@
       <p>《江城》表面写悍妻，深处却牵出婚姻权力、性情改造和家庭秩序的复杂问题。</p>
       <div class="tag-row"><span>聊斋</span><span>婚姻</span><span>家宅</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="jiangcheng" data-story-title="江城：强悍妻子背后，是怎样的婚姻寓言" data-story-url="/midnight-archive/stories/jiangcheng/" data-save-label="收藏" data-saved-label="已收藏">收藏</button>
   </article><article class="story-card tone-crimson" style="--card-index:16">
     <a href="./stories/ganjiang-moye/" aria-label="阅读干将莫邪：剑、复仇与被记住的名字">
       <div class="card-topline">
@@ -343,6 +428,7 @@
       <p>《干将莫邪》来自古代志怪与传说系统。它写名剑，也写被权力吞没后仍要传下去的复仇记忆。</p>
       <div class="tag-row"><span>搜神记</span><span>名剑</span><span>复仇</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="ganjiang-moye" data-story-title="干将莫邪：剑、复仇与被记住的名字" data-story-url="/midnight-archive/stories/ganjiang-moye/" data-save-label="收藏" data-saved-label="已收藏">收藏</button>
   </article><article class="story-card tone-amber" style="--card-index:17">
     <a href="./stories/hanping-fufu/" aria-label="阅读韩凭夫妇：双冢与相思树，悲剧如何变成传说">
       <div class="card-topline">
@@ -353,6 +439,7 @@
       <p>韩凭夫妇的故事把爱情、权力和死亡写成传说。双冢与相思树让私人悲剧获得了民间记忆。</p>
       <div class="tag-row"><span>搜神记</span><span>爱情传说</span><span>相思树</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="hanping-fufu" data-story-title="韩凭夫妇：双冢与相思树，悲剧如何变成传说" data-story-url="/midnight-archive/stories/hanping-fufu/" data-save-label="收藏" data-saved-label="已收藏">收藏</button>
   </article>
     </div>
   </section>
@@ -425,7 +512,7 @@
       <p>公版故事导读、来源核验和现代阅读札记。每篇文章都应有来源和编辑说明。</p>
     </div>
     <nav aria-label="页脚导航">
-      <a href="./about/">关于</a><a href="./contact/">联系</a><a href="./privacy/">隐私</a><a href="./advertising-policy/">广告说明</a><a href="./terms/">条款</a><a href="./sitemap.xml">站点地图</a>
+      <a href="./archive/">档案库</a><a href="./about/">关于</a><a href="./contact/">联系</a><a href="./privacy/">隐私</a><a href="./advertising-policy/">广告说明</a><a href="./terms/">条款</a><a href="./sitemap.xml">站点地图</a>
     </nav>
   </footer>
   <script src="./assets/midnight.js" defer></script>

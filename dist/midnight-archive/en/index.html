@@ -39,9 +39,12 @@
         <small>Chinese strange tales, carefully retold</small>
       </span>
     </a>
-    <nav class="nav" aria-label="Primary navigation">
-      <a href="../en/#stories">Stories</a><a href="../en/themes/">Themes</a><a href="../en/sources/">Sources</a><a href="../en/editorial-policy/">Editorial</a><a class="language-link" href="../" hreflang="zh-CN">中文</a>
-    </nav>
+    <div class="header-actions">
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="../en/archive/">Archive</a><a href="../en/#stories">Stories</a><a href="../en/themes/">Themes</a><a href="../en/sources/">Sources</a><a href="../en/editorial-policy/">Editorial</a><a class="language-link" href="../" hreflang="zh-CN">中文</a>
+      </nav>
+      <button class="reading-mode-toggle" type="button" aria-pressed="false" aria-label="Night reading mode" title="Night reading mode">◐</button>
+    </div>
   </header>
   <main id="main">
 <section class="hero">
@@ -56,10 +59,76 @@
       <div class="hero-actions">
         <a class="primary-link" href="../en/stories/xifangping/">Read the featured tale</a>
         <a class="secondary-link" href="../en/themes/">Browse themes</a>
+        <a class="secondary-link" href="../en/archive/">Open the archive</a>
       </div>
     </div>
     <div class="hero-strip" aria-label="Site data">
       <span><strong>18</strong> English story guides</span><span><strong>6</strong> reading routes</span><span><strong>0</strong> borrowed modern translations</span>
+    </div>
+  </section>
+
+  <section class="archive-console reveal" id="archive">
+    <div class="archive-console-head">
+      <div class="section-heading">
+        <span class="eyebrow">Archive console</span>
+        <h2>Browse the strange-tale archive as a living dossier</h2>
+        <p>Characters, beings, underworld offices, objects, and story relations turn the collection into a map instead of a list.</p>
+      </div>
+      <div class="archive-quick-actions">
+        <a class="secondary-link" href="../en/archive/relations/">Story Relationship Map</a>
+        <a class="secondary-link" href="../en/archive/route/">My night route</a>
+      </div>
+    </div>
+    <div class="archive-facet-grid">
+      <article class="archive-facet-card tone-jade" style="--card-index:0">
+    <a href="../en/archive/people/" aria-label="Open Character Index">
+      <div class="card-topline">
+        <span>7 entries</span>
+        <span>18 related stories</span>
+      </div>
+      <h3>Character Index</h3>
+      <p>Authors, protagonists, judges, scholars, trapped figures, and witnesses reorganized as archive entries.</p>
+      <div class="theme-mini-list">
+        <span>Pu Songling (蒲松龄)</span><span>Gan Bao and early zhiguai tradition</span><span>Xi Fangping</span><span>Nie Xiaoqian</span><span>Ning Caichen</span>
+      </div>
+    </a>
+  </article><article class="archive-facet-card tone-ivory" style="--card-index:1">
+    <a href="../en/archive/beings/" aria-label="Open Beings Index">
+      <div class="card-topline">
+        <span>5 entries</span>
+        <span>7 related stories</span>
+      </div>
+      <h3>Beings Index</h3>
+      <p>Fox women, ghost women, water ghosts, flower spirits, painted-skin beings, and visionary presences.</p>
+      <div class="theme-mini-list">
+        <span>Fox women</span><span>Ghost women</span><span>Water ghosts</span><span>Painted-skin being</span><span>Flower spirits and feeling plants</span>
+      </div>
+    </a>
+  </article><article class="archive-facet-card tone-violet" style="--card-index:2">
+    <a href="../en/archive/underworld/" aria-label="Open Underworld Dossiers">
+      <div class="card-topline">
+        <span>4 entries</span>
+        <span>3 related stories</span>
+      </div>
+      <h3>Underworld Dossiers</h3>
+      <p>Underworld courts, city gods, judges, posthumous exams, appeal ladders, and echoes of human institutions.</p>
+      <div class="theme-mini-list">
+        <span>Underworld offices</span><span>Appeal ladder</span><span>City-god examination</span><span>Judge Lu Pan</span>
+      </div>
+    </a>
+  </article><article class="archive-facet-card tone-amber" style="--card-index:3">
+    <a href="../en/archive/objects/" aria-label="Open Object Index">
+      <div class="card-topline">
+        <span>5 entries</span>
+        <span>7 related stories</span>
+      </div>
+      <h3>Object Index</h3>
+      <p>Skins, swords, pear seeds, crickets, flowers, and longing trees as trackable story objects.</p>
+      <div class="theme-mini-list">
+        <span>Painted skin</span><span>Named swords</span><span>Pear seed and tree</span><span>Cricket</span><span>Flowers and longing trees</span>
+      </div>
+    </a>
+  </article>
     </div>
   </section>
 
@@ -183,6 +252,7 @@
       <p>A ghost story sharpened into a case file: justice does not arrive simply because the dead have entered another court.</p>
       <div class="tag-row"><span>Liaozhai</span><span>underworld</span><span>justice</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="xifangping" data-story-title="Xi Fangping: The Man Who Would Not Withdraw His Complaint" data-story-url="/midnight-archive/en/stories/xifangping/" data-save-label="Save" data-saved-label="Saved">Save</button>
   </article><article class="story-card tone-jade" style="--card-index:1">
     <a href="../en/stories/nie-xiaoqian/" aria-label="Read Nie Xiaoqian: The Woman Brought Back from the Ruined Temple">
       <div class="card-topline">
@@ -193,6 +263,7 @@
       <p>A ruined-temple encounter becomes a story about restraint, trust, and a ghost who is not identical with the violence that trapped her.</p>
       <div class="tag-row"><span>Liaozhai</span><span>ghost woman</span><span>character guide</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="nie-xiaoqian" data-story-title="Nie Xiaoqian: The Woman Brought Back from the Ruined Temple" data-story-url="/midnight-archive/en/stories/nie-xiaoqian/" data-save-label="Save" data-saved-label="Saved">Save</button>
   </article><article class="story-card tone-crimson" style="--card-index:2">
     <a href="../en/stories/painted-skin/" aria-label="Read Painted Skin: The Lovely Face That Hid a Hunger">
       <div class="card-topline">
@@ -203,6 +274,7 @@
       <p>A classic Liaozhai tale about beauty, warning signs, and the dangerous stories people tell themselves before they believe what they have seen.</p>
       <div class="tag-row"><span>Liaozhai</span><span>disguise</span><span>classic strange tale</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="painted-skin" data-story-title="Painted Skin: The Lovely Face That Hid a Hunger" data-story-url="/midnight-archive/en/stories/painted-skin/" data-save-label="Save" data-saved-label="Saved">Save</button>
   </article><article class="story-card tone-jade" style="--card-index:3">
     <a href="../en/stories/laoshan-daoshi/" aria-label="Read The Taoist of Laoshan: Wanting Magic Without the Discipline">
       <div class="card-topline">
@@ -213,6 +285,7 @@
       <p>A light, sharp tale about a seeker who loves the spectacle of transcendence but not the labor that might make him worthy of it.</p>
       <div class="tag-row"><span>Liaozhai</span><span>cultivation</span><span>satire</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="laoshan-daoshi" data-story-title="The Taoist of Laoshan: Wanting Magic Without the Discipline" data-story-url="/midnight-archive/en/stories/laoshan-daoshi/" data-save-label="Save" data-saved-label="Saved">Save</button>
   </article><article class="story-card tone-amber" style="--card-index:4">
     <a href="../en/stories/wang-liulang/" aria-label="Read Wang Liulang: A Ghost at the River Who Refused a Victim">
       <div class="card-topline">
@@ -223,6 +296,7 @@
       <p>A gentle strange tale in which the expected water-ghost horror is turned toward friendship, restraint, and the refusal to pass suffering on.</p>
       <div class="tag-row"><span>Liaozhai</span><span>friendship</span><span>river ghost</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="wang-liulang" data-story-title="Wang Liulang: A Ghost at the River Who Refused a Victim" data-story-url="/midnight-archive/en/stories/wang-liulang/" data-save-label="Save" data-saved-label="Saved">Save</button>
   </article><article class="story-card tone-ivory" style="--card-index:5">
     <a href="../en/stories/yingning/" aria-label="Read Yingning: Laughter, Blossoms, and the Fox Girl Who Will Not Be Solved">
       <div class="card-topline">
@@ -233,6 +307,7 @@
       <p>A bright Liaozhai tale whose laughter is not shallow: Yingning's charm comes from the way she resists being completely explained.</p>
       <div class="tag-row"><span>Liaozhai</span><span>fox girl</span><span>character guide</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="yingning" data-story-title="Yingning: Laughter, Blossoms, and the Fox Girl Who Will Not Be Solved" data-story-url="/midnight-archive/en/stories/yingning/" data-save-label="Save" data-saved-label="Saved">Save</button>
   </article><article class="story-card tone-teal" style="--card-index:6">
     <a href="../en/stories/mountain-market/" aria-label="Read Mountain Market: The City That Appears Like a Dream">
       <div class="card-topline">
@@ -243,6 +318,7 @@
       <p>A brief, airy Liaozhai piece about watching an impossible city form in the distance, sharpen, and vanish.</p>
       <div class="tag-row"><span>Liaozhai</span><span>mirage</span><span>short tale</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="mountain-market" data-story-title="Mountain Market: The City That Appears Like a Dream" data-story-url="/midnight-archive/en/stories/mountain-market/" data-save-label="Save" data-saved-label="Saved">Save</button>
   </article><article class="story-card tone-violet" style="--card-index:7">
     <a href="../en/stories/lu-pan/" aria-label="Read Lu Pan: After the Heart and Head Are Changed, Who Remains?">
       <div class="card-topline">
@@ -253,6 +329,7 @@
       <p>A grotesque and brilliant Liaozhai tale about talent, appearance, power, and whether a person improved by force is still the same person.</p>
       <div class="tag-row"><span>Liaozhai</span><span>identity</span><span>underworld</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="lu-pan" data-story-title="Lu Pan: After the Heart and Head Are Changed, Who Remains?" data-story-url="/midnight-archive/en/stories/lu-pan/" data-save-label="Save" data-saved-label="Saved">Save</button>
   </article><article class="story-card tone-teal" style="--card-index:8">
     <a href="../en/stories/song-dingbo/" aria-label="Read Song Dingbo Catches a Ghost: Fear Answered with Questions">
       <div class="card-topline">
@@ -263,6 +340,7 @@
       <p>A compact zhiguai tale in which a night traveler survives not by strength, but by making the ghost explain its own rules.</p>
       <div class="tag-row"><span>zhiguai</span><span>wit</span><span>version note</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="song-dingbo" data-story-title="Song Dingbo Catches a Ghost: Fear Answered with Questions" data-story-url="/midnight-archive/en/stories/song-dingbo/" data-save-label="Save" data-saved-label="Saved">Save</button>
   </article><article class="story-card tone-ivory" style="--card-index:9">
     <a href="../en/stories/seed-pear/" aria-label="Read Seed Pear: How a Tree Grows from a Sleeve">
       <div class="card-topline">
@@ -273,6 +351,7 @@
       <p>A street-side wonder about a pear, a stingy seller, and the way small selfishness becomes public comedy.</p>
       <div class="tag-row"><span>Liaozhai</span><span>illusion</span><span>fable</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="seed-pear" data-story-title="Seed Pear: How a Tree Grows from a Sleeve" data-story-url="/midnight-archive/en/stories/seed-pear/" data-save-label="Save" data-saved-label="Saved">Save</button>
   </article><article class="story-card tone-jade" style="--card-index:10">
     <a href="../en/stories/qingfeng/" aria-label="Read Qingfeng: Recognition in the Lamplight of a Fox House">
       <div class="card-topline">
@@ -283,6 +362,7 @@
       <p>A fox-woman tale where love is not simply an encounter, but a negotiation with family, fear, and exposed identity.</p>
       <div class="tag-row"><span>Liaozhai</span><span>fox woman</span><span>old house</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="qingfeng" data-story-title="Qingfeng: Recognition in the Lamplight of a Fox House" data-story-url="/midnight-archive/en/stories/qingfeng/" data-save-label="Save" data-saved-label="Saved">Save</button>
   </article><article class="story-card tone-ivory" style="--card-index:11">
     <a href="../en/stories/xiangyu/" aria-label="Read Xiangyu: The Flower Spirit Who Remembers a Promise">
       <div class="card-topline">
@@ -293,6 +373,7 @@
       <p>A tender Liaozhai story in which flowers are not background but living vessels of memory, grief, and return.</p>
       <div class="tag-row"><span>Liaozhai</span><span>flower spirit</span><span>gentle strange tale</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="xiangyu" data-story-title="Xiangyu: The Flower Spirit Who Remembers a Promise" data-story-url="/midnight-archive/en/stories/xiangyu/" data-save-label="Save" data-saved-label="Saved">Save</button>
   </article><article class="story-card tone-crimson" style="--card-index:12">
     <a href="../en/stories/cuzhi/" aria-label="Read The Cricket: A Tiny Insect Under an Empire of Pressure">
       <div class="card-topline">
@@ -303,6 +384,7 @@
       <p>A devastating Liaozhai satire in which a cricket becomes the weight of official demand, household fear, and a family's fate.</p>
       <div class="tag-row"><span>Liaozhai</span><span>satire</span><span>social pressure</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="cuzhi" data-story-title="The Cricket: A Tiny Insect Under an Empire of Pressure" data-story-url="/midnight-archive/en/stories/cuzhi/" data-save-label="Save" data-saved-label="Saved">Save</button>
   </article><article class="story-card tone-teal" style="--card-index:13">
     <a href="../en/stories/luocha-haishi/" aria-label="Read Luocha Haishi: When Beauty Turns Upside Down">
       <div class="card-topline">
@@ -313,6 +395,7 @@
       <p>A strange-seas satire where standards of beauty reverse, forcing a traveler to ask who defines ugliness, dignity, and success.</p>
       <div class="tag-row"><span>Liaozhai</span><span>sea market</span><span>aesthetic reversal</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="luocha-haishi" data-story-title="Luocha Haishi: When Beauty Turns Upside Down" data-story-url="/midnight-archive/en/stories/luocha-haishi/" data-save-label="Save" data-saved-label="Saved">Save</button>
   </article><article class="story-card tone-violet" style="--card-index:14">
     <a href="../en/stories/kao-chenghuang/" aria-label="Read Examination for City God: Another Test After Death">
       <div class="card-topline">
@@ -323,6 +406,7 @@
       <p>A quietly absurd underworld tale that extends the examination life of the scholar into the world after death.</p>
       <div class="tag-row"><span>Liaozhai</span><span>examination</span><span>underworld</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="kao-chenghuang" data-story-title="Examination for City God: Another Test After Death" data-story-url="/midnight-archive/en/stories/kao-chenghuang/" data-save-label="Save" data-saved-label="Saved">Save</button>
   </article><article class="story-card tone-amber" style="--card-index:15">
     <a href="../en/stories/jiangcheng/" aria-label="Read Jiangcheng: A Marriage Fable with Teeth">
       <div class="card-topline">
@@ -333,6 +417,7 @@
       <p>A difficult Liaozhai marriage tale that should not be flattened into a comic 'shrew' story; its real subject is power inside the household.</p>
       <div class="tag-row"><span>Liaozhai</span><span>marriage</span><span>household</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="jiangcheng" data-story-title="Jiangcheng: A Marriage Fable with Teeth" data-story-url="/midnight-archive/en/stories/jiangcheng/" data-save-label="Save" data-saved-label="Saved">Save</button>
   </article><article class="story-card tone-crimson" style="--card-index:16">
     <a href="../en/stories/ganjiang-moye/" aria-label="Read Ganjiang and Moye: Swords, Names, and the Memory of Revenge">
       <div class="card-topline">
@@ -343,6 +428,7 @@
       <p>An old sword legend about command, sacrifice, revenge, and how names survive violence by entering story.</p>
       <div class="tag-row"><span>Soushen ji</span><span>swords</span><span>revenge</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="ganjiang-moye" data-story-title="Ganjiang and Moye: Swords, Names, and the Memory of Revenge" data-story-url="/midnight-archive/en/stories/ganjiang-moye/" data-save-label="Save" data-saved-label="Saved">Save</button>
   </article><article class="story-card tone-amber" style="--card-index:17">
     <a href="../en/stories/hanping-fufu/" aria-label="Read Han Ping and His Wife: Twin Tombs and the Tree of Longing">
       <div class="card-topline">
@@ -353,6 +439,7 @@
       <p>A tragic legend in which private love, political force, death, and trees become one of the old world's ways of remembering grief.</p>
       <div class="tag-row"><span>Soushen ji</span><span>love legend</span><span>longing tree</span></div>
     </a>
+    <button class="save-story-button card-save" type="button" data-story-slug="hanping-fufu" data-story-title="Han Ping and His Wife: Twin Tombs and the Tree of Longing" data-story-url="/midnight-archive/en/stories/hanping-fufu/" data-save-label="Save" data-saved-label="Saved">Save</button>
   </article>
     </div>
   </section>
@@ -416,7 +503,7 @@
       <p>Public-domain tale guides, source checks, and original editorial notes. Every English page keeps a visible source and translation note.</p>
     </div>
     <nav aria-label="Footer navigation">
-      <a href="../en/about/">About</a><a href="../en/contact/">Contact</a><a href="../en/privacy/">Privacy</a><a href="../en/advertising-policy/">Advertising</a><a href="../en/terms/">Terms</a><a href="../sitemap.xml">Sitemap</a>
+      <a href="../en/archive/">Archive</a><a href="../en/about/">About</a><a href="../en/contact/">Contact</a><a href="../en/privacy/">Privacy</a><a href="../en/advertising-policy/">Advertising</a><a href="../en/terms/">Terms</a><a href="../sitemap.xml">Sitemap</a>
     </nav>
   </footer>
   <script src="../assets/midnight.js" defer></script>

@@ -3,6 +3,8 @@ const cursorGlow = document.querySelector(".cursor-glow");
 const siteHeader = document.querySelector(".site-header");
 const hero = document.querySelector(".hero");
 const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+const savedRouteKey = "midnightArchive.savedRoute";
+const readingModeKey = "midnightArchive.readingMode";
 
 function motionAllowed() {
   return !motionQuery.matches;
@@ -17,7 +19,9 @@ function updateProgress() {
 }
 
 function revealOnScroll() {
-  const items = document.querySelectorAll(".reveal, .story-card, .theme-card, .source-list article, .author-card");
+  const items = document.querySelectorAll(
+    ".reveal, .story-card, .theme-card, .archive-facet-card, .archive-node-card, .archive-hub-card, .relation-thread, .source-list article, .author-card"
+  );
   if (!("IntersectionObserver" in window)) {
     items.forEach((item) => item.classList.add("is-visible"));
     return;
@@ -39,7 +43,7 @@ function revealOnScroll() {
 }
 
 function wireCardGlow() {
-  document.querySelectorAll(".story-card, .theme-card").forEach((card) => {
+  document.querySelectorAll(".story-card, .theme-card, .archive-facet-card").forEach((card) => {
     card.addEventListener("pointermove", (event) => {
       const rect = card.getBoundingClientRect();
       const x = event.clientX - rect.left;
@@ -83,6 +87,124 @@ function wireHeroDepth() {
   });
 }
 
+function wireArchiveTabs() {
+  document.querySelectorAll("[data-archive-tabs]").forEach((tabs) => {
+    const buttons = Array.from(tabs.querySelectorAll("[role='tab']"));
+    const panels = Array.from(tabs.querySelectorAll("[role='tabpanel']"));
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const targetId = button.dataset.tabTarget;
+        buttons.forEach((item) => item.setAttribute("aria-selected", item === button ? "true" : "false"));
+        panels.forEach((panel) => panel.classList.toggle("is-active", panel.id === targetId));
+      });
+    });
+  });
+}
+
+function readSavedRoute() {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(savedRouteKey) || "[]");
+    return Array.isArray(parsed) ? parsed.filter((item) => item && item.slug && item.title && item.url) : [];
+  } catch {
+    return [];
+  }
+}
+
+function writeSavedRoute(items) {
+  localStorage.setItem(savedRouteKey, JSON.stringify(items));
+}
+
+function updateSaveButtons() {
+  const saved = new Set(readSavedRoute().map((item) => item.slug));
+  document.querySelectorAll(".save-story-button[data-story-slug]").forEach((button) => {
+    const isSaved = saved.has(button.dataset.storySlug);
+    button.classList.toggle("is-saved", isSaved);
+    button.setAttribute("aria-pressed", isSaved ? "true" : "false");
+    button.textContent = isSaved ? button.dataset.savedLabel || "Saved" : button.dataset.saveLabel || button.textContent;
+  });
+}
+
+function wireSaveButtons() {
+  document.querySelectorAll(".save-story-button[data-story-slug]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const route = readSavedRoute();
+      const existing = route.findIndex((item) => item.slug === button.dataset.storySlug);
+      if (existing >= 0) {
+        route.splice(existing, 1);
+      } else {
+        route.push({
+          slug: button.dataset.storySlug,
+          title: button.dataset.storyTitle,
+          url: button.dataset.storyUrl
+        });
+      }
+      writeSavedRoute(route);
+      updateSaveButtons();
+      renderRouteList();
+    });
+  });
+  updateSaveButtons();
+}
+
+function renderRouteList() {
+  const shell = document.querySelector("[data-route-shell]");
+  if (!shell) return;
+
+  const list = shell.querySelector("[data-route-list]");
+  const empty = shell.querySelector("[data-route-empty]");
+  if (!list) return;
+
+  const route = readSavedRoute();
+  list.textContent = "";
+  empty?.classList.toggle("is-hidden", route.length > 0);
+
+  route.forEach((item, index) => {
+    const article = document.createElement("article");
+    article.className = "route-item";
+
+    const order = document.createElement("span");
+    order.className = "route-item-index";
+    order.textContent = String(index + 1).padStart(2, "0");
+
+    const link = document.createElement("a");
+    link.href = item.url;
+    link.textContent = item.title;
+
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.textContent = "×";
+    remove.setAttribute("aria-label", item.title);
+    remove.addEventListener("click", () => {
+      writeSavedRoute(readSavedRoute().filter((saved) => saved.slug !== item.slug));
+      updateSaveButtons();
+      renderRouteList();
+    });
+
+    article.append(order, link, remove);
+    list.append(article);
+  });
+}
+
+function wireReadingMode() {
+  const buttons = document.querySelectorAll(".reading-mode-toggle");
+  if (!buttons.length) return;
+
+  const apply = (enabled) => {
+    document.body.classList.toggle("reading-mode", enabled);
+    buttons.forEach((button) => button.setAttribute("aria-pressed", enabled ? "true" : "false"));
+  };
+
+  apply(localStorage.getItem(readingModeKey) === "1");
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const enabled = !document.body.classList.contains("reading-mode");
+      localStorage.setItem(readingModeKey, enabled ? "1" : "0");
+      apply(enabled);
+    });
+  });
+}
+
 function wireReadingFocus() {
   const paragraphs = document.querySelectorAll(".article-body p");
   if (!paragraphs.length || !("IntersectionObserver" in window)) return;
@@ -122,4 +244,8 @@ updateProgress();
 revealOnScroll();
 wireCardGlow();
 wireHeroDepth();
+wireArchiveTabs();
+wireSaveButtons();
+renderRouteList();
+wireReadingMode();
 wireReadingFocus();

@@ -17,9 +17,19 @@ const siteRoot = path.join(root, "dist", site.slug);
 const docsRoot = path.join(root, "docs");
 const strictDocs = process.argv.includes("--strict-docs");
 const ignoredDocsPrefixes = ["seasonal-observatory/"];
+const archivePagePaths = [
+  "archive/index.html",
+  "archive/people/index.html",
+  "archive/beings/index.html",
+  "archive/underworld/index.html",
+  "archive/objects/index.html",
+  "archive/relations/index.html",
+  "archive/route/index.html"
+];
 
 const requiredPages = [
   "index.html",
+  ...archivePagePaths,
   "themes/index.html",
   "content-roadmap/index.html",
   "about/index.html",
@@ -41,6 +51,7 @@ const requiredPages = [
   "assets/logo-midnight-archive.svg",
   "assets/hero-midnight-archive.png",
   "en/index.html",
+  ...archivePagePaths.map((page) => `en/${page}`),
   "en/themes/index.html",
   "en/content-roadmap/index.html",
   "en/about/index.html",
@@ -284,6 +295,11 @@ await checkHtmlBasics("themes/index.html", "zh-CN", "en");
 await checkHtmlBasics("en/index.html", "en", "zh-CN");
 await checkHtmlBasics("en/themes/index.html", "en", "zh-CN");
 
+for (const page of archivePagePaths) {
+  await checkHtmlBasics(page, "zh-CN", "en");
+  await checkHtmlBasics(`en/${page}`, "en", "zh-CN");
+}
+
 for (const page of englishStaticPages) {
   await checkHtmlBasics(pagePathFor(page.slug), "zh-CN", "en");
   await checkHtmlBasics(pagePathFor(`en/${page.slug}`), "en", "zh-CN");
@@ -309,6 +325,26 @@ for (const text of ["English edition", "Stories", "Sources", "Editorial"]) {
   if (!englishHomeHtml.includes(text)) failures.push(`English home page missing ${text}`);
 }
 
+const archiveHtml = await readOutput("archive/index.html");
+for (const text of ["东方志怪资料库", "人物索引", "妖怪索引", "地府案卷", "器物谱"]) {
+  if (!archiveHtml.includes(text)) failures.push(`Archive index missing ${text}`);
+}
+
+const englishArchiveHtml = await readOutput("en/archive/index.html");
+for (const text of ["Eastern Strange-Tale Archive", "Character Index", "Beings Index", "Underworld Dossiers", "Object Index"]) {
+  if (!englishArchiveHtml.includes(text)) failures.push(`English archive index missing ${text}`);
+}
+
+const pilotStoryHtml = await readOutput("stories/xifangping/index.html");
+for (const text of ["data-archive-tabs", "原文", "白话", "导读", "data-relation-graph"]) {
+  if (!pilotStoryHtml.includes(text)) failures.push(`Xifangping story page missing archive feature ${text}`);
+}
+
+const routeHtml = await readOutput("archive/route/index.html");
+if (!routeHtml.includes("data-route-shell")) {
+  failures.push("Route page missing saved-route shell");
+}
+
 const sitemap = await readOutput("sitemap.xml");
 if (!sitemap.includes('xmlns:xhtml="http://www.w3.org/1999/xhtml"')) {
   failures.push("Sitemap missing XHTML alternate namespace");
@@ -316,6 +352,11 @@ if (!sitemap.includes('xmlns:xhtml="http://www.w3.org/1999/xhtml"')) {
 for (const story of englishStories) {
   if (!sitemap.includes(`${site.basePath}en/stories/${story.slug}/`)) {
     failures.push(`Sitemap missing English story URL ${story.slug}`);
+  }
+}
+for (const page of ["archive/", "archive/people/", "archive/beings/", "archive/underworld/", "archive/objects/", "archive/relations/", "archive/route/"]) {
+  if (!sitemap.includes(`${site.basePath}${page}`) || !sitemap.includes(`${site.basePath}en/${page}`)) {
+    failures.push(`Sitemap missing bilingual archive URL ${page}`);
   }
 }
 if (!sitemap.includes('hreflang="zh-CN"') || !sitemap.includes('hreflang="en"')) {
