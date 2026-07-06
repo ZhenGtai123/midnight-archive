@@ -24,6 +24,7 @@ This repository is the working lab for building multiple high-quality content si
 - Slug: `midnight-archive`
 - Name: `子夜故事档案馆`
 - Topic: public-domain Chinese strange tales, source-led retellings, editorial reading notes.
+- Current content shape: 18 substantial story pages and 6 themed reading routes.
 - Biggest content goal before AdSense review: expand toward 25-35 substantial articles, ideally 1200-1800 Chinese characters each, with visible source and editorial-mode metadata.
 - Deployment will be handled later by the user.
 
@@ -34,6 +35,7 @@ This repository is the working lab for building multiple high-quality content si
 - Generated output lives in `dist/<site-slug>/`.
 - Build command: `node tools/build.mjs`
 - Quality command: `node tools/check.mjs`
+- The quality check now validates required static pages, all story pages, all theme pages, source URLs, article thickness, and broken theme-to-story references.
 - Commit and push after each meaningful milestone.
 
 ## Candidate Next Sites

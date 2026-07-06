@@ -19,6 +19,7 @@ export const site = {
   },
   nav: [
     { label: "故事", href: "/midnight-archive/#stories" },
+    { label: "专题", href: "/midnight-archive/themes/" },
     { label: "路线", href: "/midnight-archive/content-roadmap/" },
     { label: "来源", href: "/midnight-archive/sources/" },
     { label: "作者", href: "/midnight-archive/authors/" },
@@ -871,6 +872,75 @@ stories.push(
     ]
   }
 );
+
+export const themeCollections = [
+  {
+    slug: "fox-and-female-figures",
+    title: "狐女与异类女性",
+    deck: "从婴宁、聂小倩到青凤、香玉，看古典志怪如何书写女性、异类、秩序和选择。",
+    description:
+      "这个专题不把狐女、花魂、女鬼简单合并成同一种浪漫形象，而是比较她们各自的处境：有的人被迫伤人，有的人守住天真，有的人在家族与人世之间选择，有的人把情义寄在花木之中。",
+    tone: "jade",
+    storySlugs: ["yingning", "nie-xiaoqian", "qingfeng", "xiangyu", "painted-skin", "jiangcheng"],
+    editorialNote:
+      "适合作为人物索引的第一组专题，后续可继续补辛十四娘、阿绣、连城等篇目。"
+  },
+  {
+    slug: "underworld-and-justice",
+    title: "阴司与公正",
+    deck: "席方平、陆判、考城隍放在一起读，能看见古人如何把现实制度投影到幽冥世界。",
+    description:
+      "阴司故事的重点不只是鬼神，而是公正能否抵达。这个专题把申诉、改命、考试和官署想象连在一起，帮助读者理解志怪中的幽冥为什么常常像人间的另一层镜像。",
+    tone: "violet",
+    storySlugs: ["xifangping", "lu-pan", "kao-chenghuang"],
+    editorialNote:
+      "后续可扩展为阴司制度小百科，补冥判、城隍、报应、诉讼等关键词页。"
+  },
+  {
+    slug: "gentle-strange-tales",
+    title: "温柔志怪",
+    deck: "不是每个夜谈都要吓人。王六郎、香玉、种梨、山市和韩凭夫妇保留了古典志怪的温厚与空灵。",
+    description:
+      "这组专题用来平衡整站气质：水边的义气、花下的约定、街市的奇术、忽现忽灭的幻城，以及被传说保存的悲伤，让读者在惊悚之外看到志怪的柔软面。",
+    tone: "ivory",
+    storySlugs: ["wang-liulang", "xiangyu", "seed-pear", "mountain-market", "hanping-fufu"],
+    editorialNote:
+      "适合首页长期保留，也适合做给新读者的低门槛入口。"
+  },
+  {
+    slug: "satire-and-worldly-pressure",
+    title: "世情讽刺",
+    deck: "崂山道士、促织、罗刹海市、江城等篇目，写的都是人间欲望在异闻中变形。",
+    description:
+      "蒲松龄最锋利的地方常常不在鬼怪，而在人。这个专题关注速成心理、功名压力、审美倒置、家庭权力和街市小算盘，说明志怪如何把现实荒唐推到更亮的位置。",
+    tone: "amber",
+    storySlugs: ["cuzhi", "laoshan-daoshi", "seed-pear", "luocha-haishi", "jiangcheng"],
+    editorialNote:
+      "这类专题最容易做出原创评论价值，后续应补历史背景和关键词内链。"
+  },
+  {
+    slug: "objects-and-legends",
+    title: "器物与传说",
+    deck: "剑、心、皮相与奇术把不可见的欲望和冤屈变成可见之物。",
+    description:
+      "器物在志怪中不是普通道具。名剑保存承诺与复仇，换心换头写出改命焦虑，画皮让伪装拥有实体。这个专题为未来的器物档案站预留了可复制结构。",
+    tone: "crimson",
+    storySlugs: ["ganjiang-moye", "lu-pan", "painted-skin", "seed-pear"],
+    editorialNote:
+      "可继续扩展镜、灯、琴、印等器物条目，形成第二站的内容种子。"
+  },
+  {
+    slug: "night-road-and-old-house",
+    title: "夜路与旧宅",
+    deck: "夜行、荒寺、旧宅、仙山和陌生人，是深夜故事最稳定的入口场景。",
+    description:
+      "这个专题按空间组织故事：人在夜路上遇见鬼，在荒寺里遇见求助者，在旧宅中遇见狐族，在仙山里看见自己想要的奇迹。场景一旦稳定，读者就容易顺着气氛继续浏览。",
+    tone: "teal",
+    storySlugs: ["song-dingbo", "nie-xiaoqian", "qingfeng", "laoshan-daoshi", "mountain-market"],
+    editorialNote:
+      "后续可补荒寺、古井、河岸、山中、旧宅等场景索引。"
+  }
+];
 
 export const storyDeepDives = {
   "painted-skin": [

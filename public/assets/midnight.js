@@ -17,7 +17,7 @@ function updateProgress() {
 }
 
 function revealOnScroll() {
-  const items = document.querySelectorAll(".reveal, .story-card, .source-list article, .author-card");
+  const items = document.querySelectorAll(".reveal, .story-card, .theme-card, .source-list article, .author-card");
   if (!("IntersectionObserver" in window)) {
     items.forEach((item) => item.classList.add("is-visible"));
     return;
@@ -39,7 +39,7 @@ function revealOnScroll() {
 }
 
 function wireCardGlow() {
-  document.querySelectorAll(".story-card").forEach((card) => {
+  document.querySelectorAll(".story-card, .theme-card").forEach((card) => {
     card.addEventListener("pointermove", (event) => {
       const rect = card.getBoundingClientRect();
       const x = event.clientX - rect.left;

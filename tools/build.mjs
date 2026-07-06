@@ -2,7 +2,13 @@ import { mkdir, writeFile, copyFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { expansionPlan, site, stories, storyDeepDives } from "../content/midnight-archive.mjs";
+import {
+  expansionPlan,
+  site,
+  stories,
+  storyDeepDives,
+  themeCollections
+} from "../content/midnight-archive.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -17,6 +23,7 @@ function relativeRoot(pathName = "") {
 }
 
 await mkdir(path.join(siteRoot, "stories"), { recursive: true });
+await mkdir(path.join(siteRoot, "themes"), { recursive: true });
 await mkdir(path.join(siteRoot, "assets"), { recursive: true });
 
 await copyFile(
@@ -43,6 +50,12 @@ function esc(value) {
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;");
+}
+
+const storyBySlug = new Map(stories.map((story) => [story.slug, story]));
+
+function storiesForTheme(theme) {
+  return theme.storySlugs.map((slug) => storyBySlug.get(slug)).filter(Boolean);
 }
 
 function urlFor(href) {
@@ -133,6 +146,23 @@ function storyCard(story, index, rootRel = "./") {
   </article>`;
 }
 
+function themeCard(theme, index, rootRel = "./") {
+  const themeStories = storiesForTheme(theme);
+  return `<article class="theme-card tone-${theme.tone}" style="--card-index:${index}">
+    <a href="${rootRel}themes/${theme.slug}/" aria-label="进入${esc(theme.title)}专题">
+      <div class="card-topline">
+        <span>Theme route</span>
+        <span>${themeStories.length} 篇</span>
+      </div>
+      <h3>${esc(theme.title)}</h3>
+      <p>${esc(theme.deck)}</p>
+      <div class="theme-mini-list">
+        ${themeStories.slice(0, 5).map((story) => `<span>${esc(story.sourceTitle)}</span>`).join("")}
+      </div>
+    </a>
+  </article>`;
+}
+
 function sourceBadge(story) {
   return `<aside class="source-panel" aria-label="来源说明">
     <div>
@@ -174,12 +204,12 @@ function homePage() {
       <p class="hero-copy">${esc(site.description)}</p>
       <div class="hero-actions">
         <a class="primary-link" href="${rootRel}stories/${featured.slug}/">读今日夜谈</a>
-        <a class="secondary-link" href="${rootRel}sources/">查看来源库</a>
+        <a class="secondary-link" href="${rootRel}themes/">进入专题地图</a>
       </div>
     </div>
     <div class="hero-strip" aria-label="站点数据">
       <span><strong>${stories.length}</strong> 篇样稿</span>
-      <span><strong>${site.sources.length}</strong> 类来源</span>
+      <span><strong>${themeCollections.length}</strong> 条专题</span>
       <span><strong>0</strong> 未署名转载</span>
     </div>
   </section>
@@ -205,6 +235,16 @@ function homePage() {
         <h3>深夜阅读</h3>
         <p>长文用高对比正文、进度条和安静动效服务阅读，而不是抢走故事本身。</p>
       </article>
+    </div>
+  </section>
+
+  <section class="theme-band reveal" id="themes">
+    <div class="section-heading">
+      <span class="eyebrow">Theme routes</span>
+      <h2>先做几条能留住读者的夜读路径</h2>
+    </div>
+    <div class="theme-grid">
+      ${themeCollections.map((theme, index) => themeCard(theme, index, rootRel)).join("")}
     </div>
   </section>
 
@@ -267,6 +307,7 @@ function homePage() {
 function storyPage(story) {
   const rootRel = relativeRoot(`stories/${story.slug}/`);
   const deepDive = storyDeepDives[story.slug] || [];
+  const linkedThemes = themeCollections.filter((theme) => theme.storySlugs.includes(story.slug));
   const articleLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -310,6 +351,16 @@ function storyPage(story) {
         <span class="eyebrow">Notes</span>
         <h2>编辑札记</h2>
         <ul>${story.notes.map((note) => `<li>${esc(note)}</li>`).join("")}</ul>
+        ${
+          linkedThemes.length
+            ? `<div class="theme-links">
+              <span>所属专题</span>
+              ${linkedThemes
+                .map((theme) => `<a href="${rootRel}themes/${theme.slug}/">${esc(theme.title)}</a>`)
+                .join("")}
+            </div>`
+            : ""
+        }
       </aside>
     </div>
   </article>
@@ -329,6 +380,92 @@ function storyPage(story) {
     body,
     pathName: `stories/${story.slug}/`,
     structuredData: [articleLd]
+  });
+}
+
+function themesPage() {
+  const rootRel = relativeRoot("themes/");
+  const itemList = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "子夜故事档案馆专题索引",
+    itemListElement: themeCollections.map((theme, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: theme.title,
+      url: `${site.canonicalOrigin}${site.basePath}themes/${theme.slug}/`
+    }))
+  };
+  const body = `<section class="plain-page theme-index-page">
+    <div class="section-heading">
+      <span class="eyebrow">Theme routes</span>
+      <h1>专题索引</h1>
+      <p>把单篇故事连成可继续阅读的路径：人物、阴司、世情、器物、夜路和温柔志怪。</p>
+    </div>
+    <div class="theme-grid">
+      ${themeCollections.map((theme, index) => themeCard(theme, index, rootRel)).join("")}
+    </div>
+  </section>`;
+
+  return pageShell({
+    title: `专题索引 | ${site.name}`,
+    description: "子夜故事档案馆的专题阅读路径，按人物、空间、阴司、世情和器物组织公版志怪导读。",
+    pathName: "themes/",
+    body,
+    structuredData: [itemList]
+  });
+}
+
+function themePage(theme) {
+  const rootRel = relativeRoot(`themes/${theme.slug}/`);
+  const themeStories = storiesForTheme(theme);
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: theme.title,
+    description: theme.deck,
+    url: `${site.canonicalOrigin}${site.basePath}themes/${theme.slug}/`,
+    hasPart: themeStories.map((story) => ({
+      "@type": "Article",
+      headline: story.title,
+      url: `${site.canonicalOrigin}${site.basePath}stories/${story.slug}/`
+    }))
+  };
+  const body = `<section class="theme-hero tone-${theme.tone}">
+    <a class="back-link" href="${rootRel}themes/">返回专题索引</a>
+    <span class="eyebrow">Theme route</span>
+    <h1>${esc(theme.title)}</h1>
+    <p>${esc(theme.deck)}</p>
+    <div class="theme-stats">
+      <span>${themeStories.length} 篇故事</span>
+      <span>${esc(themeStories.map((story) => story.sourceBook).filter((value, index, array) => array.indexOf(value) === index).join(" / "))}</span>
+    </div>
+  </section>
+
+  <section class="theme-layout">
+    <aside class="source-panel tone-${theme.tone}">
+      <span class="eyebrow">Editor's route</span>
+      <h2>专题说明</h2>
+      <p>${esc(theme.description)}</p>
+      <p>${esc(theme.editorialNote)}</p>
+    </aside>
+    <div>
+      <div class="section-heading tight">
+        <span class="eyebrow">Reading order</span>
+        <h2>从这些篇目开始</h2>
+      </div>
+      <div class="story-grid theme-story-grid">
+        ${themeStories.map((story, index) => storyCard(story, index, rootRel)).join("")}
+      </div>
+    </div>
+  </section>`;
+
+  return pageShell({
+    title: `${theme.title} | ${site.name}`,
+    description: theme.deck,
+    pathName: `themes/${theme.slug}/`,
+    body,
+    structuredData: [collectionLd]
   });
 }
 
@@ -487,10 +624,12 @@ ${items}
 function sitemapXml() {
   const urls = [
     "",
+    "themes/",
     "content-roadmap/",
     "sources/",
     "authors/",
     ...staticPages.map((page) => `${page.slug}/`),
+    ...themeCollections.map((theme) => `themes/${theme.slug}/`),
     ...stories.map((story) => `stories/${story.slug}/`)
   ];
 
@@ -529,6 +668,7 @@ async function writePage(relativePath, html) {
 }
 
 await writePage("", homePage());
+await writePage("themes", themesPage());
 await writePage("content-roadmap", contentRoadmapPage());
 await writePage("sources", sourcesPage());
 await writePage("authors", authorsPage());
@@ -539,6 +679,10 @@ for (const page of staticPages) {
 
 for (const story of stories) {
   await writePage(path.join("stories", story.slug), storyPage(story));
+}
+
+for (const theme of themeCollections) {
+  await writePage(path.join("themes", theme.slug), themePage(theme));
 }
 
 await writeFile(path.join(siteRoot, "rss.xml"), rssXml(), "utf8");
