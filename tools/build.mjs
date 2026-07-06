@@ -58,6 +58,21 @@ if (existsSync(heroSource)) {
   await copyFile(heroSource, path.join(siteRoot, "assets", "hero-midnight-archive.png"));
 }
 
+const generatedAssetFiles = [
+  "archive-people.webp",
+  "archive-beings.webp",
+  "archive-underworld.webp",
+  "archive-objects.webp",
+  "archive-relations.webp"
+];
+await mkdir(path.join(siteRoot, "assets", "generated"), { recursive: true });
+for (const file of generatedAssetFiles) {
+  await copyFile(
+    path.join(publicRoot, "assets", "generated", file),
+    path.join(siteRoot, "assets", "generated", file)
+  );
+}
+
 function esc(value) {
   return String(value ?? "")
     .replaceAll("&", "&amp;")
@@ -395,6 +410,7 @@ const archiveFacetDefinitions = [
   {
     slug: "people",
     tone: "jade",
+    image: "archive-people.webp",
     zhTitle: "人物索引",
     enTitle: "Character Index",
     zhDeck: "作者、主角、判官、书生、受困者和见证人，按故事关系重新归档。",
@@ -403,6 +419,7 @@ const archiveFacetDefinitions = [
   {
     slug: "beings",
     tone: "ivory",
+    image: "archive-beings.webp",
     zhTitle: "妖怪索引",
     enTitle: "Beings Index",
     zhDeck: "狐女、女鬼、水鬼、花魂、画皮妖和山中幻象，保留各自的文本位置。",
@@ -411,6 +428,7 @@ const archiveFacetDefinitions = [
   {
     slug: "underworld",
     tone: "violet",
+    image: "archive-underworld.webp",
     zhTitle: "地府案卷",
     enTitle: "Underworld Dossiers",
     zhDeck: "阴司、城隍、判官、死后考试、申诉阶梯，以及人间制度在异界的回声。",
@@ -419,6 +437,7 @@ const archiveFacetDefinitions = [
   {
     slug: "objects",
     tone: "amber",
+    image: "archive-objects.webp",
     zhTitle: "器物谱",
     enTitle: "Object Index",
     zhDeck: "画皮、名剑、梨核、蟋蟀、花木和相思树，把故事里的物变成可追踪线索。",
@@ -1059,6 +1078,9 @@ function archiveFacetCard(facet, index, rootRel = "./", context = zhContext) {
   const nodes = archiveNodesForFacet(facet.slug, context);
   return `<article class="archive-facet-card tone-${facet.tone}" style="--card-index:${index}">
     <a href="${rootRel}${context.pathPrefix}archive/${facet.slug}/" aria-label="${esc(context.ui.archive.openFacet(item.title))}">
+      <figure class="card-visual">
+        <img src="${rootRel}assets/generated/${esc(facet.image)}" alt="" loading="lazy" decoding="async">
+      </figure>
       <div class="card-topline">
         <span>${esc(context.ui.archive.facetCount(nodes.length))}</span>
         <span>${esc(context.ui.archive.storyCount(new Set(nodes.flatMap((node) => node.storySlugs)).size))}</span>
@@ -1573,10 +1595,15 @@ function archiveIndexPage(context = zhContext) {
     }))
   };
   const body = `<section class="plain-page archive-index-page">
-    <div class="section-heading">
-      <span class="eyebrow">${esc(context.ui.archive.indexEyebrow)}</span>
-      <h1>${esc(context.ui.archive.indexTitle)}</h1>
-      <p>${esc(context.ui.archive.indexDescription)}</p>
+    <div class="archive-page-lead">
+      <div class="section-heading">
+        <span class="eyebrow">${esc(context.ui.archive.indexEyebrow)}</span>
+        <h1>${esc(context.ui.archive.indexTitle)}</h1>
+        <p>${esc(context.ui.archive.indexDescription)}</p>
+      </div>
+      <figure class="archive-lead-visual tone-violet">
+        <img src="${rootRel}assets/generated/archive-relations.webp" alt="" loading="eager" decoding="async">
+      </figure>
     </div>
     <div class="archive-facet-grid">
       ${archiveFacetDefinitions.map((facet, index) => archiveFacetCard(facet, index, rootRel, context)).join("")}
@@ -1616,12 +1643,19 @@ function archiveFacetPage(facet, context = zhContext) {
   const nodes = archiveNodesForFacet(facet.slug, context);
   const body = `<section class="theme-hero archive-facet-hero tone-${facet.tone}">
     <a class="back-link" href="${rootRel}${context.pathPrefix}archive/">${esc(context.ui.archive.backToArchive)}</a>
-    <span class="eyebrow">${esc(context.ui.archive.indexEyebrow)}</span>
-    <h1>${esc(item.title)}</h1>
-    <p>${esc(item.deck)}</p>
-    <div class="theme-stats">
-      <span>${esc(context.ui.archive.facetCount(nodes.length))}</span>
-      <span>${esc(context.ui.archive.storyCount(new Set(nodes.flatMap((node) => node.storySlugs)).size))}</span>
+    <div class="archive-page-lead">
+      <div>
+        <span class="eyebrow">${esc(context.ui.archive.indexEyebrow)}</span>
+        <h1>${esc(item.title)}</h1>
+        <p>${esc(item.deck)}</p>
+        <div class="theme-stats">
+          <span>${esc(context.ui.archive.facetCount(nodes.length))}</span>
+          <span>${esc(context.ui.archive.storyCount(new Set(nodes.flatMap((node) => node.storySlugs)).size))}</span>
+        </div>
+      </div>
+      <figure class="archive-lead-visual tone-${facet.tone}">
+        <img src="${rootRel}assets/generated/${esc(facet.image)}" alt="" loading="eager" decoding="async">
+      </figure>
     </div>
   </section>
 
@@ -1674,11 +1708,16 @@ function archiveRelationsPage(context = zhContext) {
     .map((slug) => context.storyBySlug.get(slug))
     .filter(Boolean);
   const body = `<section class="plain-page archive-relations-page">
-    <div class="section-heading">
-      <a class="back-link" href="${rootRel}${context.pathPrefix}archive/">${esc(context.ui.archive.backToArchive)}</a>
-      <span class="eyebrow">${esc(context.ui.archive.relationLabel)}</span>
-      <h1>${esc(context.ui.archive.relationTitle)}</h1>
-      <p>${esc(context.ui.archive.relationDescription)}</p>
+    <div class="archive-page-lead">
+      <div class="section-heading">
+        <a class="back-link" href="${rootRel}${context.pathPrefix}archive/">${esc(context.ui.archive.backToArchive)}</a>
+        <span class="eyebrow">${esc(context.ui.archive.relationLabel)}</span>
+        <h1>${esc(context.ui.archive.relationTitle)}</h1>
+        <p>${esc(context.ui.archive.relationDescription)}</p>
+      </div>
+      <figure class="archive-lead-visual tone-violet">
+        <img src="${rootRel}assets/generated/archive-relations.webp" alt="" loading="eager" decoding="async">
+      </figure>
     </div>
     <div class="relation-constellation" aria-label="${esc(context.ui.archive.relationTitle)}">
       ${storyNodes
@@ -1714,11 +1753,16 @@ function archiveRoutePage(context = zhContext) {
   const pathName = `${context.pathPrefix}archive/route/`;
   const rootRel = relativeRoot(pathName);
   const body = `<section class="plain-page route-page">
-    <div class="section-heading">
-      <a class="back-link" href="${rootRel}${context.pathPrefix}archive/">${esc(context.ui.archive.backToArchive)}</a>
-      <span class="eyebrow">${esc(context.ui.archive.routeLink)}</span>
-      <h1>${esc(context.ui.archive.routeTitle)}</h1>
-      <p>${esc(context.ui.archive.routeDescription)}</p>
+    <div class="archive-page-lead">
+      <div class="section-heading">
+        <a class="back-link" href="${rootRel}${context.pathPrefix}archive/">${esc(context.ui.archive.backToArchive)}</a>
+        <span class="eyebrow">${esc(context.ui.archive.routeLink)}</span>
+        <h1>${esc(context.ui.archive.routeTitle)}</h1>
+        <p>${esc(context.ui.archive.routeDescription)}</p>
+      </div>
+      <figure class="archive-lead-visual tone-amber">
+        <img src="${rootRel}assets/generated/archive-people.webp" alt="" loading="eager" decoding="async">
+      </figure>
     </div>
     <div class="saved-route-shell" data-route-shell data-empty-text="${esc(context.ui.archive.emptyRoute)}">
       <div class="route-empty" data-route-empty>${esc(context.ui.archive.emptyRoute)}</div>

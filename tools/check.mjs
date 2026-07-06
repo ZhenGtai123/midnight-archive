@@ -50,6 +50,11 @@ const requiredPages = [
   "assets/midnight.js",
   "assets/logo-midnight-archive.svg",
   "assets/hero-midnight-archive.png",
+  "assets/generated/archive-people.webp",
+  "assets/generated/archive-beings.webp",
+  "assets/generated/archive-underworld.webp",
+  "assets/generated/archive-objects.webp",
+  "assets/generated/archive-relations.webp",
   "en/index.html",
   ...archivePagePaths.map((page) => `en/${page}`),
   "en/themes/index.html",
@@ -328,6 +333,11 @@ for (const text of ["English edition", "Stories", "Sources", "Editorial"]) {
 const archiveHtml = await readOutput("archive/index.html");
 for (const text of ["东方志怪资料库", "人物索引", "妖怪索引", "地府案卷", "器物谱"]) {
   if (!archiveHtml.includes(text)) failures.push(`Archive index missing ${text}`);
+}
+for (const asset of ["archive-people.webp", "archive-beings.webp", "archive-underworld.webp", "archive-objects.webp", "archive-relations.webp"]) {
+  if (!archiveHtml.includes(asset)) {
+    failures.push(`Archive index missing generated image ${asset}`);
+  }
 }
 
 const englishArchiveHtml = await readOutput("en/archive/index.html");
