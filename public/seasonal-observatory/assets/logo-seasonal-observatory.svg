@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title desc">
+  <title id="title">节气观察室标志</title>
+  <desc id="desc">太阳、叶片与观察刻度组成的圆形标志。</desc>
+  <defs>
+    <linearGradient id="sky" x1="18" y1="14" x2="78" y2="86" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f8c35b"/>
+      <stop offset=".48" stop-color="#6fbf9b"/>
+      <stop offset="1" stop-color="#4567a5"/>
+    </linearGradient>
+  </defs>
+  <circle cx="48" cy="48" r="42" fill="#f7f1e3"/>
+  <circle cx="48" cy="48" r="35" fill="none" stroke="url(#sky)" stroke-width="6"/>
+  <circle cx="48" cy="48" r="12" fill="#f2a33b"/>
+  <path d="M47 22v10M47 64v10M22 49h10M64 49h10M30 30l7 7M59 60l7 7M66 30l-7 7M37 60l-7 7" stroke="#25362f" stroke-width="4" stroke-linecap="round"/>
+  <path d="M49 50c15-12 24-13 31-9-2 12-12 21-28 17-4-1-6-4-3-8Z" fill="#4f9d69"/>
+  <path d="M50 50c9-5 16-6 25-6" fill="none" stroke="#e9f3e7" stroke-width="3" stroke-linecap="round"/>
+</svg>

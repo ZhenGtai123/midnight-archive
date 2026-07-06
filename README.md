@@ -20,6 +20,10 @@ This folder is the shared workspace for the whole multi-site project. See `PROJE
 - Public preview: `https://zhengtai123.github.io/midnight-archive/`
 - English edition: `https://zhengtai123.github.io/midnight-archive/en/`
 - The English edition uses independent `/en/` URLs, self-canonical pages, and hreflang alternates. It currently covers all 18 story guides in edited English form instead of bulk machine translation.
+- `seasonal-observatory`: a bilingual solar-term and urban phenology site with original observation guides, source cards, and policy pages.
+- Seasonal preview: `https://zhengtai123.github.io/midnight-archive/seasonal-observatory/`
+- Seasonal English edition: `https://zhengtai123.github.io/midnight-archive/seasonal-observatory/en/`
+- The Seasonal English edition uses independent `/seasonal-observatory/en/` URLs, self-canonical pages, visible language switching, and zh-CN/en/x-default hreflang alternates across home, topic, article, and policy pages.
 
 ## Commands
 
@@ -29,18 +33,23 @@ Use the bundled Node runtime in this Codex desktop environment:
 & 'C:\Users\陈彦至\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' tools/build.mjs
 & 'C:\Users\陈彦至\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' tools/check.mjs
 & 'C:\Users\陈彦至\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' tools/sync-docs.mjs
+& 'C:\Users\陈彦至\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' tools/build-seasonal.mjs
+& 'C:\Users\陈彦至\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' tools/check-seasonal.mjs
+& 'C:\Users\陈彦至\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' tools/sync-docs.mjs
 & 'C:\Users\陈彦至\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' tools/serve.mjs
 ```
 
 Then open `http://127.0.0.1:4173/midnight-archive/`.
+The second site local preview is `http://127.0.0.1:4173/seasonal-observatory/`.
+The second site English preview is `http://127.0.0.1:4173/seasonal-observatory/en/`.
 
 ## GitHub
 
 See `GITHUB_SETUP.md`. The project can be pushed to GitHub after this computer has GitHub authentication configured.
 
-GitHub Pages publishes directly from the `docs/` folder on `main`. Run `tools/build.mjs`, `tools/check.mjs`, and `tools/sync-docs.mjs` before pushing public preview changes.
+GitHub Pages publishes directly from the `docs/` folder on `main`. Run both site builds, then `tools/sync-docs.mjs`, before pushing public preview changes.
 
-`tools/check.mjs --strict-docs` can be run after `tools/sync-docs.mjs` to verify that `docs/` exactly matches the generated `dist/midnight-archive/` output.
+`tools/check.mjs --strict-docs` verifies the Midnight root output while allowing the Seasonal subsite under `docs/seasonal-observatory/`. `tools/check-seasonal.mjs` verifies the Seasonal bilingual output and its own docs sync.
 
 ## Content Rules
 

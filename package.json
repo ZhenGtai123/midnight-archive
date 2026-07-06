@@ -5,7 +5,11 @@
   "type": "module",
   "scripts": {
     "build": "node tools/build.mjs",
+    "build:seasonal": "node tools/build-seasonal.mjs",
+    "build:all": "node tools/build.mjs && node tools/build-seasonal.mjs && node tools/sync-docs.mjs",
     "check": "node tools/check.mjs",
+    "check:seasonal": "node tools/check-seasonal.mjs",
+    "check:all": "node tools/check.mjs --strict-docs && node tools/check-seasonal.mjs",
     "serve": "node tools/serve.mjs"
   },
   "engines": {

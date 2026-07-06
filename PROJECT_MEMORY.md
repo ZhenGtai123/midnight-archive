@@ -7,7 +7,7 @@ This repository is the working lab for building multiple high-quality content si
 - GitHub user: `ZhenGtai123`
 - Repository: `https://github.com/ZhenGtai123/midnight-archive`
 - GitHub Pages preview: `https://zhengtai123.github.io/midnight-archive/`
-- Git remote currently uses HTTPS because GitHub CLI is authenticated and Windows SSH host verification had a compatibility issue.
+- Git remote currently uses SSH: `git@github.com:ZhenGtai123/midnight-archive.git`.
 - Git identity on this computer:
   - `user.name`: `ZhenGtai123`
   - `user.email`: `1755061678@qq.com`
@@ -30,6 +30,18 @@ This repository is the working lab for building multiple high-quality content si
 - Biggest content goal before AdSense review: expand toward 25-35 substantial articles, ideally 1200-1800 Chinese characters each, with visible source and editorial-mode metadata.
 - Temporary preview deployment uses GitHub Pages from the `docs/` folder on `main`. A custom domain can replace it later before serious AdSense review.
 
+## Second Site Prototype
+
+- Slug: `seasonal-observatory`
+- Name: `节气观察室`
+- Topic: Chinese solar terms, urban phenology, home observation, seasonal light, humidity, and daily rituals.
+- Preview path: `https://zhengtai123.github.io/midnight-archive/seasonal-observatory/`
+- English path: `https://zhengtai123.github.io/midnight-archive/seasonal-observatory/en/`
+- Current content shape: 6 original long-form Chinese observation guides, 6 edited English observation guides, 4 bilingual topic routes, bilingual static policy pages, source library, RSS feeds, multilingual sitemap alternates, visible language switching, and generated bitmap hero asset.
+- Build command: `node tools/build-seasonal.mjs`
+- Quality command: `node tools/check-seasonal.mjs`
+- Biggest content goal before AdSense review: complete all 24 solar terms, add 8-12 evergreen topic articles, and move to its own repo/domain if it becomes an independent AdSense candidate.
+
 ## Reusable Site Pattern
 
 - Content data lives in `content/`.
@@ -39,8 +51,10 @@ This repository is the working lab for building multiple high-quality content si
 - Build command: `node tools/build.mjs`
 - Quality command: `node tools/check.mjs`
 - GitHub Pages sync command: `node tools/sync-docs.mjs`
+- Recommended full build order: `node tools/build.mjs`, `node tools/build-seasonal.mjs`, `node tools/sync-docs.mjs`, `node tools/check.mjs --strict-docs`, `node tools/check-seasonal.mjs`.
+- Second-site build writes `dist/seasonal-observatory/` and `docs/seasonal-observatory/` directly; `tools/sync-docs.mjs` also preserves/copies the built Seasonal subsite after syncing the Midnight root.
 - The quality check now validates required static pages, all story pages, all theme pages, source URLs, article thickness, and broken theme-to-story references.
-- The quality check also validates English required pages, English story metadata, html lang/canonical/hreflang basics, sitemap multilingual alternates, and `docs/` sync status.
+- The quality checks also validate English required pages, English metadata, html lang/canonical/hreflang basics, visible language switches, sitemap multilingual alternates, and `docs/` sync status.
 - Commit and push after each meaningful milestone.
 
 ## Candidate Next Sites

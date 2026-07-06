@@ -56,5 +56,6 @@ createServer(async (req, res) => {
   });
   createReadStream(filePath).pipe(res);
 }).listen(port, "127.0.0.1", () => {
-  console.log(`Preview server: http://127.0.0.1:${port}/midnight-archive/`);
+  console.log(`Midnight Archive preview: http://127.0.0.1:${port}/midnight-archive/`);
+  console.log(`Seasonal Observatory preview: http://127.0.0.1:${port}/seasonal-observatory/`);
 });
