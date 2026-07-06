@@ -34,10 +34,10 @@ This repository is the working lab for building multiple high-quality content si
 
 - Slug: `seasonal-observatory`
 - Name: `节气观察室`
-- Topic: Chinese solar terms, urban phenology, home observation, seasonal light, humidity, and daily rituals.
+- Topic: Chinese solar terms, public-domain seasonal poetry, urban phenology, home observation, seasonal light, humidity, and daily rituals.
 - Preview path: `https://zhengtai123.github.io/midnight-archive/seasonal-observatory/`
 - English path: `https://zhengtai123.github.io/midnight-archive/seasonal-observatory/en/`
-- Current content shape: 6 original long-form Chinese observation guides, 6 edited English observation guides, 4 bilingual topic routes, bilingual static policy pages, source library, RSS feeds, multilingual sitemap alternates, visible language switching, and generated bitmap hero asset.
+- Current content shape: 6 original long-form Chinese observation guides, 6 edited English observation guides, 4 bilingual topic routes, 24-term interactive wheel, 10 public-domain poem cards, a browser-based poem-card generator, bilingual static policy pages, source library, RSS feeds, multilingual sitemap alternates, visible language switching, and generated bitmap hero asset.
 - Build command: `node tools/build-seasonal.mjs`
 - Quality command: `node tools/check-seasonal.mjs`
 - Biggest content goal before AdSense review: complete all 24 solar terms, add 8-12 evergreen topic articles, and move to its own repo/domain if it becomes an independent AdSense candidate.

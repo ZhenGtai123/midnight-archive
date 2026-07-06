@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>节气观察室 | 把二十四节气写回城市日常</title>
-  <meta name="description" content="面向城市生活的二十四节气观察指南：用物候、光线、温度、食物和居家记录，重新理解一年如何经过身体和房间。">
+  <meta name="description" content="面向城市生活的节气诗历：用今日节气、古诗意象、诗卡生成和物候观察，重新理解一年如何经过身体和房间。">
   <meta name="robots" content="index,follow">
   <meta name="theme-color" content="#f6edda">
   <link rel="canonical" href="https://zhengtai123.github.io/midnight-archive/seasonal-observatory/">
@@ -15,7 +15,7 @@
   <link rel="icon" href="./assets/logo-seasonal-observatory.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./assets/seasonal.css">
   <meta property="og:title" content="节气观察室 | 把二十四节气写回城市日常">
-  <meta property="og:description" content="面向城市生活的二十四节气观察指南：用物候、光线、温度、食物和居家记录，重新理解一年如何经过身体和房间。">
+  <meta property="og:description" content="面向城市生活的节气诗历：用今日节气、古诗意象、诗卡生成和物候观察，重新理解一年如何经过身体和房间。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://zhengtai123.github.io/midnight-archive/seasonal-observatory/">
   <meta property="og:site_name" content="节气观察室">
@@ -23,7 +23,7 @@
   <meta property="og:image" content="https://zhengtai123.github.io/midnight-archive/seasonal-observatory/assets/hero-seasonal-observatory.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="节气观察室 | 把二十四节气写回城市日常">
-  <meta name="twitter:description" content="面向城市生活的二十四节气观察指南：用物候、光线、温度、食物和居家记录，重新理解一年如何经过身体和房间。">
+  <meta name="twitter:description" content="面向城市生活的节气诗历：用今日节气、古诗意象、诗卡生成和物候观察，重新理解一年如何经过身体和房间。">
   <meta name="twitter:image" content="https://zhengtai123.github.io/midnight-archive/seasonal-observatory/assets/hero-seasonal-observatory.png">
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"节气观察室","url":"https://zhengtai123.github.io/midnight-archive/seasonal-observatory/"}</script>
 </head>
@@ -39,7 +39,7 @@
       </span>
     </a>
     <nav class="nav" aria-label="主导航">
-      <a href="./#articles">观察</a><a href="./topics/">专题</a><a href="./sources/">来源</a><a href="./content-roadmap/">路线</a><a href="./editorial-policy/">原则</a><a class="language-link" href="./en/" hreflang="en">English</a>
+      <a href="./#today">今日</a><a href="./#poem-calendar">诗历</a><a href="./#poem-card-lab">诗卡</a><a href="./#articles">观察</a><a href="./topics/">专题</a><a href="./sources/">来源</a><a class="language-link" href="./en/" hreflang="en">English</a>
     </nav>
   </header>
   <main id="main">
@@ -48,15 +48,242 @@
     <div class="season-dial" aria-hidden="true"></div>
     <div class="hero-content">
       <p class="eyebrow">Solar terms field notes</p>
-      <h1>节气观察室</h1>
-      <p class="hero-copy">面向城市生活的二十四节气观察指南：用物候、光线、温度、食物和居家记录，重新理解一年如何经过身体和房间。</p>
+      <h1>节气诗历</h1>
+      <p class="hero-copy">面向城市生活的节气诗历：用今日节气、古诗意象、诗卡生成和物候观察，重新理解一年如何经过身体和房间。</p>
       <div class="hero-actions">
         <a class="primary-link" href="./articles/xiaoshu-city-heat/">读今日观察</a>
-        <a class="secondary-link" href="./topics/">进入专题</a>
+        <a class="secondary-link" href="./#poem-card-lab">生成诗卡</a>
+      </div>
+      <div class="today-brief" aria-label="今日节气">
+        <span data-today-term>夏至</span>
+        <strong data-today-poem>小荷才露尖尖角，早有蜻蜓立上头。</strong>
+        <small><span data-next-term>小暑</span>还有 <span data-days-next>1</span> 天</small>
       </div>
     </div>
     <div class="hero-strip" aria-label="站点数据">
-      <span><strong>24</strong>个节气可扩展</span><span><strong>6</strong>篇首批长文</span><span><strong>0</strong>搬运百科</span>
+      <span><strong>24</strong>个节气轮盘</span><span><strong>10</strong>首诗词索引</span><span><strong>6</strong>篇首批长文</span><span><strong>1</strong>个诗卡工具</span>
+    </div>
+  </section>
+
+  <script type="application/json" id="seasonal-calendar-data">[{"slug":"xiaohan","name":"小寒","englishName":"Minor Cold","date":"2026-01-05","season":"winter","seasonLabel":"冬","color":"#6a8cb6","focus":"冷风、冰霜、室内保温","observe":"清晨看窗玻璃和阳台栏杆是否有冷凝水。","poemIds":["jiangxue"]},{"slug":"dahan","name":"大寒","englishName":"Major Cold","date":"2026-01-20","season":"winter","seasonLabel":"冬","color":"#526b95","focus":"极寒、围炉、年末光线","observe":"记录一天里第一次开灯和第一次想喝热饮的时间。","poemIds":["jiangxue"]},{"slug":"lichun","name":"立春","englishName":"Beginning of Spring","date":"2026-02-04","season":"spring","seasonLabel":"春","color":"#5fa56f","focus":"风向、柳色、早春光","observe":"找一处固定枝条，连续一周记录芽点变化。","poemIds":["lichun-oucheng","qiantanghu"]},{"slug":"yushui","name":"雨水","englishName":"Rain Water","date":"2026-02-19","season":"spring","seasonLabel":"春","color":"#5b9fb6","focus":"春雨、湿土、返潮","observe":"雨后闻一闻树池、草地和楼道入口的气味差异。","poemIds":["chunyeyuxi"]},{"slug":"jingzhe","name":"惊蛰","englishName":"Awakening of Insects","date":"2026-03-05","season":"spring","seasonLabel":"春","color":"#6fbf7a","focus":"雷声、虫鸣、草木醒来","observe":"夜间听小区草丛和水边是否出现新的细碎声音。","poemIds":["chunyeyuxi","qiantanghu"]},{"slug":"chunfen","name":"春分","englishName":"Spring Equinox","date":"2026-03-20","season":"spring","seasonLabel":"春","color":"#7ebf62","focus":"昼夜、燕子、平衡光线","observe":"上午和下午各拍一次同一面墙上的光斑。","poemIds":["qiantanghu"]},{"slug":"qingming","name":"清明","englishName":"Clear and Bright","date":"2026-04-05","season":"spring","seasonLabel":"春","color":"#77a86f","focus":"雨、行路、柳色","observe":"雨天观察街边行人的伞、鞋和步速变化。","poemIds":["qingming"]},{"slug":"guyu","name":"谷雨","englishName":"Grain Rain","date":"2026-04-20","season":"spring","seasonLabel":"春","color":"#4f9d69","focus":"雨生百谷、叶片舒展","observe":"记录一场雨后阳台植物新叶舒展的速度。","poemIds":["chunyeyuxi"]},{"slug":"lixia","name":"立夏","englishName":"Beginning of Summer","date":"2026-05-05","season":"summer","seasonLabel":"夏","color":"#d9a33f","focus":"初夏、蝉前、长日","observe":"傍晚记录窗边光线持续到几点。","poemIds":["xiaochi"]},{"slug":"xiaoman","name":"小满","englishName":"Grain Buds","date":"2026-05-21","season":"summer","seasonLabel":"夏","color":"#cda64f","focus":"未满、麦气、池水","observe":"看公园水面、小池和草地边缘是否变得丰盈。","poemIds":["xiaochi"]},{"slug":"mangzhong","name":"芒种","englishName":"Grain in Ear","date":"2026-06-05","season":"summer","seasonLabel":"夏","color":"#9cae50","focus":"雨线、湿度、谷物","observe":"雨前、雨中、雨后各看一次排水口的水流。","articleSlug":"mangzhong-rain-and-grain","poemIds":["chunyeyuxi"]},{"slug":"xiazhi","name":"夏至","englishName":"Summer Solstice","date":"2026-06-21","season":"summer","seasonLabel":"夏","color":"#e3a53f","focus":"最长白昼、树荫、午后热","observe":"中午拍同一棵树的影子，比较它和立秋后的差异。","poemIds":["xiaochi","xiari-nanting"]},{"slug":"xiaoshu","name":"小暑","englishName":"Minor Heat","date":"2026-07-07","season":"summer","seasonLabel":"夏","color":"#e08a3e","focus":"热感、积云、柏油路","observe":"傍晚摸一摸窗台、地砖和阳台栏杆的余热。","articleSlug":"xiaoshu-city-heat","poemIds":["xiari-nanting"]},{"slug":"dashu","name":"大暑","englishName":"Major Heat","date":"2026-07-23","season":"summer","seasonLabel":"夏","color":"#d56f52","focus":"盛暑、雷雨、夜间余热","observe":"夜里十点记录墙面和地面的热量是否仍未散。","poemIds":["xiari-nanting"]},{"slug":"liqiu","name":"立秋","englishName":"Beginning of Autumn","date":"2026-08-07","season":"autumn","seasonLabel":"秋","color":"#c3894f","focus":"暑热未退、光线转向","observe":"连续一周记录傍晚同一时间的墙面光斑位置。","articleSlug":"liqiu-first-coolness","poemIds":["shanjuqiuming"]},{"slug":"chushu","name":"处暑","englishName":"End of Heat","date":"2026-08-23","season":"autumn","seasonLabel":"秋","color":"#b98c56","focus":"退热、云影、夜风","observe":"夜间开窗五分钟，记录风里是否少了闷滞。","poemIds":["shanjuqiuming"]},{"slug":"bailu","name":"白露","englishName":"White Dew","date":"2026-09-07","season":"autumn","seasonLabel":"秋","color":"#8ea7a0","focus":"露水、清晨、阳台","observe":"清晨比较金属、玻璃和叶片上的水汽。","articleSlug":"bailu-balcony-dew","poemIds":["yueye-yishe"]},{"slug":"qiufen","name":"秋分","englishName":"Autumn Equinox","date":"2026-09-23","season":"autumn","seasonLabel":"秋","color":"#a78b5c","focus":"昼夜平分、月色、清朗","observe":"黄昏拍一次天空，记录云边是否更清楚。","poemIds":["shanjuqiuming","yueye-yishe"]},{"slug":"hanlu","name":"寒露","englishName":"Cold Dew","date":"2026-10-08","season":"autumn","seasonLabel":"秋","color":"#6b7f91","focus":"夜路、冷风、衣领","observe":"同一路线夜行三次，记录路灯下的叶色和风感。","articleSlug":"hanlu-night-walk","poemIds":["yueye-yishe"]},{"slug":"shuangjiang","name":"霜降","englishName":"Frost's Descent","date":"2026-10-23","season":"autumn","seasonLabel":"秋","color":"#6f7b73","focus":"初霜、叶落、晚秋","observe":"清晨看低矮草叶、车顶和栏杆是否出现白霜。","poemIds":["shanjuqiuming"]},{"slug":"lidong","name":"立冬","englishName":"Beginning of Winter","date":"2026-11-07","season":"winter","seasonLabel":"冬","color":"#5e748e","focus":"入冬、灯光、热食","observe":"记录一天里第一次想关窗和第一次想开灯的时间。","poemIds":["handan-dongzhi"]},{"slug":"xiaoxue","name":"小雪","englishName":"Minor Snow","date":"2026-11-22","season":"winter","seasonLabel":"冬","color":"#7188a6","focus":"寒云、干冷、初雪意象","observe":"看天空云层是否从潮湿厚云转为干冷灰白。","poemIds":["jiangxue"]},{"slug":"daxue","name":"大雪","englishName":"Major Snow","date":"2026-12-07","season":"winter","seasonLabel":"冬","color":"#7b94b5","focus":"雪意、静默、冬季空间","observe":"清晨听街道声音是否被冷空气压低。","poemIds":["jiangxue"]},{"slug":"dongzhi","name":"冬至","englishName":"Winter Solstice","date":"2026-12-22","season":"winter","seasonLabel":"冬","color":"#4567a5","focus":"最短白昼、房间光线、团聚","observe":"上午、中午、傍晚各拍一次同一张书桌的光。","articleSlug":"dongzhi-room-light","poemIds":["handan-dongzhi"]}]</script>
+  <script type="application/json" id="seasonal-poem-data">[{"id":"lichun-oucheng","title":"立春偶成","author":"张栻","dynasty":"宋","sourceTitle":"《南轩集》相关诗作","sourceUrl":"https://zh.wikisource.org/wiki/立春偶成","termSlugs":["lichun"],"imagery":["东风","草木","春回"],"excerpt":"律回岁晚冰霜少，春到人间草木知。","lines":["律回岁晚冰霜少，春到人间草木知。","便觉眼前生意满，东风吹水绿参差。"],"note":"这首诗适合做立春首页诗句，因为它把“春到”写成草木先知道的变化。"},{"id":"chunyeyuxi","title":"春夜喜雨","author":"杜甫","dynasty":"唐","sourceTitle":"《全唐诗》","sourceUrl":"https://zh.wikisource.org/wiki/春夜喜雨","termSlugs":["yushui","jingzhe","guyu","mangzhong"],"imagery":["春雨","夜雨","润物"],"excerpt":"好雨知时节，当春乃发生。","lines":["好雨知时节，当春乃发生。","随风潜入夜，润物细无声。","野径云俱黑，江船火独明。","晓看红湿处，花重锦官城。"],"note":"它不是写某一个节气，却能解释雨水、谷雨和芒种页面里的“雨怎样进入生活”。"},{"id":"qiantanghu","title":"钱塘湖春行","author":"白居易","dynasty":"唐","sourceTitle":"《白氏长庆集》","sourceUrl":"https://zh.wikisource.org/wiki/錢塘湖春行","termSlugs":["lichun","jingzhe","chunfen"],"imagery":["早莺","新燕","浅草"],"excerpt":"几处早莺争暖树，谁家新燕啄春泥。","lines":["孤山寺北贾亭西，水面初平云脚低。","几处早莺争暖树，谁家新燕啄春泥。","乱花渐欲迷人眼，浅草才能没马蹄。","最爱湖东行不足，绿杨阴里白沙堤。"],"note":"这首诗适合做早春物候索引：鸟、泥、浅草、湖面，都是可观察对象。"},{"id":"qingming","title":"清明","author":"杜牧","dynasty":"唐","sourceTitle":"《全唐诗》","sourceUrl":"https://zh.wikisource.org/wiki/清明_(杜牧)","termSlugs":["qingming"],"imagery":["雨","行路","杏花"],"excerpt":"清明时节雨纷纷，路上行人欲断魂。","lines":["清明时节雨纷纷，路上行人欲断魂。","借问酒家何处有，牧童遥指杏花村。"],"note":"它把节气、天气、行路和情绪压在同一场雨里，是节气诗卡最容易传播的句子。"},{"id":"xiaochi","title":"小池","author":"杨万里","dynasty":"宋","sourceTitle":"《诚斋集》","sourceUrl":"https://zh.wikisource.org/wiki/小池","termSlugs":["lixia","xiaoman","xiazhi"],"imagery":["泉眼","树阴","小荷"],"excerpt":"小荷才露尖尖角，早有蜻蜓立上头。","lines":["泉眼无声惜细流，树阴照水爱晴柔。","小荷才露尖尖角，早有蜻蜓立上头。"],"note":"这首诗适合小满和夏至，因为它写的不是盛大夏天，而是刚刚露头的丰盈。"},{"id":"xiari-nanting","title":"夏日南亭怀辛大","author":"孟浩然","dynasty":"唐","sourceTitle":"《全唐诗》","sourceUrl":"https://zh.wikisource.org/wiki/夏日南亭懷辛大","termSlugs":["xiazhi","xiaoshu","dashu"],"imagery":["夕阳","池月","晚凉"],"excerpt":"散发乘夕凉，开轩卧闲敞。","lines":["山光忽西落，池月渐东上。","散发乘夕凉，开轩卧闲敞。","荷风送香气，竹露滴清响。","欲取鸣琴弹，恨无知音赏。"],"note":"它适合小暑和大暑，因为诗里有热退之后的晚凉，也有夏夜里最具体的声音。"},{"id":"shanjuqiuming","title":"山居秋暝","author":"王维","dynasty":"唐","sourceTitle":"《王右丞集》","sourceUrl":"https://zh.wikisource.org/wiki/山居秋暝","termSlugs":["liqiu","chushu","qiufen","shuangjiang"],"imagery":["秋雨","明月","清泉"],"excerpt":"空山新雨后，天气晚来秋。","lines":["空山新雨后，天气晚来秋。","明月松间照，清泉石上流。","竹喧归浣女，莲动下渔舟。","随意春芳歇，王孙自可留。"],"note":"这首诗给秋季页面一个安静骨架：雨后、月光、泉声、人的归来。"},{"id":"yueye-yishe","title":"月夜忆舍弟","author":"杜甫","dynasty":"唐","sourceTitle":"《全唐诗》","sourceUrl":"https://zh.wikisource.org/wiki/月夜憶舍弟","termSlugs":["bailu","qiufen","hanlu"],"imagery":["露","月","秋夜"],"excerpt":"露从今夜白，月是故乡明。","lines":["戍鼓断人行，边秋一雁声。","露从今夜白，月是故乡明。","有弟皆分散，无家问死生。","寄书长不达，况乃未休兵。"],"note":"白露不只是露水的物理现象，也有夜色、月光和思念带来的情绪层。"},{"id":"jiangxue","title":"江雪","author":"柳宗元","dynasty":"唐","sourceTitle":"《全唐诗》","sourceUrl":"https://zh.wikisource.org/wiki/江雪","termSlugs":["xiaohan","dahan","xiaoxue","daxue"],"imagery":["雪","江","孤舟"],"excerpt":"孤舟蓑笠翁，独钓寒江雪。","lines":["千山鸟飞绝，万径人踪灭。","孤舟蓑笠翁，独钓寒江雪。"],"note":"它适合冬季诗卡，因为画面极简，留白强，适合做冷色视觉。"},{"id":"handan-dongzhi","title":"邯郸冬至夜思家","author":"白居易","dynasty":"唐","sourceTitle":"《白氏长庆集》","sourceUrl":"https://zh.wikisource.org/wiki/邯鄲冬至夜思家","termSlugs":["lidong","dongzhi"],"imagery":["冬至","灯前","思家"],"excerpt":"邯郸驿里逢冬至，抱膝灯前影伴身。","lines":["邯郸驿里逢冬至，抱膝灯前影伴身。","想得家中夜深坐，还应说着远行人。"],"note":"冬至最有力量的并不只是天文，而是短白昼里人对灯、家和团聚的感受。"}]</script>
+
+  <section class="section reveal term-wheel-section" id="today">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Solar term wheel</p>
+        <h2>二十四节气轮盘</h2>
+      </div>
+      <p>把一年压成一个可点击的圆。已有长文的节气会进入文章页，其他节气先进入诗历索引。</p>
+    </div>
+    <div class="term-wheel-shell">
+      <div class="term-wheel" aria-label="二十四节气">
+        <a class="term-dot" href="./#poem-calendar" data-term-slug="xiaohan" style="--i:0;--term-color:#6a8cb6">
+          <span>小寒</span>
+        </a><a class="term-dot" href="./#poem-calendar" data-term-slug="dahan" style="--i:1;--term-color:#526b95">
+          <span>大寒</span>
+        </a><a class="term-dot" href="./#poem-calendar" data-term-slug="lichun" style="--i:2;--term-color:#5fa56f">
+          <span>立春</span>
+        </a><a class="term-dot" href="./#poem-calendar" data-term-slug="yushui" style="--i:3;--term-color:#5b9fb6">
+          <span>雨水</span>
+        </a><a class="term-dot" href="./#poem-calendar" data-term-slug="jingzhe" style="--i:4;--term-color:#6fbf7a">
+          <span>惊蛰</span>
+        </a><a class="term-dot" href="./#poem-calendar" data-term-slug="chunfen" style="--i:5;--term-color:#7ebf62">
+          <span>春分</span>
+        </a><a class="term-dot" href="./#poem-calendar" data-term-slug="qingming" style="--i:6;--term-color:#77a86f">
+          <span>清明</span>
+        </a><a class="term-dot" href="./#poem-calendar" data-term-slug="guyu" style="--i:7;--term-color:#4f9d69">
+          <span>谷雨</span>
+        </a><a class="term-dot" href="./#poem-calendar" data-term-slug="lixia" style="--i:8;--term-color:#d9a33f">
+          <span>立夏</span>
+        </a><a class="term-dot" href="./#poem-calendar" data-term-slug="xiaoman" style="--i:9;--term-color:#cda64f">
+          <span>小满</span>
+        </a><a class="term-dot" href="./articles/mangzhong-rain-and-grain/" data-term-slug="mangzhong" style="--i:10;--term-color:#9cae50">
+          <span>芒种</span>
+        </a><a class="term-dot" href="./#poem-calendar" data-term-slug="xiazhi" style="--i:11;--term-color:#e3a53f">
+          <span>夏至</span>
+        </a><a class="term-dot" href="./articles/xiaoshu-city-heat/" data-term-slug="xiaoshu" style="--i:12;--term-color:#e08a3e">
+          <span>小暑</span>
+        </a><a class="term-dot" href="./#poem-calendar" data-term-slug="dashu" style="--i:13;--term-color:#d56f52">
+          <span>大暑</span>
+        </a><a class="term-dot" href="./articles/liqiu-first-coolness/" data-term-slug="liqiu" style="--i:14;--term-color:#c3894f">
+          <span>立秋</span>
+        </a><a class="term-dot" href="./#poem-calendar" data-term-slug="chushu" style="--i:15;--term-color:#b98c56">
+          <span>处暑</span>
+        </a><a class="term-dot" href="./articles/bailu-balcony-dew/" data-term-slug="bailu" style="--i:16;--term-color:#8ea7a0">
+          <span>白露</span>
+        </a><a class="term-dot" href="./#poem-calendar" data-term-slug="qiufen" style="--i:17;--term-color:#a78b5c">
+          <span>秋分</span>
+        </a><a class="term-dot" href="./articles/hanlu-night-walk/" data-term-slug="hanlu" style="--i:18;--term-color:#6b7f91">
+          <span>寒露</span>
+        </a><a class="term-dot" href="./#poem-calendar" data-term-slug="shuangjiang" style="--i:19;--term-color:#6f7b73">
+          <span>霜降</span>
+        </a><a class="term-dot" href="./#poem-calendar" data-term-slug="lidong" style="--i:20;--term-color:#5e748e">
+          <span>立冬</span>
+        </a><a class="term-dot" href="./#poem-calendar" data-term-slug="xiaoxue" style="--i:21;--term-color:#7188a6">
+          <span>小雪</span>
+        </a><a class="term-dot" href="./#poem-calendar" data-term-slug="daxue" style="--i:22;--term-color:#7b94b5">
+          <span>大雪</span>
+        </a><a class="term-dot" href="./articles/dongzhi-room-light/" data-term-slug="dongzhi" style="--i:23;--term-color:#4567a5">
+          <span>冬至</span>
+        </a>
+        <div class="term-wheel-center">
+          <span data-today-season>冬</span>
+          <strong data-today-term>小寒</strong>
+          <small data-today-date>1月5日</small>
+        </div>
+      </div>
+      <aside class="today-console">
+        <p class="eyebrow">Today</p>
+        <h3><span data-today-term>小寒</span></h3>
+        <p data-today-focus>冷风、冰霜、室内保温</p>
+        <dl>
+          <div><dt>今年日期</dt><dd data-today-date>1月5日</dd></div>
+          <div><dt>下个节气</dt><dd><span data-next-term>大寒</span> · <span data-days-next>0</span> 天</dd></div>
+          <div><dt>今日观察</dt><dd data-today-observe>清晨看窗玻璃和阳台栏杆是否有冷凝水。</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section reveal poem-calendar" id="poem-calendar">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Poem calendar</p>
+        <h2>节气诗句索引</h2>
+      </div>
+      <p>每首诗都绑定节气、意象和来源。这里不是诗词大全，而是把诗句变成可检索的四时地图。</p>
+    </div>
+    <div class="poem-filter-row" role="list" aria-label="按季节筛选诗句">
+      <button class="poem-filter is-active" type="button" data-poem-filter="all">全部</button><button class="poem-filter" type="button" data-poem-filter="spring">春</button><button class="poem-filter" type="button" data-poem-filter="summer">夏</button><button class="poem-filter" type="button" data-poem-filter="autumn">秋</button><button class="poem-filter" type="button" data-poem-filter="winter">冬</button>
+    </div>
+    <div class="poem-grid">
+      <article class="poem-card" data-poem-id="lichun-oucheng" data-poem-seasons="spring">
+        <div>
+          <p class="eyebrow">宋 · 张栻</p>
+          <h3>立春偶成</h3>
+          <blockquote>律回岁晚冰霜少，春到人间草木知。</blockquote>
+          <p>这首诗适合做立春首页诗句，因为它把“春到”写成草木先知道的变化。</p>
+        </div>
+        <div class="tag-row"><span>立春</span></div>
+        <a class="text-link" href="https://zh.wikisource.org/wiki/立春偶成" rel="nofollow noopener" target="_blank">来源</a>
+      </article><article class="poem-card" data-poem-id="chunyeyuxi" data-poem-seasons="spring summer">
+        <div>
+          <p class="eyebrow">唐 · 杜甫</p>
+          <h3>春夜喜雨</h3>
+          <blockquote>好雨知时节，当春乃发生。</blockquote>
+          <p>它不是写某一个节气，却能解释雨水、谷雨和芒种页面里的“雨怎样进入生活”。</p>
+        </div>
+        <div class="tag-row"><span>雨水</span><span>惊蛰</span><span>谷雨</span><span>芒种</span></div>
+        <a class="text-link" href="https://zh.wikisource.org/wiki/春夜喜雨" rel="nofollow noopener" target="_blank">来源</a>
+      </article><article class="poem-card" data-poem-id="qiantanghu" data-poem-seasons="spring">
+        <div>
+          <p class="eyebrow">唐 · 白居易</p>
+          <h3>钱塘湖春行</h3>
+          <blockquote>几处早莺争暖树，谁家新燕啄春泥。</blockquote>
+          <p>这首诗适合做早春物候索引：鸟、泥、浅草、湖面，都是可观察对象。</p>
+        </div>
+        <div class="tag-row"><span>立春</span><span>惊蛰</span><span>春分</span></div>
+        <a class="text-link" href="https://zh.wikisource.org/wiki/錢塘湖春行" rel="nofollow noopener" target="_blank">来源</a>
+      </article><article class="poem-card" data-poem-id="qingming" data-poem-seasons="spring">
+        <div>
+          <p class="eyebrow">唐 · 杜牧</p>
+          <h3>清明</h3>
+          <blockquote>清明时节雨纷纷，路上行人欲断魂。</blockquote>
+          <p>它把节气、天气、行路和情绪压在同一场雨里，是节气诗卡最容易传播的句子。</p>
+        </div>
+        <div class="tag-row"><span>清明</span></div>
+        <a class="text-link" href="https://zh.wikisource.org/wiki/清明_(杜牧)" rel="nofollow noopener" target="_blank">来源</a>
+      </article><article class="poem-card" data-poem-id="xiaochi" data-poem-seasons="summer">
+        <div>
+          <p class="eyebrow">宋 · 杨万里</p>
+          <h3>小池</h3>
+          <blockquote>小荷才露尖尖角，早有蜻蜓立上头。</blockquote>
+          <p>这首诗适合小满和夏至，因为它写的不是盛大夏天，而是刚刚露头的丰盈。</p>
+        </div>
+        <div class="tag-row"><span>立夏</span><span>小满</span><span>夏至</span></div>
+        <a class="text-link" href="https://zh.wikisource.org/wiki/小池" rel="nofollow noopener" target="_blank">来源</a>
+      </article><article class="poem-card" data-poem-id="xiari-nanting" data-poem-seasons="summer">
+        <div>
+          <p class="eyebrow">唐 · 孟浩然</p>
+          <h3>夏日南亭怀辛大</h3>
+          <blockquote>散发乘夕凉，开轩卧闲敞。</blockquote>
+          <p>它适合小暑和大暑，因为诗里有热退之后的晚凉，也有夏夜里最具体的声音。</p>
+        </div>
+        <div class="tag-row"><span>夏至</span><span>小暑</span><span>大暑</span></div>
+        <a class="text-link" href="https://zh.wikisource.org/wiki/夏日南亭懷辛大" rel="nofollow noopener" target="_blank">来源</a>
+      </article><article class="poem-card" data-poem-id="shanjuqiuming" data-poem-seasons="autumn">
+        <div>
+          <p class="eyebrow">唐 · 王维</p>
+          <h3>山居秋暝</h3>
+          <blockquote>空山新雨后，天气晚来秋。</blockquote>
+          <p>这首诗给秋季页面一个安静骨架：雨后、月光、泉声、人的归来。</p>
+        </div>
+        <div class="tag-row"><span>立秋</span><span>处暑</span><span>秋分</span><span>霜降</span></div>
+        <a class="text-link" href="https://zh.wikisource.org/wiki/山居秋暝" rel="nofollow noopener" target="_blank">来源</a>
+      </article><article class="poem-card" data-poem-id="yueye-yishe" data-poem-seasons="autumn">
+        <div>
+          <p class="eyebrow">唐 · 杜甫</p>
+          <h3>月夜忆舍弟</h3>
+          <blockquote>露从今夜白，月是故乡明。</blockquote>
+          <p>白露不只是露水的物理现象，也有夜色、月光和思念带来的情绪层。</p>
+        </div>
+        <div class="tag-row"><span>白露</span><span>秋分</span><span>寒露</span></div>
+        <a class="text-link" href="https://zh.wikisource.org/wiki/月夜憶舍弟" rel="nofollow noopener" target="_blank">来源</a>
+      </article><article class="poem-card" data-poem-id="jiangxue" data-poem-seasons="winter">
+        <div>
+          <p class="eyebrow">唐 · 柳宗元</p>
+          <h3>江雪</h3>
+          <blockquote>孤舟蓑笠翁，独钓寒江雪。</blockquote>
+          <p>它适合冬季诗卡，因为画面极简，留白强，适合做冷色视觉。</p>
+        </div>
+        <div class="tag-row"><span>小寒</span><span>大寒</span><span>小雪</span><span>大雪</span></div>
+        <a class="text-link" href="https://zh.wikisource.org/wiki/江雪" rel="nofollow noopener" target="_blank">来源</a>
+      </article><article class="poem-card" data-poem-id="handan-dongzhi" data-poem-seasons="winter">
+        <div>
+          <p class="eyebrow">唐 · 白居易</p>
+          <h3>邯郸冬至夜思家</h3>
+          <blockquote>邯郸驿里逢冬至，抱膝灯前影伴身。</blockquote>
+          <p>冬至最有力量的并不只是天文，而是短白昼里人对灯、家和团聚的感受。</p>
+        </div>
+        <div class="tag-row"><span>立冬</span><span>冬至</span></div>
+        <a class="text-link" href="https://zh.wikisource.org/wiki/邯鄲冬至夜思家" rel="nofollow noopener" target="_blank">来源</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section reveal poem-card-lab" id="poem-card-lab">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Verse card studio</p>
+        <h2>节气诗卡</h2>
+      </div>
+      <p>先做静态版诗卡工具。以后接入 AI 后，可以在这里生成解释、标题、配文和观察建议。</p>
+    </div>
+    <div class="tool-studio">
+      <form class="tool-controls" aria-label="诗卡设置">
+        <label>
+          <span>诗句</span>
+          <select data-poem-select>
+            <option value="lichun-oucheng">立春偶成 · 张栻</option><option value="chunyeyuxi">春夜喜雨 · 杜甫</option><option value="qiantanghu">钱塘湖春行 · 白居易</option><option value="qingming">清明 · 杜牧</option><option value="xiaochi">小池 · 杨万里</option><option value="xiari-nanting">夏日南亭怀辛大 · 孟浩然</option><option value="shanjuqiuming">山居秋暝 · 王维</option><option value="yueye-yishe">月夜忆舍弟 · 杜甫</option><option value="jiangxue">江雪 · 柳宗元</option><option value="handan-dongzhi">邯郸冬至夜思家 · 白居易</option>
+          </select>
+        </label>
+        <label>
+          <span>风格</span>
+          <select data-card-style>
+            <option value="warm">暖纸</option>
+            <option value="green">青绿</option>
+            <option value="night">夜色</option>
+          </select>
+        </label>
+        <button class="primary-link" type="button" data-download-card>下载诗卡</button>
+      </form>
+      <div class="verse-card-preview" data-card-preview>
+        <span class="eyebrow" data-card-kicker>宋 · 张栻</span>
+        <h3 data-card-title>立春偶成</h3>
+        <blockquote data-card-excerpt>律回岁晚冰霜少，春到人间草木知。</blockquote>
+        <p data-card-note>这首诗适合做立春首页诗句，因为它把“春到”写成草木先知道的变化。</p>
+      </div>
     </div>
   </section>
 

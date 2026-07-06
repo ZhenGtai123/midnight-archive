@@ -11,8 +11,10 @@ import {
   seasonalEnglishTopics,
   seasonalExpansionPlan,
   seasonalHome,
+  seasonalPoems,
   seasonalSite,
   seasonalStaticPages,
+  seasonalTermCalendar,
   seasonalTopics
 } from "../content/seasonal-observatory.mjs";
 
@@ -104,6 +106,8 @@ const zhContext = {
   topics: seasonalTopics,
   staticPages: seasonalStaticPages,
   expansionPlan: seasonalExpansionPlan,
+  termCalendar: seasonalTermCalendar,
+  poems: seasonalPoems,
   ui: zhUi,
   locale: "zh-CN",
   hreflang: "zh-CN",
@@ -117,6 +121,8 @@ const enContext = {
   topics: seasonalEnglishTopics,
   staticPages: seasonalEnglishStaticPages,
   expansionPlan: seasonalEnglishExpansionPlan,
+  termCalendar: [],
+  poems: [],
   ui: enUi,
   locale: "en",
   hreflang: "en",
@@ -221,6 +227,179 @@ function headJson(structuredData = []) {
   return structuredData
     .map((item) => `  <script type="application/ld+json">${JSON.stringify(item)}</script>`)
     .join("\n");
+}
+
+function safeJson(data) {
+  return JSON.stringify(data).replaceAll("<", "\\u003c");
+}
+
+function termDateLabel(dateValue) {
+  const date = new Date(`${dateValue}T00:00:00+08:00`);
+  return `${date.getMonth() + 1}月${date.getDate()}日`;
+}
+
+function currentTermSnapshot(calendar) {
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+  const dated = calendar.map((term) => ({
+    ...term,
+    time: new Date(`${term.date}T00:00:00+08:00`).getTime()
+  }));
+  let current = dated[0];
+  let next = dated[1];
+
+  for (let index = 0; index < dated.length; index += 1) {
+    if (dated[index].time <= today) {
+      current = dated[index];
+      next = dated[index + 1] || dated[0];
+    }
+  }
+
+  const daysToNext = Math.max(0, Math.ceil((next.time - today) / 86400000));
+  const poem = seasonalPoems.find((item) => current.poemIds?.includes(item.id)) || seasonalPoems[0];
+
+  return { current, next, daysToNext, poem };
+}
+
+function poemById(poemId, context) {
+  return context.poems?.find((poem) => poem.id === poemId);
+}
+
+function termLink(term, rootRel, context) {
+  return term.articleSlug
+    ? `${rootRel}${context.pathPrefix}articles/${term.articleSlug}/`
+    : `${rootRel}${context.pathPrefix}#poem-calendar`;
+}
+
+function termWheel(context, rootRel) {
+  if (!context.termCalendar?.length) return "";
+  return `<section class="section reveal term-wheel-section" id="today">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Solar term wheel</p>
+        <h2>二十四节气轮盘</h2>
+      </div>
+      <p>把一年压成一个可点击的圆。已有长文的节气会进入文章页，其他节气先进入诗历索引。</p>
+    </div>
+    <div class="term-wheel-shell">
+      <div class="term-wheel" aria-label="二十四节气">
+        ${context.termCalendar
+          .map(
+            (term, index) => `<a class="term-dot" href="${termLink(term, rootRel, context)}" data-term-slug="${
+              term.slug
+            }" style="--i:${index};--term-color:${esc(term.color)}">
+          <span>${esc(term.name)}</span>
+        </a>`
+          )
+          .join("")}
+        <div class="term-wheel-center">
+          <span data-today-season>${esc(context.termCalendar[0].seasonLabel)}</span>
+          <strong data-today-term>${esc(context.termCalendar[0].name)}</strong>
+          <small data-today-date>${esc(termDateLabel(context.termCalendar[0].date))}</small>
+        </div>
+      </div>
+      <aside class="today-console">
+        <p class="eyebrow">Today</p>
+        <h3><span data-today-term>${esc(context.termCalendar[0].name)}</span></h3>
+        <p data-today-focus>${esc(context.termCalendar[0].focus)}</p>
+        <dl>
+          <div><dt>今年日期</dt><dd data-today-date>${esc(termDateLabel(context.termCalendar[0].date))}</dd></div>
+          <div><dt>下个节气</dt><dd><span data-next-term>${esc(context.termCalendar[1].name)}</span> · <span data-days-next>0</span> 天</dd></div>
+          <div><dt>今日观察</dt><dd data-today-observe>${esc(context.termCalendar[0].observe)}</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </section>`;
+}
+
+function poemCalendar(context, rootRel) {
+  if (!context.poems?.length) return "";
+  const filters = [
+    { label: "全部", value: "all" },
+    { label: "春", value: "spring" },
+    { label: "夏", value: "summer" },
+    { label: "秋", value: "autumn" },
+    { label: "冬", value: "winter" }
+  ];
+  const termSeason = new Map(context.termCalendar.map((term) => [term.slug, term.season]));
+
+  return `<section class="section reveal poem-calendar" id="poem-calendar">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Poem calendar</p>
+        <h2>节气诗句索引</h2>
+      </div>
+      <p>每首诗都绑定节气、意象和来源。这里不是诗词大全，而是把诗句变成可检索的四时地图。</p>
+    </div>
+    <div class="poem-filter-row" role="list" aria-label="按季节筛选诗句">
+      ${filters
+        .map(
+          (filter, index) => `<button class="poem-filter${index === 0 ? " is-active" : ""}" type="button" data-poem-filter="${
+            filter.value
+          }">${esc(filter.label)}</button>`
+        )
+        .join("")}
+    </div>
+    <div class="poem-grid">
+      ${context.poems
+        .map((poem) => {
+          const seasons = [...new Set(poem.termSlugs.map((slug) => termSeason.get(slug)).filter(Boolean))];
+          const terms = poem.termSlugs
+            .map((slug) => context.termCalendar.find((term) => term.slug === slug)?.name)
+            .filter(Boolean);
+          return `<article class="poem-card" data-poem-id="${esc(poem.id)}" data-poem-seasons="${esc(seasons.join(" "))}">
+        <div>
+          <p class="eyebrow">${esc(poem.dynasty)} · ${esc(poem.author)}</p>
+          <h3>${esc(poem.title)}</h3>
+          <blockquote>${esc(poem.excerpt)}</blockquote>
+          <p>${esc(poem.note)}</p>
+        </div>
+        <div class="tag-row">${terms.slice(0, 4).map((term) => `<span>${esc(term)}</span>`).join("")}</div>
+        <a class="text-link" href="${esc(poem.sourceUrl)}" rel="nofollow noopener" target="_blank">来源</a>
+      </article>`;
+        })
+        .join("")}
+    </div>
+  </section>`;
+}
+
+function poemCardLab(context) {
+  if (!context.poems?.length) return "";
+  const firstPoem = context.poems[0];
+  return `<section class="section reveal poem-card-lab" id="poem-card-lab">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Verse card studio</p>
+        <h2>节气诗卡</h2>
+      </div>
+      <p>先做静态版诗卡工具。以后接入 AI 后，可以在这里生成解释、标题、配文和观察建议。</p>
+    </div>
+    <div class="tool-studio">
+      <form class="tool-controls" aria-label="诗卡设置">
+        <label>
+          <span>诗句</span>
+          <select data-poem-select>
+            ${context.poems.map((poem) => `<option value="${esc(poem.id)}">${esc(poem.title)} · ${esc(poem.author)}</option>`).join("")}
+          </select>
+        </label>
+        <label>
+          <span>风格</span>
+          <select data-card-style>
+            <option value="warm">暖纸</option>
+            <option value="green">青绿</option>
+            <option value="night">夜色</option>
+          </select>
+        </label>
+        <button class="primary-link" type="button" data-download-card>下载诗卡</button>
+      </form>
+      <div class="verse-card-preview" data-card-preview>
+        <span class="eyebrow" data-card-kicker>${esc(firstPoem.dynasty)} · ${esc(firstPoem.author)}</span>
+        <h3 data-card-title>${esc(firstPoem.title)}</h3>
+        <blockquote data-card-excerpt>${esc(firstPoem.excerpt)}</blockquote>
+        <p data-card-note>${esc(firstPoem.note)}</p>
+      </div>
+    </div>
+  </section>`;
 }
 
 function pageShell({ context = zhContext, title, description, pathName = "", body, structuredData = [] }) {
@@ -378,6 +557,8 @@ function observePanel(article, context = zhContext) {
 function homePage(context = zhContext) {
   const featured = context.articles[0];
   const rootRel = relativeRoot(context.pathPrefix);
+  const today = context.termCalendar?.length ? currentTermSnapshot(context.termCalendar) : null;
+  const secondaryHref = context.poems?.length ? `${rootRel}${context.pathPrefix}#poem-card-lab` : `${rootRel}${context.pathPrefix}topics/`;
   const organization = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -395,17 +576,39 @@ function homePage(context = zhContext) {
     <div class="season-dial" aria-hidden="true"></div>
     <div class="hero-content">
       <p class="eyebrow">${esc(context.home.heroEyebrow)}</p>
-      <h1>${esc(context.site.name)}</h1>
+      <h1>${esc(context.home.heroTitle || context.site.name)}</h1>
       <p class="hero-copy">${esc(context.site.description)}</p>
       <div class="hero-actions">
         <a class="primary-link" href="${rootRel}${context.pathPrefix}articles/${featured.slug}/">${esc(context.home.primaryCta)}</a>
-        <a class="secondary-link" href="${rootRel}${context.pathPrefix}topics/">${esc(context.home.secondaryCta)}</a>
+        <a class="secondary-link" href="${secondaryHref}">${esc(context.home.secondaryCta)}</a>
       </div>
+      ${
+        today
+          ? `<div class="today-brief" aria-label="今日节气">
+        <span data-today-term>${esc(today.current.name)}</span>
+        <strong data-today-poem>${esc(today.poem.excerpt)}</strong>
+        <small><span data-next-term>${esc(today.next.name)}</span>还有 <span data-days-next>${esc(today.daysToNext)}</span> 天</small>
+      </div>`
+          : ""
+      }
     </div>
     <div class="hero-strip" aria-label="${context.locale === "en" ? "Site data" : "站点数据"}">
       ${context.home.stats.map((item) => `<span><strong>${esc(item.value)}</strong>${esc(item.label)}</span>`).join("")}
     </div>
   </section>
+
+  ${
+    context.termCalendar?.length
+      ? `<script type="application/json" id="seasonal-calendar-data">${safeJson(context.termCalendar)}</script>
+  <script type="application/json" id="seasonal-poem-data">${safeJson(context.poems)}</script>`
+      : ""
+  }
+
+  ${termWheel(context, rootRel)}
+
+  ${poemCalendar(context, rootRel)}
+
+  ${poemCardLab(context)}
 
   <section class="intro-band reveal">
     <div class="section-heading">

@@ -12,7 +12,7 @@ export const seasonalSite = {
   shortName: "节气室",
   tagline: "把二十四节气写回城市日常",
   description:
-    "面向城市生活的二十四节气观察指南：用物候、光线、温度、食物和居家记录，重新理解一年如何经过身体和房间。",
+    "面向城市生活的节气诗历：用今日节气、古诗意象、诗卡生成和物候观察，重新理解一年如何经过身体和房间。",
   locale: "zh-CN",
   basePath: "/midnight-archive/seasonal-observatory/",
   canonicalOrigin: "https://zhengtai123.github.io",
@@ -25,11 +25,12 @@ export const seasonalSite = {
     notes: "获得真实 AdSense 发布商 ID 前不要启用广告脚本，也不要放置伪广告位。"
   },
   nav: [
+    { label: "今日", href: "#today" },
+    { label: "诗历", href: "#poem-calendar" },
+    { label: "诗卡", href: "#poem-card-lab" },
     { label: "观察", href: "#articles" },
     { label: "专题", href: "topics/" },
-    { label: "来源", href: "sources/" },
-    { label: "路线", href: "content-roadmap/" },
-    { label: "原则", href: "editorial-policy/" }
+    { label: "来源", href: "sources/" }
   ],
   footerDescription:
     "原创节气观察笔记、城市物候导读和来源卡片。适合长期扩展为二十四节气主题内容站。",
@@ -71,12 +72,14 @@ export const seasonalSite = {
 
 export const seasonalHome = {
   heroEyebrow: "Solar terms field notes",
+  heroTitle: "节气诗历",
   primaryCta: "读今日观察",
-  secondaryCta: "进入专题",
+  secondaryCta: "生成诗卡",
   stats: [
-    { value: "24", label: "个节气可扩展" },
+    { value: "24", label: "个节气轮盘" },
+    { value: "10", label: "首诗词索引" },
     { value: "6", label: "篇首批长文" },
-    { value: "0", label: "搬运百科" }
+    { value: "1", label: "个诗卡工具" }
   ],
   intro: {
     eyebrow: "Observation method",
@@ -113,6 +116,436 @@ export const seasonalHome = {
     linkLabel: "查看扩展路线"
   }
 };
+
+export const seasonalTermCalendar = [
+  {
+    slug: "xiaohan",
+    name: "小寒",
+    englishName: "Minor Cold",
+    date: "2026-01-05",
+    season: "winter",
+    seasonLabel: "冬",
+    color: "#6a8cb6",
+    focus: "冷风、冰霜、室内保温",
+    observe: "清晨看窗玻璃和阳台栏杆是否有冷凝水。",
+    poemIds: ["jiangxue"]
+  },
+  {
+    slug: "dahan",
+    name: "大寒",
+    englishName: "Major Cold",
+    date: "2026-01-20",
+    season: "winter",
+    seasonLabel: "冬",
+    color: "#526b95",
+    focus: "极寒、围炉、年末光线",
+    observe: "记录一天里第一次开灯和第一次想喝热饮的时间。",
+    poemIds: ["jiangxue"]
+  },
+  {
+    slug: "lichun",
+    name: "立春",
+    englishName: "Beginning of Spring",
+    date: "2026-02-04",
+    season: "spring",
+    seasonLabel: "春",
+    color: "#5fa56f",
+    focus: "风向、柳色、早春光",
+    observe: "找一处固定枝条，连续一周记录芽点变化。",
+    poemIds: ["lichun-oucheng", "qiantanghu"]
+  },
+  {
+    slug: "yushui",
+    name: "雨水",
+    englishName: "Rain Water",
+    date: "2026-02-19",
+    season: "spring",
+    seasonLabel: "春",
+    color: "#5b9fb6",
+    focus: "春雨、湿土、返潮",
+    observe: "雨后闻一闻树池、草地和楼道入口的气味差异。",
+    poemIds: ["chunyeyuxi"]
+  },
+  {
+    slug: "jingzhe",
+    name: "惊蛰",
+    englishName: "Awakening of Insects",
+    date: "2026-03-05",
+    season: "spring",
+    seasonLabel: "春",
+    color: "#6fbf7a",
+    focus: "雷声、虫鸣、草木醒来",
+    observe: "夜间听小区草丛和水边是否出现新的细碎声音。",
+    poemIds: ["chunyeyuxi", "qiantanghu"]
+  },
+  {
+    slug: "chunfen",
+    name: "春分",
+    englishName: "Spring Equinox",
+    date: "2026-03-20",
+    season: "spring",
+    seasonLabel: "春",
+    color: "#7ebf62",
+    focus: "昼夜、燕子、平衡光线",
+    observe: "上午和下午各拍一次同一面墙上的光斑。",
+    poemIds: ["qiantanghu"]
+  },
+  {
+    slug: "qingming",
+    name: "清明",
+    englishName: "Clear and Bright",
+    date: "2026-04-05",
+    season: "spring",
+    seasonLabel: "春",
+    color: "#77a86f",
+    focus: "雨、行路、柳色",
+    observe: "雨天观察街边行人的伞、鞋和步速变化。",
+    poemIds: ["qingming"]
+  },
+  {
+    slug: "guyu",
+    name: "谷雨",
+    englishName: "Grain Rain",
+    date: "2026-04-20",
+    season: "spring",
+    seasonLabel: "春",
+    color: "#4f9d69",
+    focus: "雨生百谷、叶片舒展",
+    observe: "记录一场雨后阳台植物新叶舒展的速度。",
+    poemIds: ["chunyeyuxi"]
+  },
+  {
+    slug: "lixia",
+    name: "立夏",
+    englishName: "Beginning of Summer",
+    date: "2026-05-05",
+    season: "summer",
+    seasonLabel: "夏",
+    color: "#d9a33f",
+    focus: "初夏、蝉前、长日",
+    observe: "傍晚记录窗边光线持续到几点。",
+    poemIds: ["xiaochi"]
+  },
+  {
+    slug: "xiaoman",
+    name: "小满",
+    englishName: "Grain Buds",
+    date: "2026-05-21",
+    season: "summer",
+    seasonLabel: "夏",
+    color: "#cda64f",
+    focus: "未满、麦气、池水",
+    observe: "看公园水面、小池和草地边缘是否变得丰盈。",
+    poemIds: ["xiaochi"]
+  },
+  {
+    slug: "mangzhong",
+    name: "芒种",
+    englishName: "Grain in Ear",
+    date: "2026-06-05",
+    season: "summer",
+    seasonLabel: "夏",
+    color: "#9cae50",
+    focus: "雨线、湿度、谷物",
+    observe: "雨前、雨中、雨后各看一次排水口的水流。",
+    articleSlug: "mangzhong-rain-and-grain",
+    poemIds: ["chunyeyuxi"]
+  },
+  {
+    slug: "xiazhi",
+    name: "夏至",
+    englishName: "Summer Solstice",
+    date: "2026-06-21",
+    season: "summer",
+    seasonLabel: "夏",
+    color: "#e3a53f",
+    focus: "最长白昼、树荫、午后热",
+    observe: "中午拍同一棵树的影子，比较它和立秋后的差异。",
+    poemIds: ["xiaochi", "xiari-nanting"]
+  },
+  {
+    slug: "xiaoshu",
+    name: "小暑",
+    englishName: "Minor Heat",
+    date: "2026-07-07",
+    season: "summer",
+    seasonLabel: "夏",
+    color: "#e08a3e",
+    focus: "热感、积云、柏油路",
+    observe: "傍晚摸一摸窗台、地砖和阳台栏杆的余热。",
+    articleSlug: "xiaoshu-city-heat",
+    poemIds: ["xiari-nanting"]
+  },
+  {
+    slug: "dashu",
+    name: "大暑",
+    englishName: "Major Heat",
+    date: "2026-07-23",
+    season: "summer",
+    seasonLabel: "夏",
+    color: "#d56f52",
+    focus: "盛暑、雷雨、夜间余热",
+    observe: "夜里十点记录墙面和地面的热量是否仍未散。",
+    poemIds: ["xiari-nanting"]
+  },
+  {
+    slug: "liqiu",
+    name: "立秋",
+    englishName: "Beginning of Autumn",
+    date: "2026-08-07",
+    season: "autumn",
+    seasonLabel: "秋",
+    color: "#c3894f",
+    focus: "暑热未退、光线转向",
+    observe: "连续一周记录傍晚同一时间的墙面光斑位置。",
+    articleSlug: "liqiu-first-coolness",
+    poemIds: ["shanjuqiuming"]
+  },
+  {
+    slug: "chushu",
+    name: "处暑",
+    englishName: "End of Heat",
+    date: "2026-08-23",
+    season: "autumn",
+    seasonLabel: "秋",
+    color: "#b98c56",
+    focus: "退热、云影、夜风",
+    observe: "夜间开窗五分钟，记录风里是否少了闷滞。",
+    poemIds: ["shanjuqiuming"]
+  },
+  {
+    slug: "bailu",
+    name: "白露",
+    englishName: "White Dew",
+    date: "2026-09-07",
+    season: "autumn",
+    seasonLabel: "秋",
+    color: "#8ea7a0",
+    focus: "露水、清晨、阳台",
+    observe: "清晨比较金属、玻璃和叶片上的水汽。",
+    articleSlug: "bailu-balcony-dew",
+    poemIds: ["yueye-yishe"]
+  },
+  {
+    slug: "qiufen",
+    name: "秋分",
+    englishName: "Autumn Equinox",
+    date: "2026-09-23",
+    season: "autumn",
+    seasonLabel: "秋",
+    color: "#a78b5c",
+    focus: "昼夜平分、月色、清朗",
+    observe: "黄昏拍一次天空，记录云边是否更清楚。",
+    poemIds: ["shanjuqiuming", "yueye-yishe"]
+  },
+  {
+    slug: "hanlu",
+    name: "寒露",
+    englishName: "Cold Dew",
+    date: "2026-10-08",
+    season: "autumn",
+    seasonLabel: "秋",
+    color: "#6b7f91",
+    focus: "夜路、冷风、衣领",
+    observe: "同一路线夜行三次，记录路灯下的叶色和风感。",
+    articleSlug: "hanlu-night-walk",
+    poemIds: ["yueye-yishe"]
+  },
+  {
+    slug: "shuangjiang",
+    name: "霜降",
+    englishName: "Frost's Descent",
+    date: "2026-10-23",
+    season: "autumn",
+    seasonLabel: "秋",
+    color: "#6f7b73",
+    focus: "初霜、叶落、晚秋",
+    observe: "清晨看低矮草叶、车顶和栏杆是否出现白霜。",
+    poemIds: ["shanjuqiuming"]
+  },
+  {
+    slug: "lidong",
+    name: "立冬",
+    englishName: "Beginning of Winter",
+    date: "2026-11-07",
+    season: "winter",
+    seasonLabel: "冬",
+    color: "#5e748e",
+    focus: "入冬、灯光、热食",
+    observe: "记录一天里第一次想关窗和第一次想开灯的时间。",
+    poemIds: ["handan-dongzhi"]
+  },
+  {
+    slug: "xiaoxue",
+    name: "小雪",
+    englishName: "Minor Snow",
+    date: "2026-11-22",
+    season: "winter",
+    seasonLabel: "冬",
+    color: "#7188a6",
+    focus: "寒云、干冷、初雪意象",
+    observe: "看天空云层是否从潮湿厚云转为干冷灰白。",
+    poemIds: ["jiangxue"]
+  },
+  {
+    slug: "daxue",
+    name: "大雪",
+    englishName: "Major Snow",
+    date: "2026-12-07",
+    season: "winter",
+    seasonLabel: "冬",
+    color: "#7b94b5",
+    focus: "雪意、静默、冬季空间",
+    observe: "清晨听街道声音是否被冷空气压低。",
+    poemIds: ["jiangxue"]
+  },
+  {
+    slug: "dongzhi",
+    name: "冬至",
+    englishName: "Winter Solstice",
+    date: "2026-12-22",
+    season: "winter",
+    seasonLabel: "冬",
+    color: "#4567a5",
+    focus: "最短白昼、房间光线、团聚",
+    observe: "上午、中午、傍晚各拍一次同一张书桌的光。",
+    articleSlug: "dongzhi-room-light",
+    poemIds: ["handan-dongzhi"]
+  }
+];
+
+export const seasonalPoems = [
+  {
+    id: "lichun-oucheng",
+    title: "立春偶成",
+    author: "张栻",
+    dynasty: "宋",
+    sourceTitle: "《南轩集》相关诗作",
+    sourceUrl: "https://zh.wikisource.org/wiki/立春偶成",
+    termSlugs: ["lichun"],
+    imagery: ["东风", "草木", "春回"],
+    excerpt: "律回岁晚冰霜少，春到人间草木知。",
+    lines: ["律回岁晚冰霜少，春到人间草木知。", "便觉眼前生意满，东风吹水绿参差。"],
+    note: "这首诗适合做立春首页诗句，因为它把“春到”写成草木先知道的变化。"
+  },
+  {
+    id: "chunyeyuxi",
+    title: "春夜喜雨",
+    author: "杜甫",
+    dynasty: "唐",
+    sourceTitle: "《全唐诗》",
+    sourceUrl: "https://zh.wikisource.org/wiki/春夜喜雨",
+    termSlugs: ["yushui", "jingzhe", "guyu", "mangzhong"],
+    imagery: ["春雨", "夜雨", "润物"],
+    excerpt: "好雨知时节，当春乃发生。",
+    lines: ["好雨知时节，当春乃发生。", "随风潜入夜，润物细无声。", "野径云俱黑，江船火独明。", "晓看红湿处，花重锦官城。"],
+    note: "它不是写某一个节气，却能解释雨水、谷雨和芒种页面里的“雨怎样进入生活”。"
+  },
+  {
+    id: "qiantanghu",
+    title: "钱塘湖春行",
+    author: "白居易",
+    dynasty: "唐",
+    sourceTitle: "《白氏长庆集》",
+    sourceUrl: "https://zh.wikisource.org/wiki/錢塘湖春行",
+    termSlugs: ["lichun", "jingzhe", "chunfen"],
+    imagery: ["早莺", "新燕", "浅草"],
+    excerpt: "几处早莺争暖树，谁家新燕啄春泥。",
+    lines: ["孤山寺北贾亭西，水面初平云脚低。", "几处早莺争暖树，谁家新燕啄春泥。", "乱花渐欲迷人眼，浅草才能没马蹄。", "最爱湖东行不足，绿杨阴里白沙堤。"],
+    note: "这首诗适合做早春物候索引：鸟、泥、浅草、湖面，都是可观察对象。"
+  },
+  {
+    id: "qingming",
+    title: "清明",
+    author: "杜牧",
+    dynasty: "唐",
+    sourceTitle: "《全唐诗》",
+    sourceUrl: "https://zh.wikisource.org/wiki/清明_(杜牧)",
+    termSlugs: ["qingming"],
+    imagery: ["雨", "行路", "杏花"],
+    excerpt: "清明时节雨纷纷，路上行人欲断魂。",
+    lines: ["清明时节雨纷纷，路上行人欲断魂。", "借问酒家何处有，牧童遥指杏花村。"],
+    note: "它把节气、天气、行路和情绪压在同一场雨里，是节气诗卡最容易传播的句子。"
+  },
+  {
+    id: "xiaochi",
+    title: "小池",
+    author: "杨万里",
+    dynasty: "宋",
+    sourceTitle: "《诚斋集》",
+    sourceUrl: "https://zh.wikisource.org/wiki/小池",
+    termSlugs: ["lixia", "xiaoman", "xiazhi"],
+    imagery: ["泉眼", "树阴", "小荷"],
+    excerpt: "小荷才露尖尖角，早有蜻蜓立上头。",
+    lines: ["泉眼无声惜细流，树阴照水爱晴柔。", "小荷才露尖尖角，早有蜻蜓立上头。"],
+    note: "这首诗适合小满和夏至，因为它写的不是盛大夏天，而是刚刚露头的丰盈。"
+  },
+  {
+    id: "xiari-nanting",
+    title: "夏日南亭怀辛大",
+    author: "孟浩然",
+    dynasty: "唐",
+    sourceTitle: "《全唐诗》",
+    sourceUrl: "https://zh.wikisource.org/wiki/夏日南亭懷辛大",
+    termSlugs: ["xiazhi", "xiaoshu", "dashu"],
+    imagery: ["夕阳", "池月", "晚凉"],
+    excerpt: "散发乘夕凉，开轩卧闲敞。",
+    lines: ["山光忽西落，池月渐东上。", "散发乘夕凉，开轩卧闲敞。", "荷风送香气，竹露滴清响。", "欲取鸣琴弹，恨无知音赏。"],
+    note: "它适合小暑和大暑，因为诗里有热退之后的晚凉，也有夏夜里最具体的声音。"
+  },
+  {
+    id: "shanjuqiuming",
+    title: "山居秋暝",
+    author: "王维",
+    dynasty: "唐",
+    sourceTitle: "《王右丞集》",
+    sourceUrl: "https://zh.wikisource.org/wiki/山居秋暝",
+    termSlugs: ["liqiu", "chushu", "qiufen", "shuangjiang"],
+    imagery: ["秋雨", "明月", "清泉"],
+    excerpt: "空山新雨后，天气晚来秋。",
+    lines: ["空山新雨后，天气晚来秋。", "明月松间照，清泉石上流。", "竹喧归浣女，莲动下渔舟。", "随意春芳歇，王孙自可留。"],
+    note: "这首诗给秋季页面一个安静骨架：雨后、月光、泉声、人的归来。"
+  },
+  {
+    id: "yueye-yishe",
+    title: "月夜忆舍弟",
+    author: "杜甫",
+    dynasty: "唐",
+    sourceTitle: "《全唐诗》",
+    sourceUrl: "https://zh.wikisource.org/wiki/月夜憶舍弟",
+    termSlugs: ["bailu", "qiufen", "hanlu"],
+    imagery: ["露", "月", "秋夜"],
+    excerpt: "露从今夜白，月是故乡明。",
+    lines: ["戍鼓断人行，边秋一雁声。", "露从今夜白，月是故乡明。", "有弟皆分散，无家问死生。", "寄书长不达，况乃未休兵。"],
+    note: "白露不只是露水的物理现象，也有夜色、月光和思念带来的情绪层。"
+  },
+  {
+    id: "jiangxue",
+    title: "江雪",
+    author: "柳宗元",
+    dynasty: "唐",
+    sourceTitle: "《全唐诗》",
+    sourceUrl: "https://zh.wikisource.org/wiki/江雪",
+    termSlugs: ["xiaohan", "dahan", "xiaoxue", "daxue"],
+    imagery: ["雪", "江", "孤舟"],
+    excerpt: "孤舟蓑笠翁，独钓寒江雪。",
+    lines: ["千山鸟飞绝，万径人踪灭。", "孤舟蓑笠翁，独钓寒江雪。"],
+    note: "它适合冬季诗卡，因为画面极简，留白强，适合做冷色视觉。"
+  },
+  {
+    id: "handan-dongzhi",
+    title: "邯郸冬至夜思家",
+    author: "白居易",
+    dynasty: "唐",
+    sourceTitle: "《白氏长庆集》",
+    sourceUrl: "https://zh.wikisource.org/wiki/邯鄲冬至夜思家",
+    termSlugs: ["lidong", "dongzhi"],
+    imagery: ["冬至", "灯前", "思家"],
+    excerpt: "邯郸驿里逢冬至，抱膝灯前影伴身。",
+    lines: ["邯郸驿里逢冬至，抱膝灯前影伴身。", "想得家中夜深坐，还应说着远行人。"],
+    note: "冬至最有力量的并不只是天文，而是短白昼里人对灯、家和团聚的感受。"
+  }
+];
 
 export const seasonalArticles = [
   {

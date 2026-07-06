@@ -9,8 +9,10 @@ import {
   seasonalEnglishSite,
   seasonalEnglishStaticPages,
   seasonalEnglishTopics,
+  seasonalPoems,
   seasonalSite,
   seasonalStaticPages,
+  seasonalTermCalendar,
   seasonalTopics
 } from "../content/seasonal-observatory.mjs";
 
@@ -219,6 +221,8 @@ async function compareDistAndDocs() {
 
 if (seasonalArticles.length < 6) fail("Seasonal site should start with at least 6 zh articles.");
 if (seasonalTopics.length < 4) fail("Seasonal site should start with at least 4 zh topic routes.");
+if (seasonalTermCalendar.length !== 24) fail("Seasonal site should define all 24 solar terms.");
+if (seasonalPoems.length < 8) fail("Seasonal poem calendar should start with at least 8 sourced poems.");
 checkArticleModel(seasonalArticles, { locale: "zh", minLength: 900 });
 checkTopicModel(seasonalTopics, seasonalArticles, "zh");
 checkStaticPages(seasonalStaticPages, "zh");
@@ -240,6 +244,16 @@ await checkGeneratedContext({
   sourceLabel: "来源与编辑说明",
   checklistLabel: "本节气可以这样观察"
 });
+
+const zhHome = await readGenerated("index.html");
+if (!zhHome.includes("id=\"poem-calendar\"")) fail("Home page missing poem calendar section.");
+if (!zhHome.includes("id=\"poem-card-lab\"")) fail("Home page missing poem card lab.");
+if (!zhHome.includes("seasonal-calendar-data")) fail("Home page missing solar-term JSON data.");
+if (!zhHome.includes("seasonal-poem-data")) fail("Home page missing poem JSON data.");
+if (!zhHome.includes("data-download-card")) fail("Home page missing poem-card download control.");
+
+const seasonalCss = await readGenerated("assets/seasonal.css");
+if (!seasonalCss.includes(".poem-card[hidden]")) fail("Seasonal CSS must hide filtered poem cards.");
 
 if (seasonalEnglishArticles?.length) {
   await checkGeneratedContext({
