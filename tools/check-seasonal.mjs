@@ -173,11 +173,38 @@ async function checkGeneratedContext({ locale, prefix, htmlLang, articles, topic
   }
 }
 
+async function checkSolarTermPages() {
+  const indexHtml = await readGenerated("solar-terms/index.html");
+  if (!indexHtml.includes("二十四节气地图")) fail("Solar-term index missing title.");
+  if (!indexHtml.includes(`<link rel="canonical" href="${canonicalUrlFor("solar-terms/index.html")}">`)) {
+    fail("solar-terms/index.html canonical is not self-referential.");
+  }
+
+  for (const term of seasonalTermCalendar) {
+    const pagePath = `solar-terms/${term.slug}/index.html`;
+    const html = await readGenerated(pagePath);
+    if (!html.includes(`<html lang="zh-CN">`)) fail(`${pagePath} must use zh-CN html lang.`);
+    if (!html.includes(`<link rel="canonical" href="${canonicalUrlFor(pagePath)}">`)) {
+      fail(`${pagePath} canonical is not self-referential.`);
+    }
+    if (!html.includes(term.name)) fail(`${pagePath} missing term name.`);
+    if (!html.includes(term.focus)) fail(`${pagePath} missing term focus.`);
+    if (!html.includes("三步观察")) fail(`${pagePath} missing observation steps.`);
+    if (!html.includes("来源与处理方式")) fail(`${pagePath} missing source note.`);
+    if (!html.includes("香港天文台")) fail(`${pagePath} missing public source link.`);
+    if (!html.includes('<script type="application/ld+json">')) fail(`${pagePath} missing WebPage JSON-LD.`);
+  }
+}
+
 async function checkSitemap() {
   const sitemap = await readGenerated("sitemap.xml");
   if (!sitemap.includes("xhtml:link")) fail("Sitemap should include multilingual alternate links.");
   for (const article of seasonalArticles) {
     if (!sitemap.includes(`/articles/${article.slug}/`)) fail(`Sitemap missing zh article ${article.slug}.`);
+  }
+  if (!sitemap.includes("/solar-terms/")) fail("Sitemap missing solar-term index.");
+  for (const term of seasonalTermCalendar) {
+    if (!sitemap.includes(`/solar-terms/${term.slug}/`)) fail(`Sitemap missing solar-term page ${term.slug}.`);
   }
   for (const article of seasonalEnglishArticles || []) {
     if (!sitemap.includes(`/en/articles/${article.slug}/`)) fail(`Sitemap missing en article ${article.slug}.`);
@@ -251,9 +278,13 @@ if (!zhHome.includes("id=\"poem-card-lab\"")) fail("Home page missing poem card 
 if (!zhHome.includes("seasonal-calendar-data")) fail("Home page missing solar-term JSON data.");
 if (!zhHome.includes("seasonal-poem-data")) fail("Home page missing poem JSON data.");
 if (!zhHome.includes("data-download-card")) fail("Home page missing poem-card download control.");
+if (!zhHome.includes("solar-terms/")) fail("Home page missing solar-term page links.");
 
 const seasonalCss = await readGenerated("assets/seasonal.css");
 if (!seasonalCss.includes(".poem-card[hidden]")) fail("Seasonal CSS must hide filtered poem cards.");
+if (!seasonalCss.includes(".term-map-card")) fail("Seasonal CSS missing solar-term map cards.");
+
+await checkSolarTermPages();
 
 if (seasonalEnglishArticles?.length) {
   await checkGeneratedContext({

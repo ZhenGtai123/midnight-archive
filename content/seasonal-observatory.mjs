@@ -26,6 +26,7 @@ export const seasonalSite = {
   },
   nav: [
     { label: "今日", href: "#today" },
+    { label: "节气", href: "solar-terms/" },
     { label: "诗历", href: "#poem-calendar" },
     { label: "诗卡", href: "#poem-card-lab" },
     { label: "观察", href: "#articles" },
@@ -76,7 +77,7 @@ export const seasonalHome = {
   primaryCta: "读今日观察",
   secondaryCta: "生成诗卡",
   stats: [
-    { value: "24", label: "个节气轮盘" },
+    { value: "24", label: "个节气页面" },
     { value: "10", label: "首诗词索引" },
     { value: "6", label: "篇首批长文" },
     { value: "1", label: "个诗卡工具" }
@@ -850,12 +851,12 @@ export const seasonalStaticPages = [
     title: "内容扩展路线",
     description: "节气观察室的栏目规划和内容厚度标准。",
     body:
-      "<p class=\"lead\">首版先完成 6 篇可读长文。申请 AdSense 前，建议扩展到完整 24 个节气页面，并增加 8-12 篇专题文章，形成稳定内链网络。</p><p>优先路线：四季核心节气页、城市物候专题、居家节气专题、雨水与湿度专题、光线与历法专题。每篇正式文章应包含原创观察、来源卡片、行动清单和继续阅读入口。</p>"
+      "<p class=\"lead\">当前版本已经生成 24 个节气资料页，并保留 6 篇可读长文作为样板。申请 AdSense 前，建议把这些资料页逐步扩写成更厚的独立长文，并增加 8-12 篇专题文章，形成稳定内链网络。</p><p>优先路线：四季核心节气页、城市物候专题、居家节气专题、雨水与湿度专题、光线与历法专题。每篇正式文章应包含原创观察、来源卡片、行动清单和继续阅读入口。</p>"
   }
 ];
 
 export const seasonalExpansionPlan = [
-  "补齐 24 个节气的独立长文，每篇至少 1200-1800 中文字。",
+  "把 24 个节气资料页逐步扩写为独立长文，每篇至少 1200-1800 中文字。",
   "为春分、夏至、秋分、冬至建立四个核心历法解释页。",
   "增加城市观察表、阳台植物记录模板和授权读者照片栏目。",
   "建立单独域名后，独立提交 sitemap，并避免与故事站混用品牌定位。"

@@ -46,6 +46,17 @@ const zhUi = {
   relatedEyebrow: "Related routes",
   relatedHeading: "继续阅读",
   relatedCopy: "这篇文章被放入以下专题路径，方便从一个节气继续走向同类观察。",
+  termsEyebrow: "Solar terms",
+  termsTitle: "二十四节气地图",
+  termsCopy: "每个节气都有独立资料页，先提供日期、观察入口、诗词意象和关联长文，后续逐步扩写成完整长文。",
+  termIndexBack: "返回节气地图",
+  termOverviewLabel: "节气导读",
+  termObserveLabel: "城市观察",
+  termPoemLabel: "关联诗句",
+  termArticleLabel: "延伸长文",
+  termSourceLabel: "资料来源",
+  termPrev: "上一个节气",
+  termNext: "下一个节气",
   topicsEyebrow: "Reading routes",
   topicsTitle: "节气专题地图",
   topicsCopy:
@@ -265,10 +276,54 @@ function poemById(poemId, context) {
   return context.poems?.find((poem) => poem.id === poemId);
 }
 
+function termPath(term) {
+  return `solar-terms/${term.slug}/`;
+}
+
 function termLink(term, rootRel, context) {
+  return `${rootRel}${context.pathPrefix}${termPath(term)}`;
+}
+
+function termPoems(term, context = zhContext) {
+  return (term.poemIds || []).map((poemId) => poemById(poemId, context)).filter(Boolean);
+}
+
+function termArticle(term, context = zhContext) {
   return term.articleSlug
-    ? `${rootRel}${context.pathPrefix}articles/${term.articleSlug}/`
-    : `${rootRel}${context.pathPrefix}#poem-calendar`;
+    ? context.articleBySlug.get(term.articleSlug)
+    : context.articles.find((article) => article.term === term.name);
+}
+
+function adjacentTerms(term, context = zhContext) {
+  const index = context.termCalendar.findIndex((item) => item.slug === term.slug);
+  const terms = context.termCalendar;
+  return {
+    prev: terms[(index - 1 + terms.length) % terms.length],
+    next: terms[(index + 1) % terms.length]
+  };
+}
+
+function seasonalTone(term) {
+  return {
+    spring: "leaf",
+    summer: "sun",
+    autumn: "mist",
+    winter: "winter"
+  }[term.season] || "leaf";
+}
+
+function seasonNoun(term) {
+  return {
+    spring: "春日",
+    summer: "夏日",
+    autumn: "秋日",
+    winter: "冬日"
+  }[term.season] || "四时";
+}
+
+function termDescription(term, poems = []) {
+  const poemText = poems.length ? `，可从《${poems[0].title}》等诗句进入它的意象层` : "";
+  return `${term.name}是${term.seasonLabel}季节气，2026 年日期为${termDateLabel(term.date)}。本页整理${term.focus}的观察入口${poemText}，帮助读者把节气落实到城市日常。`;
 }
 
 function termWheel(context, rootRel) {
@@ -279,7 +334,7 @@ function termWheel(context, rootRel) {
         <p class="eyebrow">Solar term wheel</p>
         <h2>二十四节气轮盘</h2>
       </div>
-      <p>把一年压成一个可点击的圆。已有长文的节气会进入文章页，其他节气先进入诗历索引。</p>
+      <p>把一年压成一个可点击的圆。每个节气都有独立页面，先放日期、观察入口、诗句和可继续扩写的内容位置。</p>
     </div>
     <div class="term-wheel-shell">
       <div class="term-wheel" aria-label="二十四节气">
@@ -833,6 +888,200 @@ function topicPage(topic, context = zhContext) {
   });
 }
 
+function termIndexPage(context = zhContext) {
+  const pathName = `${context.pathPrefix}solar-terms/`;
+  const rootRel = relativeRoot(pathName);
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: context.ui.termsTitle,
+    description: context.ui.termsCopy,
+    inLanguage: context.locale,
+    url: absoluteUrl(pathName),
+    hasPart: context.termCalendar.map((term) => ({
+      "@type": "WebPage",
+      name: term.name,
+      url: absoluteUrl(termPath(term))
+    }))
+  };
+
+  const body = `
+  <section class="page-hero">
+    <a class="back-link" href="${rootRel}${context.pathPrefix}">${esc(context.ui.backHome)}</a>
+    <p class="eyebrow">${esc(context.ui.termsEyebrow)}</p>
+    <h1>${esc(context.ui.termsTitle)}</h1>
+    <p>${esc(context.ui.termsCopy)}</p>
+  </section>
+  <section class="section">
+    <div class="term-map">
+      ${context.termCalendar
+        .map((term) => {
+          const poems = termPoems(term, context);
+          const article = termArticle(term, context);
+          return `<article class="term-map-card tone-${seasonalTone(term)}" style="--term-color:${esc(term.color)}">
+        <a href="${rootRel}${context.pathPrefix}${termPath(term)}">
+          <div class="card-topline">
+            <span>${esc(term.seasonLabel)}</span>
+            <span>${esc(termDateLabel(term.date))}</span>
+            <span>${article ? "已有长文" : "资料页"}</span>
+          </div>
+          <h2>${esc(term.name)}</h2>
+          <p>${esc(term.focus)}</p>
+          <small>${esc(poems[0]?.excerpt || term.observe)}</small>
+        </a>
+      </article>`;
+        })
+        .join("")}
+    </div>
+  </section>`;
+
+  return pageShell({
+    context,
+    title: `${context.ui.termsTitle} | ${context.site.name}`,
+    description: context.ui.termsCopy,
+    pathName,
+    body,
+    structuredData: [collectionLd]
+  });
+}
+
+function termObservationPrompts(term) {
+  const seasonAction = {
+    spring: "记录枝条、草地或雨后泥土里最早出现的变化，并写下它发生在一天的哪个时段。",
+    summer: "比较早晨、午后和夜间的热感差异，尤其留意地面、墙面和窗边的余温。",
+    autumn: "连续几天看同一处光线、叶片或夜风，记录转凉是否先出现在边缘细节里。",
+    winter: "记录房间光线、开灯时间和热饮需求，把冬季从室外天气拉回日常动作。"
+  }[term.season];
+
+  return [
+    term.observe,
+    seasonAction,
+    `把当天的${term.focus}写成三行短记录：看到什么、身体怎么感到、明天想复查什么。`
+  ];
+}
+
+function termPage(term, context = zhContext) {
+  const pathName = `${context.pathPrefix}${termPath(term)}`;
+  const rootRel = relativeRoot(pathName);
+  const poems = termPoems(term, context);
+  const article = termArticle(term, context);
+  const adjacent = adjacentTerms(term, context);
+  const description = termDescription(term, poems);
+  const prompts = termObservationPrompts(term);
+  const hkoSource = context.site.sources.find((source) => source.url.includes("hko.gov.hk")) || context.site.sources[0];
+  const unescoSource = context.site.sources.find((source) => source.url.includes("unesco.org")) || context.site.sources[0];
+  const pageLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: `${term.name} | ${context.site.name}`,
+    description,
+    inLanguage: context.locale,
+    url: absoluteUrl(pathName),
+    about: [
+      {
+        "@type": "Thing",
+        name: term.name,
+        alternateName: term.englishName
+      },
+      ...poems.map((poem) => ({
+        "@type": "CreativeWork",
+        name: poem.title,
+        author: poem.author,
+        isBasedOn: poem.sourceUrl
+      }))
+    ],
+    isPartOf: {
+      "@type": "CollectionPage",
+      name: context.ui.termsTitle,
+      url: absoluteUrl("solar-terms/")
+    }
+  };
+
+  const body = `
+  <article class="term-page tone-${seasonalTone(term)}" style="--term-color:${esc(term.color)}">
+    <header class="article-hero term-hero">
+      <a class="back-link" href="${rootRel}${context.pathPrefix}solar-terms/">${esc(context.ui.termIndexBack)}</a>
+      <p class="eyebrow">${esc(term.seasonLabel)} · ${esc(term.englishName)} · ${esc(termDateLabel(term.date))}</p>
+      <h1>${esc(term.name)}</h1>
+      <p>${esc(description)}</p>
+      <div class="theme-stats">
+        <span>${esc(term.focus)}</span>
+        <span>2026 · ${esc(termDateLabel(term.date))}</span>
+        <span>${article ? "已有关联长文" : "待扩写长文"}</span>
+      </div>
+    </header>
+    <div class="term-detail-layout">
+      <div class="term-main">
+        <section class="term-guide">
+          <p class="eyebrow">${esc(context.ui.termOverviewLabel)}</p>
+          <h2>${esc(term.name)}要看什么</h2>
+          <p>${esc(`${term.name}的关键词不是抽象的“${term.seasonLabel}”，而是${term.focus}。对城市读者来说，这个节气可以从一条路、一扇窗、一个阳台或一次晚归开始。`)}</p>
+          <p>${esc(`观察时不要急着寻找标准答案。先把${seasonNoun(term)}里的具体变化固定下来：时间、地点、天气、身体感受和第二天是否重复出现。这样，节气就不只是日历提醒，而会变成一份可以长期比较的生活记录。`)}</p>
+          <p>${esc(article ? `本站已经为${term.name}准备了延伸长文，适合从资料页继续读到更完整的观察方法。` : `这个页面先作为${term.name}的资料入口，后续会扩写成长文，补充城市物候、居家记录和读者可复查的观察模板。`)}</p>
+        </section>
+        <section class="term-guide">
+          <p class="eyebrow">${esc(context.ui.termObserveLabel)}</p>
+          <h2>三步观察</h2>
+          <ul>${prompts.map((item) => `<li>${esc(item)}</li>`).join("")}</ul>
+        </section>
+        <section class="term-guide">
+          <p class="eyebrow">${esc(context.ui.termPoemLabel)}</p>
+          <h2>诗句入口</h2>
+          ${
+            poems.length
+              ? `<div class="mini-poem-list">${poems
+                  .map(
+                    (poem) => `<article>
+              <span>${esc(poem.dynasty)} · ${esc(poem.author)}</span>
+              <h3>${esc(poem.title)}</h3>
+              <blockquote>${esc(poem.excerpt)}</blockquote>
+              <p>${esc(poem.note)}</p>
+              <a class="text-link" href="${esc(poem.sourceUrl)}" rel="nofollow noopener" target="_blank">查看诗词来源</a>
+            </article>`
+                  )
+                  .join("")}</div>`
+              : `<p>这个节气的诗句索引还在补充中。</p>`
+          }
+        </section>
+        <section class="term-guide">
+          <p class="eyebrow">${esc(context.ui.termArticleLabel)}</p>
+          <h2>继续读</h2>
+          ${
+            article
+              ? `<div class="article-grid">${articleCard(article, rootRel, context)}</div>`
+              : `<div class="empty-article-card">
+          <h3>${esc(term.name)}长文正在排期</h3>
+          <p>当前先保留资料页，避免为了凑数量发布薄文章。正式长文会补足来源说明、原创观察、行动清单和继续阅读入口。</p>
+        </div>`
+          }
+        </section>
+      </div>
+      <aside class="term-side">
+        <section class="term-source-card">
+          <p class="eyebrow">${esc(context.ui.termSourceLabel)}</p>
+          <h2>来源与处理方式</h2>
+          <p>日期和节气基础知识参考公开机构资料；观察建议为节气观察室编辑部原创整理，页面不复制机构正文。</p>
+          <a class="text-link" href="${esc(hkoSource.url)}" rel="nofollow noopener" target="_blank">${esc(hkoSource.title)}</a>
+          <a class="text-link" href="${esc(unescoSource.url)}" rel="nofollow noopener" target="_blank">${esc(unescoSource.title)}</a>
+        </section>
+        <nav class="term-neighbor-row" aria-label="相邻节气">
+          <a href="${rootRel}${context.pathPrefix}${termPath(adjacent.prev)}"><span>${esc(context.ui.termPrev)}</span><strong>${esc(adjacent.prev.name)}</strong></a>
+          <a href="${rootRel}${context.pathPrefix}${termPath(adjacent.next)}"><span>${esc(context.ui.termNext)}</span><strong>${esc(adjacent.next.name)}</strong></a>
+        </nav>
+      </aside>
+    </div>
+  </article>`;
+
+  return pageShell({
+    context,
+    title: `${term.name}：${term.focus} | ${context.site.name}`,
+    description,
+    pathName,
+    body,
+    structuredData: [pageLd]
+  });
+}
+
 function sourcesPage(context = zhContext) {
   const page = context.staticPageBySlug.get("sources");
   const body = `
@@ -953,7 +1202,9 @@ function pathsForContext(context) {
   return [
     context.pathPrefix,
     `${context.pathPrefix}topics/`,
+    ...(context.termCalendar?.length ? [`${context.pathPrefix}solar-terms/`] : []),
     ...context.staticPages.map((page) => `${context.pathPrefix}${page.slug}/`),
+    ...(context.termCalendar?.map((term) => `${context.pathPrefix}${termPath(term)}`) || []),
     ...context.articles.map((article) => `${context.pathPrefix}articles/${article.slug}/`),
     ...context.topics.map((topic) => `${context.pathPrefix}topics/${topic.slug}/`)
   ];
@@ -974,7 +1225,7 @@ function sitemapXml() {
       return `<url>
   <loc>${absoluteUrl(pagePath)}</loc>
 ${alternateXml}
-  <lastmod>2026-07-06</lastmod>
+  <lastmod>2026-07-07</lastmod>
 </url>`;
     })
     .join("\n");
@@ -1022,6 +1273,9 @@ async function writePage(pathName, content) {
 async function writeContext(context) {
   await writePage(context.pathPrefix, homePage(context));
   await writePage(`${context.pathPrefix}topics/`, topicsIndexPage(context));
+  if (context.termCalendar?.length) {
+    await writePage(`${context.pathPrefix}solar-terms/`, termIndexPage(context));
+  }
   await writePage(`${context.pathPrefix}sources/`, sourcesPage(context));
   await writePage(`${context.pathPrefix}content-roadmap/`, roadmapPage(context));
 
@@ -1032,6 +1286,10 @@ async function writeContext(context) {
 
   for (const article of context.articles) {
     await writePage(`${context.pathPrefix}articles/${article.slug}/`, articlePage(article, context));
+  }
+
+  for (const term of context.termCalendar || []) {
+    await writePage(`${context.pathPrefix}${termPath(term)}`, termPage(term, context));
   }
 
   for (const topic of context.topics) {
