@@ -58,13 +58,7 @@ if (existsSync(heroSource)) {
   await copyFile(heroSource, path.join(siteRoot, "assets", "hero-midnight-archive.png"));
 }
 
-const storyVisuals = {
-  xifangping: "story-xifangping.webp",
-  "nie-xiaoqian": "story-nie-xiaoqian.webp",
-  "painted-skin": "story-painted-skin.webp",
-  "laoshan-daoshi": "story-laoshan-daoshi.webp",
-  "wang-liulang": "story-wang-liulang.webp"
-};
+const storyVisuals = Object.fromEntries(stories.map((story) => [story.slug, `story-${story.slug}.webp`]));
 
 const generatedAssetFiles = [
   "archive-people.webp",

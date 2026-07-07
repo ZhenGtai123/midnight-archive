@@ -55,11 +55,7 @@ const requiredPages = [
   "assets/generated/archive-underworld.webp",
   "assets/generated/archive-objects.webp",
   "assets/generated/archive-relations.webp",
-  "assets/generated/story-xifangping.webp",
-  "assets/generated/story-nie-xiaoqian.webp",
-  "assets/generated/story-painted-skin.webp",
-  "assets/generated/story-laoshan-daoshi.webp",
-  "assets/generated/story-wang-liulang.webp",
+  ...stories.map((story) => `assets/generated/story-${story.slug}.webp`),
   "en/index.html",
   ...archivePagePaths.map((page) => `en/${page}`),
   "en/themes/index.html",
@@ -345,7 +341,7 @@ for (const asset of ["archive-people.webp", "archive-beings.webp", "archive-unde
   }
 }
 
-for (const asset of ["story-xifangping.webp", "story-nie-xiaoqian.webp", "story-painted-skin.webp", "story-laoshan-daoshi.webp", "story-wang-liulang.webp"]) {
+for (const asset of stories.map((story) => `story-${story.slug}.webp`)) {
   if (!homeHtml.includes(asset)) {
     failures.push(`Home page missing story image ${asset}`);
   }
@@ -360,13 +356,17 @@ const pilotStoryHtml = await readOutput("stories/xifangping/index.html");
 for (const text of ["data-archive-tabs", "原文", "白话", "导读", "data-relation-graph"]) {
   if (!pilotStoryHtml.includes(text)) failures.push(`Xifangping story page missing archive feature ${text}`);
 }
-if (!pilotStoryHtml.includes("story-xifangping.webp")) {
-  failures.push("Xifangping story page missing generated cover image");
-}
 
-const englishPilotStoryHtml = await readOutput("en/stories/xifangping/index.html");
-if (!englishPilotStoryHtml.includes("story-xifangping.webp")) {
-  failures.push("English Xifangping story page missing generated cover image");
+for (const story of stories) {
+  const asset = `story-${story.slug}.webp`;
+  const storyHtml = await readOutput(`stories/${story.slug}/index.html`);
+  const englishStoryHtml = await readOutput(`en/stories/${story.slug}/index.html`);
+  if (!storyHtml.includes(asset)) {
+    failures.push(`Story ${story.slug} page missing generated cover image ${asset}`);
+  }
+  if (!englishStoryHtml.includes(asset)) {
+    failures.push(`English story ${story.slug} page missing generated cover image ${asset}`);
+  }
 }
 
 const routeHtml = await readOutput("archive/route/index.html");
