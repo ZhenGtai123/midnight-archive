@@ -51,6 +51,7 @@ const zhUi = {
   termsCopy: "每个节气都有独立资料页，先提供日期、观察入口、诗词意象和关联长文，后续逐步扩写成完整长文。",
   termIndexBack: "返回节气地图",
   termOverviewLabel: "节气导读",
+  termCoreEssayLabel: "Core essay",
   termObserveLabel: "城市观察",
   termPoemLabel: "关联诗句",
   termArticleLabel: "延伸长文",
@@ -960,6 +961,34 @@ function termObservationPrompts(term) {
   ];
 }
 
+function termCoreEssay(term, context = zhContext) {
+  if (!term.coreEssay) return "";
+  const sections = term.coreEssay.sections || [];
+  const checklist = term.coreEssay.checklist || [];
+
+  return `<section class="term-guide term-core-essay">
+          <p class="eyebrow">${esc(context.ui.termCoreEssayLabel || "Core essay")}</p>
+          <h2>${esc(term.coreEssay.title)}</h2>
+          <p class="lead">${esc(term.coreEssay.deck)}</p>
+          ${sections
+            .map(
+              (section) => `<div class="essay-section">
+            <h3>${esc(section.heading)}</h3>
+            ${(section.body || []).map((paragraph) => `<p>${esc(paragraph)}</p>`).join("")}
+          </div>`
+            )
+            .join("")}
+          ${
+            checklist.length
+              ? `<div class="essay-checklist">
+            <h3>记录模板</h3>
+            <ul>${checklist.map((item) => `<li>${esc(item)}</li>`).join("")}</ul>
+          </div>`
+              : ""
+          }
+        </section>`;
+}
+
 function termPage(term, context = zhContext) {
   const pathName = `${context.pathPrefix}${termPath(term)}`;
   const rootRel = relativeRoot(pathName);
@@ -1019,6 +1048,7 @@ function termPage(term, context = zhContext) {
           <p>${esc(`观察时不要急着寻找标准答案。先把${seasonNoun(term)}里的具体变化固定下来：时间、地点、天气、身体感受和第二天是否重复出现。这样，节气就不只是日历提醒，而会变成一份可以长期比较的生活记录。`)}</p>
           <p>${esc(article ? `本站已经为${term.name}准备了延伸长文，适合从资料页继续读到更完整的观察方法。` : `这个页面先作为${term.name}的资料入口，后续会扩写成长文，补充城市物候、居家记录和读者可复查的观察模板。`)}</p>
         </section>
+        ${termCoreEssay(term, context)}
         <section class="term-guide">
           <p class="eyebrow">${esc(context.ui.termObserveLabel)}</p>
           <h2>三步观察</h2>

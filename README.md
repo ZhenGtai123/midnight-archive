@@ -20,7 +20,7 @@ This folder is the shared workspace for the whole multi-site project. See `PROJE
 - Public preview: `https://zhengtai123.github.io/midnight-archive/`
 - English edition: `https://zhengtai123.github.io/midnight-archive/en/`
 - The English edition uses independent `/en/` URLs, self-canonical pages, and hreflang alternates. It currently covers all 18 story guides in edited English form instead of bulk machine translation.
-- `seasonal-observatory`: a bilingual solar-term, poetry calendar, and urban phenology site with original observation guides, 24 individual solar-term pages, public-domain poem notes, an interactive term wheel, a poem-card generator, source cards, and policy pages.
+- `seasonal-observatory`: a bilingual solar-term, poetry calendar, and urban phenology site with original observation guides, 24 individual solar-term pages, 4 expanded core term essays, public-domain poem notes, an interactive term wheel, a poem-card generator, source cards, and policy pages.
 - Seasonal preview: `https://zhengtai123.github.io/midnight-archive/seasonal-observatory/`
 - Seasonal English edition: `https://zhengtai123.github.io/midnight-archive/seasonal-observatory/en/`
 - The Seasonal English edition uses independent `/seasonal-observatory/en/` URLs, self-canonical pages, visible language switching, and zh-CN/en/x-default hreflang alternates across home, topic, article, and policy pages.

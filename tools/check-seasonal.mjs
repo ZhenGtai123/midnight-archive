@@ -21,6 +21,7 @@ const root = path.resolve(__dirname, "..");
 const siteRoot = path.join(root, "dist", seasonalSite.slug);
 const docsRoot = path.join(root, "docs", seasonalSite.slug);
 const errors = [];
+const coreTermSlugs = ["chunfen", "xiazhi", "qiufen", "dongzhi"];
 
 function fail(message) {
   errors.push(message);
@@ -127,6 +128,27 @@ function checkStaticPages(staticPages, locale) {
   }
 }
 
+function checkCoreTermModel() {
+  for (const slug of coreTermSlugs) {
+    const term = seasonalTermCalendar.find((item) => item.slug === slug);
+    if (!term) {
+      fail(`Missing core solar term data: ${slug}`);
+      continue;
+    }
+    const sections = term.coreEssay?.sections || [];
+    const checklist = term.coreEssay?.checklist || [];
+    const essayText = [
+      term.coreEssay?.title,
+      term.coreEssay?.deck,
+      ...sections.flatMap((section) => [section.heading, ...(section.body || [])]),
+      ...checklist
+    ].join("");
+    if (sections.length < 4) fail(`${slug} core essay should have at least 4 sections.`);
+    if (checklist.length < 3) fail(`${slug} core essay should include at least 3 checklist items.`);
+    if (stripHtml(essayText).length < 1200) fail(`${slug} core essay is too thin.`);
+  }
+}
+
 async function checkGeneratedContext({ locale, prefix, htmlLang, articles, topics, staticPages, sourceLabel, checklistLabel }) {
   const indexPath = `${prefix}index.html`;
   const requiredPages = [
@@ -193,6 +215,11 @@ async function checkSolarTermPages() {
     if (!html.includes("来源与处理方式")) fail(`${pagePath} missing source note.`);
     if (!html.includes("香港天文台")) fail(`${pagePath} missing public source link.`);
     if (!html.includes('<script type="application/ld+json">')) fail(`${pagePath} missing WebPage JSON-LD.`);
+    if (coreTermSlugs.includes(term.slug)) {
+      if (!html.includes(term.coreEssay.title)) fail(`${pagePath} missing core essay title.`);
+      if (!html.includes("记录模板")) fail(`${pagePath} missing core essay checklist.`);
+      if (stripHtml(html).length < 1800) fail(`${pagePath} generated core page is too thin.`);
+    }
   }
 }
 
@@ -250,6 +277,7 @@ if (seasonalArticles.length < 6) fail("Seasonal site should start with at least 
 if (seasonalTopics.length < 4) fail("Seasonal site should start with at least 4 zh topic routes.");
 if (seasonalTermCalendar.length !== 24) fail("Seasonal site should define all 24 solar terms.");
 if (seasonalPoems.length < 8) fail("Seasonal poem calendar should start with at least 8 sourced poems.");
+checkCoreTermModel();
 checkArticleModel(seasonalArticles, { locale: "zh", minLength: 900 });
 checkTopicModel(seasonalTopics, seasonalArticles, "zh");
 checkStaticPages(seasonalStaticPages, "zh");
